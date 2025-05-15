@@ -3,32 +3,25 @@ title: Home
 nav_order: 0
 ---
 
-{: .attention }
-> Any text enclosed by `[ ]` are placeholders, including the opening and closing brackets.
->
-> You may delete this `attention` box.
 
-# [Project Name]
 
-[Project description]
+# RateMyTrip
+
+RateMyTrip is a web application that allows young travelers and students to share and discover new travel experiences.
 
 ## Team members
 
-### [Jane Dane]
+### Sarah Abdulsayed
 
-About
-: Some info about Jane
 
-Matr.-Nr.
-: 1234567
-
-### [Joe Doe]
-
-About
-: Some info about Joe
 
 Matr.-Nr.
-: 1234567
+: 77211985412
+
+### Emily Apitzsch
+
+Matr.-Nr.
+: 77211980381
 
 ## Eidesstattliche Erklärung
 
