@@ -10,18 +10,18 @@ def home():
 def profile():
     return render_template('profile.html')
 
-@app.route('/')
+@app.route('/search')
 def search():
     return render_template('search.html')
 
-@app.route('/')
+@app.route('/city')
 def city():
     return render_template('city.html')
 
-@app.route('/')
+@app.route('/review')
 def review():
     return render_template('review.html')
 
-@app.route('/')
+@app.route('/user')
 def user():
     return render_template('user.html')
