@@ -1,6 +1,20 @@
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap5 #(1.)
+import db
+import os
 
 app = Flask(__name__)
+
+app.config.from_mapping(
+    SECRET_KEY = 'secret_key_just_for_dev_environment',
+    DATABASE = os.path.join(app.instance_path, 'ratemytrip.sqlite'),
+    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'  # (2.)
+)
+app.cli.add_command(db.init_db)
+app.teardown_appcontext(db.close_db_con)
+
+bootstrap = Bootstrap5(app)  # (3.)
+
 
 @app.route('/')
 def home():
@@ -25,3 +39,8 @@ def review():
 @app.route('/user')
 def user():
     return render_template('user.html')
+
+@app.route('/insert/sample')
+def run_insert_sample():
+    db.insert_sample()
+    return 'Database flushed and populated with some sample data.'

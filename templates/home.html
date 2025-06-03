@@ -2,17 +2,12 @@
 <html>
 
 <head>
- <style>
-            body{background-color:rgb(238, 237, 183);}
-            p.text{color:rgb(41, 71, 131); text-align: center;  font-size: 1.2em; }
-            h1, h2 { color: rgb(41, 71, 131); text-align: center;}
-            img { width: 100%;height: auto;}
-        </style>
-        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
     <title > CityRate </title>
+    {{ bootstrap.load_css() }}  <!-- (2.) -->
 </head>
-
-
+   
 <body>
     <h1 > CityRate </h1>
 
@@ -28,6 +23,7 @@
         <li><a href="/search">zur suche</a></li>
     </ul>
     </main>
+    {{ bootstrap.load_js() }}  <!-- (3.) -->
 </body>
 
 </html>
