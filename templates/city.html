@@ -2,7 +2,10 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
     <title> City </title>
+    {{ bootstrap.load_css() }}  <!-- (2.) -->
 </head>
 
 <body>
@@ -10,6 +13,7 @@
     <ul>
         <li><a href="/review">write review</a></li>
     </ul>
+    {{ bootstrap.load_js() }}  <!-- (3.) -->
 </body>
 
 </html>

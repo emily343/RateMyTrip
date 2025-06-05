@@ -2,12 +2,15 @@
 <html>
 
 <head>
-    <title> Profile </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
+    <title > Profile </title>
+    {{ bootstrap.load_css() }}  <!-- (2.) -->
 </head>
 
 <body>
     <h1> Das ist die Profilseite  </h1>
-  
+    {{ bootstrap.load_js() }}  <!-- (3.) --> 
 </body>
 
 </html>
