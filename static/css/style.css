@@ -15,6 +15,7 @@
             background-color: #EEEAAB;
             font-family: 'Jost', sans-serif;
             text-align: center;   
+            padding-top: 100px; /*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
         }
         text-align: center;
 /* Bilder im Karussell gleich groß anzeigen */
@@ -28,22 +29,17 @@
             opacity: 1;
         }
 
-/*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
-        main {
-            padding-top: 100px;
+
+        /* Button Design */
+        .custom-button1 {
+            background-color: #336699;  /* z.B. dunkles Violett */
+            color: white;
+            border: none;
         }
 
-
-/* Button Design */
-.custom-button1 {
-    background-color: #336699;  /* z.B. dunkles Violett */
-    color: white;
-    border: none;
-}
-
-.custom-button2 {
-    background-color: #BCD4DE;  /* z.B. dunkles Violett */
-    color: #336699;
-    border: #336699;
-    margin-right: 15px;
-}
+        .custom-button2 {
+            background-color: #BCD4DE;  /* z.B. dunkles Violett */
+            color: #336699;
+            border: #336699;
+            margin-right: 15px;
+        }

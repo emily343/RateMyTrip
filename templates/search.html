@@ -11,7 +11,7 @@
 
 
 <!-- Sytle in eigener CSS-Datei definiert-->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
@@ -48,24 +48,18 @@
 <!-- Header -->
     <header>
         <h1>Explore</h1>
-        <h3>Search for City to learn more about</h3>
+        <h3 class="text" style="font-weight: bold; margin-bottom: 15px">Search for Cities to learn more about!</h3>
     </header>
 
 
  <!-- Main Inhalt -->
-    <main>
-     <h1> Discover your perfect Erasmus-City</h1>
-      <p class="text" style="font-weight: bold; margin-bottom: 15px">
-      <br>
-      Welcome to our platform, where students can share insights about Erasmus cities. 
-      <br> Join our community to find and recommend the best places to study, live and explore!
-      </p>
-      
-    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
-    <a href="/search" class="btn custom-button1">Explore Cities</a>
-    <a href="/profile" class="btn custom-button2">Join</a>
-    </div>
-
+    <main> 
+    <!--  ChatGPT, Frage: Wie binde ich das erstellte Formular in die HTML-Seite ein?-->
+    <form method="POST" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 100px; margin-right: 100px"> <!--Methode per post an den Server gesendet und Stylet -->
+        <!-- Zeigt Texteld -->
+        {{ form.description(class="form-control", placeholder="Search...") }}
+        {{ form.submit(class="btn btn-primary custom-button1") }}  <!-- Zeigt Button -->
+    </form>
     </main>
 
 

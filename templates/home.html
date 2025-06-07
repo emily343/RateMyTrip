@@ -10,59 +10,18 @@
     {{ bootstrap.load_css() }}  <!-- bootstrap laden -->
 
 
-<!-- Sytle-->
+<!-- Sytle in eigener CSS-Datei definiert-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <style>
-    
-/* Überschriften zentriert */
-        h1, h3 {
-            text-align: center;
-        }
-  
-        body {  
-            padding-top: 100px;
-            background-color: #EEEAAB;
-            font-family: 'Jost', sans-serif;
-        }
-
-        main {  
-            background-color: #EEEAAB;
-            font-family: 'Jost', sans-serif;
-            text-align: center;   
-        }
-        text-align: center;
-/* Bilder im Karussell gleich groß anzeigen */
-        .carousel-item img {
-            height: 600px;
-            object-fit: cover;
-        }
-
-        nav.navbar {
-            background-color: #EEEAAB;
-            opacity: 1;
-        }
-
-/*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
-        main {
-            padding-top: 100px;
-        }
-
-
-/* Button Design */
-.custom-button1 {
-    background-color: #336699;  /* z.B. dunkles Violett */
-    color: white;
-    border: none;
+<!-- Sytle die nur für diese Seite relevant sind -->
+<!-- Sytle für Bilder festelgen, damit alle im Karousel gleich groß sind -->
+    <style> 
+.carousel-item img {
+    height: 600px;
+    object-fit: cover;
 }
-
-.custom-button2 {
-    background-color: #BCD4DE;  /* z.B. dunkles Violett */
-    color: #336699;
-    border: #336699;
-    margin-right: 15px;
-}
-
 </style>
+
 </head>
    
 
@@ -107,27 +66,28 @@
 
 
 <!-- Bilder-Carousel -->
- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;">  <!-- Karousel von Bildern, Quelle: https://getbootstrap.com/docs/5.0/components/carousel/ -->
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;">  <!-- Karousel von Bildern, Quelle: https://getbootstrap.com/docs/5.0/components/carousel/ -->
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="/static/images/berlin_pic.jpg" class="d-block w-100" alt="Berlin Image">
-        <h6 style="padding-left: 10px; padding-top: 5px;">Berlin</h6> <!-- Bild Überschirft-->
-        <p style="padding-left: 10px;">Picture taken by User123.</p> <!-- Bild Beschreibung-->
+        <h5 style="padding-left: 15px;">Berlin</h5> <!-- Bild Überschirft-->
+        <p style="padding-left: 15px;">Picture taken by User123.</p> <!-- Bild Beschreibung-->
       </div>
       <div class="carousel-item">
         <img src="/static/images/amsterdam_pic.jpg" class="d-block w-100" alt="Amsterdam Image">
-        <h6 style="padding-left: 10px; padding-top: 5px;">Amsterdam</h6>
-        <p style="padding-left: 10px;">Picture taken by User123.</p>
+        <h5 style="padding-left: 15px;">Amsterdam</h5>
+        <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
       <div class="carousel-item">
         <img src="/static/images/budapest_pic.jpg" class="d-block w-100" alt="Budapest Image">
-        <h6 style="padding-left: 10px; padding-top: 5px;">Budapest</h6>
-        <p style="padding-left: 10px;">Picture taken by User123.</p>
+        <h5 style="padding-left: 15px;">Budapest</h5>
+        <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
       <div class="carousel-item">
         <img src="/static/images/istanbul_pic.jpg" class="d-block w-100" alt="Istanbul Image">
-        <h6 style="padding-left: 10px; padding-top: 5px;">Istanbul</h6>
-        <p style="padding-left: 10px;">Picture taken by User123.</p>
+        <h5 style="padding-left: 15px;">Istanbul</h5>
+        <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -139,6 +99,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
 
 
 

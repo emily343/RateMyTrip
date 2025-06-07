@@ -2,6 +2,10 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5 #(1.)
 import db
 import os
+from forms import SearchCityForm #Formular wird von forms importiert
+
+
+
 
 app = Flask(__name__)
 
@@ -24,12 +28,18 @@ def home():
 def profile():
     return render_template('profile.html')
 
-@app.route('/search')
+@app.route('/search', methods=['GET', 'POST']) #Route zeigt Suchformular an und verarbeitet es mit Get und Post
 def search():
-    return render_template('search.html')
+    form = SearchCityForm() #Formularobjekt wird erzeugt
+    if form.validate_on_submit(): #Prüft valide Absendung
+        city = form.description.data #holt Eingabe und speichert sie als city
+        return redirect(url_for('city', city_name=city)) #fehlt noch, führt dann zur Seite der City
+    return render_template('search.html', form=form)
+
 
 @app.route('/city')
 def city():
+    city_name = request.args.get('city_name', 'Unknown') #zeigt die Seite mit der Stadt als übergebenen Parameter von Search
     return render_template('city.html')
 
 @app.route('/review')
