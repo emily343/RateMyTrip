@@ -45,7 +45,7 @@ def city_view(city_name):
     
     db_con = get_db_con()
     city = db_con.execute(
-        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)',
+        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', #damit es nicht case-sensitive ist
         (city_name,)
     ).fetchone()
 
