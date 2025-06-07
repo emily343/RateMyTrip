@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 CREATE TABLE city (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    description TEXT NOT NULL
+    name TEXT PRIMARY KEY NOT NULL,
+    description TEXT NOT NULL,
+    image_path TEXT
 ); 
 COMMIT;

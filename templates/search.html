@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Linke Seite -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
-        {{ render_nav_item('city', 'Search for Cities') }}
+        {{ render_nav_item('search', 'Search for Cities') }}
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
 
@@ -55,10 +55,10 @@
  <!-- Main Inhalt -->
     <main> 
     <!--  ChatGPT, Frage: Wie binde ich das erstellte Formular in die HTML-Seite ein?-->
-    <form method="POST" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 100px; margin-right: 100px"> <!--Methode per post an den Server gesendet und Stylet -->
-        <!-- Zeigt Texteld -->
-        {{ form.description(class="form-control", placeholder="Search...") }}
-        {{ form.submit(class="btn btn-primary custom-button1") }}  <!-- Zeigt Button -->
+    <form method="POST" action="{{ url_for('search') }}" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 100px; margin-right: 100px">
+    {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
+    {{ form.cityField(class="form-control", placeholder="Search...") }}
+    {{ form.submit(class="btn btn-primary custom-button1") }}
     </form>
     </main>
 
@@ -70,7 +70,6 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
         crossorigin="anonymous"></script>
 
+
 </body>
-
-
 </html>

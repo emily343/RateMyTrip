@@ -5,5 +5,5 @@ from wtforms.validators import InputRequired, Length
 
 #in Search
 class SearchCityForm(FlaskForm):  #FlaskForms ist Basis-Klasse n Flask
-    description = StringField(validators=[InputRequired()])  #description ist Eingabefeld für String-Variable, es muss Text eingeben werden
+    cityField = StringField(validators=[InputRequired()])  #cityField ist Eingabefeld für String-Variable, es muss Text eingeben werden
     submit = SubmitField('Search') #Button für Bestätigung

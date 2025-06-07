@@ -17,7 +17,7 @@
             text-align: center;   
             padding-top: 100px; /*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
         }
-        text-align: center;
+        
 /* Bilder im Karussell gleich groß anzeigen */
         .carousel-item img {
             height: 600px;

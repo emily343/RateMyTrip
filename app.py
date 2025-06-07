@@ -3,6 +3,8 @@ from flask_bootstrap import Bootstrap5 #(1.)
 import db
 import os
 from forms import SearchCityForm #Formular wird von forms importiert
+from db import get_db_con
+from flask import Flask, render_template, request, abort, redirect, url_for
 
 
 
@@ -32,15 +34,27 @@ def profile():
 def search():
     form = SearchCityForm() #Formularobjekt wird erzeugt
     if form.validate_on_submit(): #Prüft valide Absendung
-        city = form.description.data #holt Eingabe und speichert sie als city
-        return redirect(url_for('city', city_name=city)) #fehlt noch, führt dann zur Seite der City
+        city = form.cityField.data #holt Eingabe und speichert sie als city
+        return redirect(url_for('city_view', city_name=city)) #fehlt noch, führt dann zur Seite der City
     return render_template('search.html', form=form)
 
+@app.route('/city/<city_name>')
+def city_view(city_name):
+    if not city_name:
+        return "No city specified", 400
+    
+    db_con = get_db_con()
+    city = db_con.execute(
+        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)',
+        (city_name,)
+    ).fetchone()
 
-@app.route('/city')
-def city():
-    city_name = request.args.get('city_name', 'Unknown') #zeigt die Seite mit der Stadt als übergebenen Parameter von Search
-    return render_template('city.html')
+    if city is None:
+        return "City not found", 404
+
+    return render_template('city.html', city=city)
+
+
 
 @app.route('/review')
 def review():
@@ -54,3 +68,13 @@ def user():
 def run_insert_sample():
     db.insert_sample()
     return 'Database flushed and populated with some sample data.'
+
+@app.route('/insert/images')
+def insert_images():
+    db.insert_image_paths()
+    return 'Bilderpfade wurden ergänzt.'
+
+@app.route('/db/add_image_column')
+def add_image_column():
+    db.add_image_column()
+    return "Spalte 'image_path' wurde hinzugefügt."
