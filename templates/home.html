@@ -3,16 +3,75 @@
 <html>
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
     <title > CityRate </title>
-    {{ bootstrap.load_css() }}  <!-- (2.) -->
+    {{ bootstrap.load_css() }}  <!-- bootstrap laden -->
+
+
+<!-- Sytle-->
+
+    <style>
+    
+/* Überschriften zentriert */
+        h1, h3 {
+            text-align: center;
+        }
+  
+        body {  
+            padding-top: 100px;
+            background-color: #EEEAAB;
+            font-family: 'Jost', sans-serif;
+        }
+
+        main {  
+            background-color: #EEEAAB;
+            font-family: 'Jost', sans-serif;
+            text-align: center;   
+        }
+        text-align: center;
+/* Bilder im Karussell gleich groß anzeigen */
+        .carousel-item img {
+            height: 600px;
+            object-fit: cover;
+        }
+
+        nav.navbar {
+            background-color: #EEEAAB;
+            opacity: 1;
+        }
+
+/*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
+        main {
+            padding-top: 100px;
+        }
+
+
+/* Button Design */
+.custom-button1 {
+    background-color: #336699;  /* z.B. dunkles Violett */
+    color: white;
+    border: none;
+}
+
+.custom-button2 {
+    background-color: #BCD4DE;  /* z.B. dunkles Violett */
+    color: #336699;
+    border: #336699;
+    margin-right: 15px;
+}
+
+</style>
 </head>
    
-<body style ="padding-top: 100px; background-color: rgb(101, 180, 233);" > <!-- Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding -->
 
-  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top" 
-     style="background-color: rgb(101, 180, 233); opacity: 1;"> <!-- Navigationsleiste oben fixiert -->
+
+<!-- Body -->
+
+<body> 
+<!-- NavBar oben fixiert -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top">  <!-- Navigationsbar, Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
         <div class="container-fluid px-0">
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -22,30 +81,94 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style ="padding-left: 15px;">
-                    {{ render_nav_item('city', 'Search for Cities') }}
-                    {{ render_nav_item('profile', 'Your Account') }}
-                </ul>
-            </div>
+    <!-- Linke Seite -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
+        {{ render_nav_item('city', 'Search for Cities') }}
+        {{ render_nav_item('profile', 'Your Account') }}
+    </ul>
+
+    <!-- Rechte Seite -->
+    <div>
+    <a href="{{ url_for('profile') }}" class="btn custom-button1">Login</a>
+    <a href="{{ url_for('profile') }}" class="btn custom-button2">Sign Up</a>
+    </div>
+
+</div>
         </div>
     </nav>
 
-    <h1 > CityRate </h1>
 
-    <h2 >The Site to help you find your erasmus destination</h2>
-    
-    <img src="/static/images/homepage_pic.jpg" alt="Homepage Image" class="img-fluid"> <!-- Bild mit fliud responsive machen, passt sich breite des Bildschirms an-->
+<!-- Header -->
+    <header>
+        <h1>CityRate</h1>
+        <h3>The site to help you find your Erasmus destination</h3>
+    </header>
 
+
+
+<!-- Bilder-Carousel -->
+ <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;">  <!-- Karousel von Bildern, Quelle: https://getbootstrap.com/docs/5.0/components/carousel/ -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/berlin_pic.jpg" class="d-block w-100" alt="Berlin Image">
+        <h6 style="padding-left: 10px; padding-top: 5px;">Berlin</h6> <!-- Bild Überschirft-->
+        <p style="padding-left: 10px;">Picture taken by User123.</p> <!-- Bild Beschreibung-->
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/amsterdam_pic.jpg" class="d-block w-100" alt="Amsterdam Image">
+        <h6 style="padding-left: 10px; padding-top: 5px;">Amsterdam</h6>
+        <p style="padding-left: 10px;">Picture taken by User123.</p>
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/budapest_pic.jpg" class="d-block w-100" alt="Budapest Image">
+        <h6 style="padding-left: 10px; padding-top: 5px;">Budapest</h6>
+        <p style="padding-left: 10px;">Picture taken by User123.</p>
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/istanbul_pic.jpg" class="d-block w-100" alt="Istanbul Image">
+        <h6 style="padding-left: 10px; padding-top: 5px;">Istanbul</h6>
+        <p style="padding-left: 10px;">Picture taken by User123.</p>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+ <!-- Main Inhalt -->
     <main>
-            <p class="text">CityRate is a web app that creates a student-community that helps each other share experiences and tipps about their erasmus or semester abroad in europe. 
-            <br> Find a city to find and leave reviews to through user-generated reviews and ratings. </p>
-       
-    <ul>
-        <li><a href="/profile">zur profilseite</a></li>
-        <li><a href="/search">zur suche</a></li>
-    </ul>
+     <h1> Discover your perfect Erasmus-City</h1>
+      <p class="text" style="font-weight: bold; margin-bottom: 15px">
+      <br>
+      Welcome to our platform, where students can share insights about Erasmus cities. 
+      <br> Join our community to find and recommend the best places to study, live and explore!
+      </p>
+      
+    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
+    <a href="/search" class="btn custom-button1">Explore Cities</a>
+    <a href="/profile" class="btn custom-button2">Join</a>
+    </div>
+
+    </div>
+
     </main>
+
+
+
+ <!-- JS Scripts -->    
     {{ bootstrap.load_js() }}  <!-- (3.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
+        crossorigin="anonymous"></script>
+
 </body>
+
 
 </html>
