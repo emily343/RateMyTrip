@@ -1,0 +1,49 @@
+/*Sytle Regeln*/
+    
+/* Überschriften zentriert */
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center;
+        }
+  
+        body {  
+            padding-top: 100px;
+            background-color: #EEEAAB;
+            font-family: 'Jost', sans-serif;
+        }
+
+        main {  
+            background-color: #EEEAAB;
+            font-family: 'Jost', sans-serif;
+            text-align: center;   
+        }
+        text-align: center;
+/* Bilder im Karussell gleich groß anzeigen */
+        .carousel-item img {
+            height: 600px;
+            object-fit: cover;
+        }
+
+        nav.navbar {
+            background-color: #EEEAAB;
+            opacity: 1;
+        }
+
+/*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
+        main {
+            padding-top: 100px;
+        }
+
+
+/* Button Design */
+.custom-button1 {
+    background-color: #336699;  /* z.B. dunkles Violett */
+    color: white;
+    border: none;
+}
+
+.custom-button2 {
+    background-color: #BCD4DE;  /* z.B. dunkles Violett */
+    color: #336699;
+    border: #336699;
+    margin-right: 15px;
+}
