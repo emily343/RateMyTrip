@@ -1,19 +1,19 @@
---Datei um DB anpassen
--- Bestehende flasche Einträge löschen
-DELETE FROM city WHERE name = 'Istanbul';
-DELETE FROM city WHERE name = 'Copenhagen';
+DELETE FROM review WHERE id IN (1, 2);
 
--- Neue richtige Einträge einfügen
-INSERT INTO city (name, description, image_path)
-VALUES (
-    'Istanbul',
-    'Istanbul is a vibrant city that bridges Europe and Asia, rich in history and culture. Famous landmarks like the Hagia Sophia and the Blue Mosque showcase its unique blend of Byzantine and Ottoman heritage.',
-    'istanbul_pic.jpg'
-);
-
-INSERT INTO city (name, description, image_path)
-VALUES (
-    'Copenhagen',
-    'Copenhagen is known for its high quality of life, bike-friendly streets, and rich Danish culture. The city blends modern design with historical charm.',
-    'copenhagen.webp'
+INSERT INTO review (
+    id, city_name, user_id, overall_rating, uni_rating, freetime_rating, nightime_rating,
+    campus_life_rating, transportation_rating, cost_rating, living_rating,
+    workopportunities_rating, safety_rating, food_rating, comunication_rating, comment, created_at
+) VALUES
+(
+    1, 'Berlin', 'sarah',
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    'Berlin is great for students!',
+    '2025-06-08 11:27:24'
+),
+(
+    2, 'Amsterdam', 'emmy',
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    'Beautiful city with good infrastructure.',
+    '2025-06-08 11:27:24'
 );

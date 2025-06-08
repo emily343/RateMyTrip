@@ -67,7 +67,70 @@
 
  <!-- Main Inhalt -->
     <main> 
-   
+   <main class="container mt-5">
+
+    <h2 class="text-center">Submit Your Review</h2>
+    <form method="POST" class="mb-4">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }}
+            {{ form.uni_rating(class="form-control", placeholder="Uni", min=1, max=5) }}
+            {{ form.freetime_rating(class="form-control", placeholder="Freetime", min=1, max=5) }}
+            {{ form.nightime_rating(class="form-control", placeholder="Nightlife", min=1, max=5) }}
+            {{ form.campus_life_rating(class="form-control", placeholder="Campus Life", min=1, max=5) }}
+            {{ form.transportation_rating(class="form-control", placeholder="Transportation", min=1, max=5) }}
+            {{ form.cost_rating(class="form-control", placeholder="Cost of living", min=1, max=5) }}
+            {{ form.living_rating(class="form-control", placeholder="Living", min=1, max=5) }}
+            {{ form.workopportunities_rating(class="form-control", placeholder="Work Opportunities_rating",  min=1, max=5) }}
+            {{ form.safety_rating(class="form-control", placeholder="Safety", min=1, max=5) }}
+            {{ form.food_rating(class="form-control", placeholder="Food", min=1, max=5) }}
+            {{ form.comunication_rating(class="form-control", placeholder="Communication with others", min=1, max=5) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.comment.label(class="form-label") }}
+            {{ form.comment(class="form-control", rows=3) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+    </form>
+
+    <h2 class="text-center">Previous Reviews</h2>
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+    <h5 class="card-title">Overall-Rating: {{ review.overall_rating }}/5</h5>
+    <!-- ChatGPT, Frage: Wie zeige ich die gespeicherten Review-Daten aus der DB an?-->
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Uni Rating: {{ review.uni_rating }}/5</li>
+        <li class="list-group-item">Freetime Rating: {{ review.freetime_rating }}/5</li>
+        <li class="list-group-item">Nightime Rating: {{ review.nightime_rating }}/5</li>
+        <li class="list-group-item">Campus Life Rating: {{ review.campus_life_rating }}/5</li>
+        <li class="list-group-item">Transportation Rating: {{ review.transportation_rating }}/5</li>
+        <li class="list-group-item">Cost Rating: {{ review.cost_rating }}/5</li>
+        <li class="list-group-item">Living Rating: {{ review.living_rating }}/5</li>
+        <li class="list-group-item">Work Opportunities Rating: {{ review.workopportunities_rating }}/5</li>
+        <li class="list-group-item">Safety Rating: {{ review.safety_rating }}/5</li>
+        <li class="list-group-item">Food Rating: {{ review.food_rating }}/5</li>
+        <li class="list-group-item">Communication Rating: {{ review.comunication_rating }}/5</li>
+    </ul>
+
+    {% if review.comment %}
+        <p class="card-text mt-3">{{ review.comment }}</p>
+    {% endif %}
+    <p class="card-subtitle text-muted"><small>{{ review.created_at }}</small></p>
+</div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">No reviews yet. Be the first to leave one!</p>
+    {% endif %}
+
+</main>
+
     </main>
 
 

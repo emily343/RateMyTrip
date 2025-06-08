@@ -38,19 +38,3 @@ def insert_sample():
          db_con.executescript(f.read())
   
 
-def insert_image_paths():
-    db_con = get_db_con()
-    updates = [
-        ('Copenhagen', 'copenhagen.webp')
-    ]
-    for name, image in updates:
-        db_con.execute("UPDATE city SET image_path = ? WHERE name = ?", (image, name))
-    db_con.commit()
-
-def add_image_column():
-    db_con = get_db_con()
-    try:
-        db_con.execute("ALTER TABLE city ADD COLUMN image_path TEXT")
-        db_con.commit()
-    except sqlite3.OperationalError:
-        print("Spalte 'image_path' existiert bereits.")
