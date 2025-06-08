@@ -5,7 +5,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title > City </title>
     {{ bootstrap.load_css() }}  <!-- bootstrap laden -->
 
@@ -58,23 +58,24 @@
 
 <!-- Header -->
     <header>
-        <h1>{{ city['name'] }}</h1>
-        <p class="fw-bold mb-3 text-center">{{ city['description'] }}</p>
-       <img src="{{ url_for('static', filename='images/' ~ city['image_path']) }}" alt="{{ city['name'] }}" class="city-image">
+        <h1>{{ city['name'] }}</h1> <!-- city Platzhalter wird von DB übernommen -->
+        <p class="fw-bold mb-3 text-center">{{ city['description'] }}</p>  <!-- description Platzhalter wird von DB übernommen -->
+       <img src="{{ url_for('static', filename='images/' ~ city['image_path']) }}" alt="{{ city['name'] }}" class="city-image"> <!-- gibt Pfad zum Bild, wobei platzhalter des Namens weider von DB kommt-->
 
     </header>
 
 
  <!-- Main Inhalt -->
     <main> 
-   <main class="container mt-5">
+    <main class="container mt-5">
 
     <h2 class="text-center">Submit Your Review</h2>
     <form method="POST" class="mb-4">
-        {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }} <!-- CSRF-Schutz-Token, damit Eingabe richtig übermittelt wird, kommt sonst zu Fehlermeldungen -->
 
         <div class="mb-3">
-            {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }}
+        <!--- Formularfelder vom Typ WTForms, mit class="form-control" bekommen sie das Bootstrap-Design, alle Eingaben müssen zwischen 1-5 sein  -->
+            {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }} 
             {{ form.uni_rating(class="form-control", placeholder="Uni", min=1, max=5) }}
             {{ form.freetime_rating(class="form-control", placeholder="Freetime", min=1, max=5) }}
             {{ form.nightime_rating(class="form-control", placeholder="Nightlife", min=1, max=5) }}
@@ -89,21 +90,24 @@
         </div>
 
         <div class="mb-3">
-            {{ form.comment.label(class="form-label") }}
-            {{ form.comment(class="form-control", rows=3) }}
+            {{ form.comment.label(class="form-label") }} <!-- Label für Kommentarfeld -->
+            {{ form.comment(class="form-control", rows=3) }} <!-- Kommentarfeld -->
         </div>
-
+        <!-- Submit-Button -->
         <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
     </form>
 
+    <!-- Vorherige Reviws anzeigen -->
+        <!-- ChatGPT, Frage: Wie zeige ich die gespeicherten Review-Daten aus der DB an?-->
     <h2 class="text-center">Previous Reviews</h2>
-    {% if reviews %}
+    {% if reviews %} <!-- falls es Reviws gibt, Iteriert über vorhandene reviews -->
         {% for review in reviews %}
-            <div class="card mb-3">
-                <div class="card-body">
+            <div class="card mb-3"> <!-- Für jede Bewertung wird  eine Bootstrap-Karte erstellt -->
+                <div class="card-body"> <!-- Container für Inhalt der Karte -->
+    <!-- Was in der jeweligen Karte für jede Iteration angezeigt wird -->            
     <h5 class="card-title">Overall-Rating: {{ review.overall_rating }}/5</h5>
-    <!-- ChatGPT, Frage: Wie zeige ich die gespeicherten Review-Daten aus der DB an?-->
-    <ul class="list-group list-group-flush">
+    <!-- Liste in der alle Detail-Ratings dagestellt werden-->
+    <ul class="list-group list-group-flush"> 
         <li class="list-group-item">Uni Rating: {{ review.uni_rating }}/5</li>
         <li class="list-group-item">Freetime Rating: {{ review.freetime_rating }}/5</li>
         <li class="list-group-item">Nightime Rating: {{ review.nightime_rating }}/5</li>
@@ -117,15 +121,15 @@
         <li class="list-group-item">Communication Rating: {{ review.comunication_rating }}/5</li>
     </ul>
 
-    {% if review.comment %}
+    {% if review.comment %} <!-- Falls es einen Review-Text gibt (dieser ist a optional), wird der angezeigt-->
         <p class="card-text mt-3">{{ review.comment }}</p>
     {% endif %}
-    <p class="card-subtitle text-muted"><small>{{ review.created_at }}</small></p>
+    <p class="card-subtitle text-muted"><small>{{ review.created_at }}</small></p> <!-- Zusätzlich wird Zeitstempler angegeben für Text-->
 </div>
 
             </div>
         {% endfor %}
-    {% else %}
+    {% else %} <!-- Und wenn es gar keine rRewievs gibt, wird das angezeigt-->
         <p class="text-center">No reviews yet. Be the first to leave one!</p>
     {% endif %}
 
@@ -135,8 +139,8 @@
 
 
 
- <!-- JS Scripts -->    
-    {{ bootstrap.load_js() }}  <!-- (3.) -->
+ <!-- JS für Bootstrap -->    
+    {{ bootstrap.load_js() }}  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
         crossorigin="anonymous"></script>

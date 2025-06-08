@@ -1,3 +1,4 @@
+--Datei die genutzt wird um Änderungen durch SQL-Statements an der DB durchzuführen 
 DELETE FROM review WHERE id IN (1, 2);
 
 INSERT INTO review (

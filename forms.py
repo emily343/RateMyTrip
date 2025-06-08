@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, IntegerField
 from wtforms.validators import InputRequired, Length, NumberRange
 
-#Datei um benutze Formen festzulegen
+#Datei um Formen zu definieren
 
 
 #in Search
@@ -14,7 +14,8 @@ class SearchCityForm(FlaskForm):  #FlaskForms ist Basis-Klasse in Flask
 
 #in City/Cityname
 class ReviewForm(FlaskForm): #Basis-Klasse 
-    overall_rating = IntegerField('Rating (1–5)', validators=[InputRequired(), NumberRange(min=1, max=5)]) #Eingabefeld für Interger-Variable, zwischen 1-5 Stars, jede Bewertung braucht dieses Rating
+    #Eingabefeld für Interger-Variable, zwischen 1-5 Stars, jede Bewertung braucht dieses Rating
+    overall_rating = IntegerField('Rating (1–5)', validators=[InputRequired(), NumberRange(min=1, max=5)]) 
     #optionale, Detail-Ratings
     uni_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)]) 
     freetime_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
@@ -28,5 +29,6 @@ class ReviewForm(FlaskForm): #Basis-Klasse
     food_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
     comunication_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
 
-    comment = TextAreaField('Comment', validators=[Length(max=700)]) #Eingabefeld für Reviw-Text, ist nicht zwingend notwendig, max. 700 Zeichen
+    #Eingabefeld für Reviw-Text, ist nicht zwingend notwendig, max. 700 Zeichen
+    comment = TextAreaField('Comment', validators=[Length(max=700)]) 
     submit = SubmitField('Submit Review') #Button für Abschicken der Reviw

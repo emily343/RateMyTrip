@@ -1,3 +1,4 @@
+--mit dieser Datei werden die benötigten Tabellen erstellt. Sollte man eine Tabelle hinzufügen zu der Liste sollte man die alten erstmal löschen, damit sie sihc nicht doppeln -> mit Delete Datei
 BEGIN TRANSACTION;
 --City-Tabelle
 CREATE TABLE IF NOT EXISTS city (

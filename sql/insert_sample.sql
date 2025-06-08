@@ -1,7 +1,8 @@
 BEGIN TRANSACTION;
 
+
 -- Descriptions mit ChatGPT generiert
---City-Daten in die DB 
+--manuell Daten in die DB 
 
 INSERT INTO city (name, description, image_path)
 VALUES 
