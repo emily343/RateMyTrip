@@ -1,10 +1,9 @@
-from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5 #(1.)
 import db
 import os
 from forms import SearchCityForm #Formular wird von forms importiert
 from db import get_db_con
-from flask import Flask, render_template, request, abort, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
 
 
 
