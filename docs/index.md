@@ -5,9 +5,9 @@ nav_order: 0
 
 
 
-# RateMyTrip
+# CityRate
 
-RateMyTrip is a web application that allows young travelers and students to share and discover new travel experiences.
+CityRate is a web application that allows young travelers and students to share and discover experiences about cities that they can visit during a semester abroad in Europe.
 
 ## Team members
 
@@ -18,10 +18,17 @@ RateMyTrip is a web application that allows young travelers and students to shar
 Matr.-Nr.
 : 77211985412
 
+responsible for
+: homepage, search, city overview and review
+
 ### Emily Apitzsch
 
 Matr.-Nr.
 : 77211980381
+
+responsible for
+: login/registration, user-profile, user of review and bulletin board
+ 
 
 ## Eidesstattliche Erklärung
 
