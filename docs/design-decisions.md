@@ -61,7 +61,7 @@ Updated
 
 In our project we need to interact with a database, for example, to get city pictures or save user reviews. The question is if we use plain SQL or use SQLAlchemy as object-relational mapper.
 
-### Decision
+### Decision 
 
 We decided to use plain SQL. 
 
