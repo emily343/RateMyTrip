@@ -76,3 +76,39 @@ The main reasosn is that our group has plenty of experience using plain SQL but 
 | --- | --- | --- |
 | **Knowledge** | ✔️ We can already use it  | ❌ We must learn it from scartch |
 | **Readabilitya** | ✔️ SQL is directly visible in code | ❌ SQL is abstract |
+
+---
+## 03: Using Flask-WTF for Form Handling
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 21-Jun-2025
+
+### Problem statement
+
+Our web application requires forms for several purposes. For example for searching for cities and submitting user reviews. Handling forms using plain HTML and manually parsing input in Flask routes can quickly become error-prone and repetitive.
+
+We needed a better way to manage forms, especially one that integrates well with Flask.
+
+
+### Decision 
+
+We decided to use Flask-WTF, a Flask extension that integrates WTForms into Flask.
+
+Using Flask-WTF, we define each form as a separate Python class in forms.py. This keeps the form logic such as validation rules, field types, and labels—cleanly separated from the HTML templates, which improves maintainability and readability.
+The form instance is then passed to the template via the route function.
+
+### Regarded options
+
++ HTML forms with manual handling
++ Flask-WTF with WTForms
+
+| Criterion | Manual HTML Form | Flask-WTF |
+| --- | --- | --- |
+| **Validation** | ❌ Must be implemented manually  | ✔️ Built-in |
+| **Maintainability** | ❌ Code spread across HTML and Python  | ✔️ Seperated |
+| **Security** | ❌  No CSRF protection by default | ✔️ Built-in CSRF token |
