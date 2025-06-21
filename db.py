@@ -1,6 +1,6 @@
 import click
 import os
-import sqlite3
+import sqlite3  # SQLite DB [3]
 from flask import current_app, g
 
 

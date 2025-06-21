@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title > CityRate </title>
-    {{ bootstrap.load_css() }}  <!-- bootstrap laden -->
+    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
 
 
 <!-- Sytle in eigener CSS-Datei definiert-->
@@ -30,7 +30,7 @@
 
 <body> 
 <!-- NavBar oben fixiert -->
-  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top">  <!-- Navigationsbar, Quelle: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> <!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
         <div class="container-fluid px-0">
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -67,7 +67,7 @@
 
 <!-- Bilder-Carousel -->
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;">  <!-- Karousel von Bildern, Quelle: https://getbootstrap.com/docs/5.0/components/carousel/ -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;"> <!-- Bootstrap 5 Carousel Komponente (Quelle [3]) https://getbootstrap.com/docs/5.3/components/carousel/ -->
     <div class="carousel-inner">
       <div class="carousel-item active"> 
       <!-- Jedes Carousel-Item ist Bild mit Beschreibung-->
@@ -126,10 +126,8 @@
 
 
  <!-- JS Scripts for Bootstrap-->    
-    {{ bootstrap.load_js() }}  <!-- (3.) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
-        crossorigin="anonymous"></script>
+    {{ bootstrap.load_js() }} <!-- Bootstrap JS (Quelle [2]) -->
+  
 
 </body>
 

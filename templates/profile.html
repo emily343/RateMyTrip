@@ -7,10 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
     <meta name="viewport" content="width=device-width, initial-scale=1">  
     <title > Profile </title>
-    {{ bootstrap.load_css() }}  <!-- Bootstrap laden -->
+    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
 </head>
 
 <body style ="padding-top: 100px; background-color:#fff9c4; font-family: 'Urbanist', sans-serif;"> <!-- Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding -->
+<!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
 <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top" 
      style="background-color: #fdd835; opacity: 1;"> <!-- Navigationsleiste oben fixiert -->
         <div class="container-fluid px-0">
@@ -31,7 +32,7 @@
     </nav>
 
     <h1> Das ist die Profilseite  </h1>
-    {{ bootstrap.load_js() }}  <!-- Bootstrap JS laden --> 
+    {{ bootstrap.load_js() }}  <!-- Bootstrap JS (Quelle [2]) --> 
 </body>
 
 </html>
