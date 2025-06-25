@@ -37,12 +37,12 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **URL:** https://getbootstrap.com/docs/5.3/components/carousel/
 
 ### [4] Google Fonts – Fonts  
-- Usage: For the font “Jost” included in the HTML head  
-- URL: https://fonts.google.com/specimen/Jost
+- **Usage:** For the font “Jost” included in the HTML head  
+- **URL:** https://fonts.google.com/specimen/Jost
 
 ### [5] Flask-WTF – Form Handling and CSRF Protection  
-- Usage: Form validation and CSRF token in forms  
-- URL: https://flask-wtf.readthedocs.io/en/stable/
+- **Usage:** Form validation and CSRF token in forms  
+- **URL:** https://flask-wtf.readthedocs.io/en/stable/
 
 ---
 
@@ -53,3 +53,10 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **Exported Chat History (PDF):** (Reference to PDF not yet created)  
 - **Public Chat Link:** https://chatgpt.com/share/6856970e-32d4-8006-9332-a7a743c373f6  
 - **Purpose of Use:** Assistance with embedding the form in the HTML-template.
+
+### [2]  
+- **LLM Model:** ChatGPT (GPT-4)  
+- **Exported Chat History (PDF):** (Reference to PDF not yet created)  
+- **Public Chat Link:** https://chatgpt.com/share/685c2b73-b8c4-8006-9835-f4acea281f49
+- **Purpose of Use:** Assistance with displaying reviews that are already in the database in the HTML-template.
+
