@@ -40,4 +40,9 @@ class RegisterForm(FlaskForm): #Basisklasse
     password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
     passwordRepeat = PasswordField(validators=[InputRequired(), EqualTo('password')])  
     register = SubmitField('register') #Button für Bestätigung
-    
+
+#in Login
+class LoginForm(FlaskForm): #Basisklasse
+    loginUsername = StringField(validators=[InputRequired(), Length(min=3, max=20)])  
+    loginPassword = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
+    login = SubmitField('Login') #Button für Bestätigung

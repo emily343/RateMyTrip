@@ -46,7 +46,7 @@
 
     <!-- Rechte Seite -->
     <div>
-    <a href="{{ url_for('register') }}" class="btn custom-button2">Sign Up</a>  <!-- Verlinkt diese Seiten -->
+    <a href="{{ url_for('register') }}" class="btn custom-button2">Sign up</a>  <!-- Verlinkt diese Seiten -->
     </div>
 
 
@@ -66,14 +66,23 @@
     <main>
      <h1> Log in to your account</h1>
       <p class="text" style="font-weight: bold; margin-bottom: 15px">
-      
+         
       </p>
-      
-      <!-- Container mit zwei Buttons die zu Unterseiten verlinken-->
-    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
+
+     
+    <!-- Einbindung des Formulars (ChatGPT Quelle [1]) -->
     
-    <a href="/home" class="btn custom-button2">Login</a>
-    </div>
+    <form method="POST" action="{{ url_for('login') }}" style="display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 200px; margin-right: 200px">
+   <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
+    {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
+    <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
+    {{ form.loginUsername(class="form-control", placeholder="username") }}  <!-- Eingabefeld (in Forms definiert) -->
+    {{ form.loginPassword(class="form-control", placeholder="password") }} 
+    {{ form.login(class="btn btn-primary custom-button1") }} <!-- Bestätigungsbutton, auch in Forms definiert --> 
+    </form>
+    
+
+     
 
     </div>
 
@@ -89,3 +98,4 @@
 
 
 </html>
+

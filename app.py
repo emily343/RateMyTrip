@@ -1,9 +1,11 @@
 from flask import Flask, flash, render_template, redirect, request, url_for # Flask [1]
+import flask
 from flask_bootstrap import Bootstrap5 # Flask-Bootstrap5 [2]
 import db
 import os
-from forms import SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
+from forms import LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
 from db import get_db_con
+from flask_login import LoginManager, UserMixin, login_required, login_user
 
 
 
@@ -18,6 +20,10 @@ app.cli.add_command(db.init_db) #Ermöglicht über das Terminal flask init-db au
 app.teardown_appcontext(db.close_db_con) #Schließt DB-Verbindung am Ende des Requests 
 
 bootstrap = Bootstrap5(app) #bindet Bootstrap in die Flask-App ein
+    
+#Flask Login initialisieren
+login_manager = LoginManager() #lässt app und Flask-Login zusammen arbeiten
+login_manager.init_app(app)
 
 
 @app.route('/')
@@ -25,6 +31,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/profile')
+@login_required
 def profile():
     return render_template('profile.html')
 
@@ -126,9 +133,7 @@ def review():
 def user():
     return render_template('user.html')
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+
 
 
 #Route zum Registrieren eines neuen Nutzers 
@@ -165,6 +170,51 @@ def register():
     return render_template('register.html', form=form)
 
 
+#LOGIN
+
+
+#user class(für flask_login)
+class User(UserMixin): # von UserMixin werden Methoden vererbt
+    def __init__(self, id, username, password):
+        self.id = id
+        self.username = username
+        self.password = password
+
+
+#user_loader: reload user-Objekt
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id) 
+
+
+#Route für den Login-Bereich 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    
+    db_con = get_db_con() #baut Verbindung zur DB auf
+    form = LoginForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+
+        username = form.loginUsername.data
+        password = form.loginPassword.data
+
+        #sucht nach username in der Datenbank
+        existuser = db_con.execute( 
+        'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
+       
+        if existuser and existuser['password'] == password:
+            
+            user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
+            login_user(user) #user wird eingeloggt
+            flask.flash('Logged in successfully.')
+            return redirect(url_for('profile'))
+        else: 
+            flask.flash('wrong username or password')
+
+    return render_template('login.html', form=form)
+
+  
 
 
 #benutzt um Daten manuell in DB einzufügen
