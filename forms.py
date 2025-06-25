@@ -36,7 +36,7 @@ class ReviewForm(FlaskForm): #Basis-Klasse
 
 #in Register
 class RegisterForm(FlaskForm): #Basisklasse
-    username = StringField(validators=[InputRequired(), Length(min=5, max=20)])  
+    username = StringField(validators=[InputRequired(), Length(min=3, max=20)])  
     password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
     passwordRepeat = PasswordField(validators=[InputRequired(), EqualTo('password')])  
     register = SubmitField('register') #Button für Bestätigung

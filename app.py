@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for # Flask [1]
+from flask import Flask, flash, render_template, redirect, request, url_for # Flask [1]
 from flask_bootstrap import Bootstrap5 # Flask-Bootstrap5 [2]
 import db
 import os
@@ -131,10 +131,37 @@ def login():
     return render_template('login.html')
 
 
-
+#Route zum Registrieren eines neuen Nutzers 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+
+    db_con = get_db_con() #baut Verbindung zur DB auf
     form = RegisterForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        passwordRepeat = form.passwordRepeat.data
+
+        #password und passwordRepeat müssen gleich sein
+        if password != passwordRepeat:
+            flash('Passwords do not match')
+            return redirect(url_for('register'))
+        
+        #prüft ob username bereits vergeben ist 
+        checkuser = db_con.execute( 
+        'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
+        
+        if checkuser:
+            flash('username already taken :( Please choose a diferrent one')
+            return redirect(url_for('register'))
+        
+        
+        db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
+        db_con.commit()
+        flash("registration successfull :) You can now log in!")
+        return redirect(url_for('login'))
+
     return render_template('register.html', form=form)
 
 
