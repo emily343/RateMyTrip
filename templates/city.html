@@ -22,6 +22,14 @@
   display: block;
   margin: 0 auto;
 }
+
+
+    .list-bg {
+        background-color: #BCD4DE;
+        color: #336699;
+    }
+
+
 </style>
 
 </head>
@@ -96,7 +104,7 @@
             {{ form.comment(class="form-control", rows=3) }} <!-- Kommentarfeld -->
         </div>
         <!-- Submit-Button -->
-        <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button> 
+        <button type="submit" class="btn custom-button1">{{ form.submit.label.text }}</button> 
         <!-- Submit-Button via Flask-WTF (Quelle [4]) -->
     </form>
 
@@ -110,19 +118,19 @@
     <!-- Was in der jeweligen Karte für jede Iteration angezeigt wird -->            
     <h5 class="card-title">Overall-Rating: {{ review.overall_rating }}/5</h5>
     <!-- Liste in der alle Detail-Ratings dagestellt werden-->
-    <ul class="list-group list-group-flush"> 
-        <li class="list-group-item">Uni Rating: {{ review.uni_rating }}/5</li>
-        <li class="list-group-item">Freetime Rating: {{ review.freetime_rating }}/5</li>
-        <li class="list-group-item">Nightime Rating: {{ review.nightime_rating }}/5</li>
-        <li class="list-group-item">Campus Life Rating: {{ review.campus_life_rating }}/5</li>
-        <li class="list-group-item">Transportation Rating: {{ review.transportation_rating }}/5</li>
-        <li class="list-group-item">Cost Rating: {{ review.cost_rating }}/5</li>
-        <li class="list-group-item">Living Rating: {{ review.living_rating }}/5</li>
-        <li class="list-group-item">Work Opportunities Rating: {{ review.workopportunities_rating }}/5</li>
-        <li class="list-group-item">Safety Rating: {{ review.safety_rating }}/5</li>
-        <li class="list-group-item">Food Rating: {{ review.food_rating }}/5</li>
-        <li class="list-group-item">Communication Rating: {{ review.comunication_rating }}/5</li>
-    </ul>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item list-bg">Uni Rating: {{ review.uni_rating }}/5</li>
+    <li class="list-group-item list-bg">Freetime Rating: {{ review.freetime_rating }}/5</li>
+    <li class="list-group-item list-bg">Nightime Rating: {{ review.nightime_rating }}/5</li>
+    <li class="list-group-item list-bg">Campus Life Rating: {{ review.campus_life_rating }}/5</li>
+    <li class="list-group-item list-bg">Transportation Rating: {{ review.transportation_rating }}/5</li>
+    <li class="list-group-item list-bg">Cost Rating: {{ review.cost_rating }}/5</li>
+    <li class="list-group-item list-bg">Living Rating: {{ review.living_rating }}/5</li>
+    <li class="list-group-item list-bg">Work Opportunities Rating: {{ review.workopportunities_rating }}/5</li>
+    <li class="list-group-item list-bg">Safety Rating: {{ review.safety_rating }}/5</li>
+    <li class="list-group-item list-bg">Food Rating: {{ review.food_rating }}/5</li>
+    <li class="list-group-item list-bg">Communication Rating: {{ review.comunication_rating }}/5</li>
+</ul>
 
     {% if review.comment %} <!-- Falls es einen Review-Text gibt (dieser ist a optional), wird der angezeigt-->
         <p class="card-text mt-3">{{ review.comment }}</p>
@@ -132,7 +140,7 @@
 
             </div>
         {% endfor %}
-    {% else %} <!-- Und wenn es gar keine rRewievs gibt, wird das angezeigt-->
+    {% else %} <!-- Und wenn es gar keine Rewievs gibt, wird das angezeigt-->
         <p class="text-center">No reviews yet. Be the first to leave one!</p>
     {% endif %}
 
