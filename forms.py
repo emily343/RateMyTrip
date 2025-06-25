@@ -1,7 +1,7 @@
 from wtforms.validators import InputRequired, Length
 from flask_wtf import FlaskForm # Flask-WTF [4]
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField
-from wtforms.validators import InputRequired, Length, NumberRange
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, PasswordField
+from wtforms.validators import InputRequired, Length, NumberRange, EqualTo
 
 #Datei um Formen zu definieren
 
@@ -29,6 +29,15 @@ class ReviewForm(FlaskForm): #Basis-Klasse
     food_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
     comunication_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
 
-    #Eingabefeld für Reviw-Text, ist nicht zwingend notwendig, max. 700 Zeichen
+    #Eingabefeld für Review-Text, ist nicht zwingend notwendig, max. 700 Zeichen
     comment = TextAreaField('Comment', validators=[Length(max=700)]) 
     submit = SubmitField('Submit Review') #Button für Abschicken der Reviw
+
+
+#in Register
+class RegisterForm(FlaskForm): #Basisklasse
+    username = StringField(validators=[InputRequired(), Length(min=5, max=20)])  
+    password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
+    passwordRepeat = PasswordField(validators=[InputRequired(), EqualTo('password')])  
+    register = SubmitField('register') #Button für Bestätigung
+    

@@ -2,11 +2,8 @@ from flask import Flask, render_template, redirect, url_for # Flask [1]
 from flask_bootstrap import Bootstrap5 # Flask-Bootstrap5 [2]
 import db
 import os
-from forms import SearchCityForm, ReviewForm #Formulare werden von forms importiert
+from forms import SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
 from db import get_db_con
-
-
-
 
 
 
@@ -52,7 +49,7 @@ def city_view(city_name):
     if not city_name: #Falls kein city_name übergeben wurde 
         return "No city chosen", 400
 
-    db_con = get_db_con() #baut Vebrindung zur DB auf
+    db_con = get_db_con() #baut Verbindung zur DB auf
     city = db_con.execute( #das folgende SQL-Statement wird ausgeführt
          #Städte aus DB, wo Name aus DB = Name des weiteregebenen Parameters
         'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', #über Lower nicht mehr case-sensitive
@@ -133,9 +130,15 @@ def user():
 def login():
     return render_template('login.html')
 
-@app.route('/register')
+
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    form = RegisterForm()
+    return render_template('register.html', form=form)
+
+
+
 
 #benutzt um Daten manuell in DB einzufügen
 @app.route('/insert/sample')
