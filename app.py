@@ -50,7 +50,7 @@ def search(): #Funktion namen "search" wird definiert, die die Request verarbeit
 #Funktion namen "city_view" wird definiert, die die Request verarbeitet, Parameter der City in Search gegeben
 def city_view(city_name):
     if not city_name: #Falls kein city_name übergeben wurde 
-        return "No city choosen", 400
+        return "No city chosen", 400
 
     db_con = get_db_con() #baut Vebrindung zur DB auf
     city = db_con.execute( #das folgende SQL-Statement wird ausgeführt
@@ -128,6 +128,14 @@ def review():
 @app.route('/user')
 def user():
     return render_template('user.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 #benutzt um Daten manuell in DB einzufügen
 @app.route('/insert/sample')

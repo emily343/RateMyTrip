@@ -40,12 +40,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Linke Seite -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
-    {{ render_nav_item('search', 'Search for Cities') }} <!-- Verlinkt diese Seiten -->
-        {{ render_nav_item('home', 'go back to Homepage') }} 
+        {{ render_nav_item('home', 'go back to Homepage') }} <!-- Verlinkt diese Seiten -->
        
     </ul>
 
-    
+    <!-- Rechte Seite -->
+    <div>
+    <a href="{{ url_for('login') }}" class="btn custom-button2">Login</a>  <!-- Verlinkt diese Seiten -->
+    </div>
 
 
 </div>
@@ -62,7 +64,7 @@
 
  <!-- Main Inhalt -->
     <main>
-     <h1> Your Profile </h1>
+     <h1> Register today to share your experiences with the community!</h1>
       <p class="text" style="font-weight: bold; margin-bottom: 15px">
       
       </p>
