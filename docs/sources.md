@@ -44,6 +44,9 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **Usage:** Form validation and CSRF token in forms  
 - **URL:** https://flask-wtf.readthedocs.io/en/stable/
 
+### [6]  Bootstrap 5 - List group 
+- **Usage:** Displaying lists of reviews using .list-group and .list-group-item
+- **URL:**  https://getbootstrap.com/docs/4.0/components/list-group/
 ---
 
 # AI Usage
@@ -52,11 +55,11 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **LLM Model:** ChatGPT (GPT-4)  
 - **Exported Chat History (PDF):** docs/LLM-Prompts Chats/1.
 - **Public Chat Link:** https://chatgpt.com/share/6856970e-32d4-8006-9332-a7a743c373f6
-- **Purpose of Use:** Assistance with applying form in the city-HTML-template.
+- **Purpose of Use:** Assistance with applying form in the search-HTML-template.
 
 ### [2]  
 - **LLM Model:** ChatGPT (GPT-4)  
-- **Exported Chat History (PDF):** (Reference to PDF not yet created)  
-- **Public Chat Link:** https://chatgpt.com/share/685c2b73-b8c4-8006-9835-f4acea281f49
-- **Purpose of Use:** Assistance with displaying reviews that are already in the database in the HTML-template.
+- **Exported Chat History (PDF):** docs/LLM-Prompts Chats/2.
+- **Public Chat Link:** https://chatgpt.com/share/685fb910-8d4c-8006-baa6-5d625475ef65
+- **Purpose of Use:** Assistance with displaying reviews that are already in the database in the city-HTML-template.
 
