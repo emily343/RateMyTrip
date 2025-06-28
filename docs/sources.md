@@ -29,7 +29,7 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **URL:** https://getbootstrap.com/docs/5.3/components/navbar/
 
 ### [2] Bootstrap 5 – Form Controls  
-- **Usage:** In city HTML  
+- **Usage:** In city und search HTML  
 - **URL:** https://getbootstrap.com/docs/5.3/forms/overview/
 
 ### [3] Bootstrap 5 – Carousel  
@@ -50,9 +50,9 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 
 ### [1]  
 - **LLM Model:** ChatGPT (GPT-4)  
-- **Exported Chat History (PDF):** (Reference to PDF not yet created)  
-- **Public Chat Link:** https://chatgpt.com/share/6856970e-32d4-8006-9332-a7a743c373f6  
-- **Purpose of Use:** Assistance with embedding the form in the HTML-template.
+- **Exported Chat History (PDF):** docs/LLM-Prompts Chats/1.
+- **Public Chat Link:** https://chatgpt.com/share/6856970e-32d4-8006-9332-a7a743c373f6
+- **Purpose of Use:** Assistance with applying form in the city-HTML-template.
 
 ### [2]  
 - **LLM Model:** ChatGPT (GPT-4)  

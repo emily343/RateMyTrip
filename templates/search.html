@@ -60,7 +60,8 @@
    <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
     {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
     <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
-    {{ form.cityField(class="form-control", placeholder="Search...") }} <!-- Eingabefeld (in Forms definiert) -->
+    <!--"form-control" ist eine von bootstrap vor definierte Klasse mit Regeln -->
+    {{ form.cityField(class="form-control", placeholder="Search...") }} <!-- Eingabefeld (in Forms definiert)-->
     {{ form.submit(class="btn btn-primary custom-button1") }} <!-- Bestätigungsbutton, auch in Forms definiert -->
     </form>
     </main>
