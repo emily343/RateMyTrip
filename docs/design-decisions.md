@@ -24,21 +24,21 @@ Status
 : Decided
 
 Updated
-: 21-Jun-2025
+: 01-May-2025
 
 ### Problem statement
 
-We needed to apply custom styles (e.g., padding, font, image size) without makung HTML templates too crowded. and .
+We needed to apply custom styles (e.g., padding, font, image size) without making HTML templates too crowded and repetitive.
 
 
 ### Decision
 
-We created a central CSS file (static/css/style.css) and used it for all templates. Only very page-specific styles are defined in each template.
+We created a central CSS file (static/css/style.css) and used it for all templates. Only page-specific styles are defined in each template.
 
 
 ### Regarded options
 
-+ <style> in every HTML file
++ style in every HTML file
 + Centralized CSS file
 
 | Criterion |  In HTML | External CSS |
@@ -55,7 +55,7 @@ Status
 : Decided
 
 Updated
-: 21-Jun-2025
+: 15-May-2025
 
 ### Problem statement
 
@@ -65,7 +65,7 @@ In our project we need to interact with a database, for example, to get city pic
 
 We decided to use plain SQL. 
 
-The main reasosn is that our group has plenty of experience using plain SQL but none using ORM. Therefore it is better to focus our resources regarding learning new technologies on crusical ones that we can not replace (such as Bootstrap or WTForms).
+The main reasosn is that our group has plenty of experience using plain SQL, but no prior experience with ORM tools like SQLAlchemy. To make the best use of our learning capacities, we chose to focus on technologies that are essential and cannot easily be replaced (such as Bootstrap or WTForms).
 
 ### Regarded options
 
@@ -78,7 +78,7 @@ The main reasosn is that our group has plenty of experience using plain SQL but 
 | **Readabilitya** | ✔️ SQL is directly visible in code | ❌ SQL is abstract |
 
 ---
-## 03: Using Flask-WTF for Form Handling
+## 03:  Using Bootstrap for Styling and Layout
 
 ### Meta
 
@@ -86,21 +86,53 @@ Status
 : Decided
 
 Updated
-: 21-Jun-2025
+: 05-Jun-2025
 
 ### Problem statement
 
-Our web application requires forms for several purposes. For example for searching for cities and submitting user reviews. Handling forms using plain HTML and manually parsing input in Flask routes can quickly become error-prone and repetitive.
+We need an appealing and responsive layout for our web application. Instead of creating layout manually using CSS, which would be immensely time consuming, we want to use a CSS framework.
 
-We needed a better way to manage forms, especially one that integrates well with Flask.
+
+### Decision 
+
+We decided to use Bootstrap to handle layout, styling, and component structure.
+
+Bootstrap provides pre-styled components (e.g., navbar, carousel), which helps us implement a consistent and appealing UI faster.
+
+
+### Regarded options
+
++ Manually written CSS and HTML structure
++ Bootstrap framework
+
+| Criterion | Manually written CSS  | Bootstrap framework |
+| --- | --- | --- |
+| **Development Speed** | ❌ Time consuming  | ✔️ Fast |
+| **Responsiveness** | ❌ Needs to be manually implemented  | ✔️ Built in |
+| **Design** | ❌  Inconsitent | ✔️ Consistent and appealing |
+
+---
+## 04: Using Flask-WTF for Form Handling
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 05-Jun-2025
+
+### Problem statement
+
+Our web application requires forms for several purposes. For example for searching for cities and submitting user reviews. Handling forms using plain HTML  can quickly become error-prone and repetitive. We needed a better way to manage forms.
 
 
 ### Decision 
 
 We decided to use Flask-WTF, a Flask extension that integrates WTForms into Flask.
 
-Using Flask-WTF, we define each form as a separate Python class in forms.py. This keeps the form logic such as validation rules, field types, and labels—cleanly separated from the HTML templates, which improves maintainability and readability.
-The form instance is then passed to the template via the route function.
+Using Flask-WTF, we define each form as a separate Python class in forms.py. This keeps the form logic such as validation rules, field types, and labels separated from the HTML templates, which improves maintainability and readability.
+The form instance is then passed to the template via the route function in app.py.
 
 ### Regarded options
 
