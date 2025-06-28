@@ -1,18 +1,28 @@
-{% from 'bootstrap5/nav.html' import render_nav_item %}
+<!-- Benutzt, um Navigationsleiste zu rendern -->
+{% from 'bootstrap5/nav.html' import render_nav_item %} 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <!-- Google Fonts "Jost" imported (Source [4]) https://fonts.google.com/specimen/Jost -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
+  <!-- Google Fonts "Jost" importieren (Source [4]) https://fonts.google.com/specimen/Jost -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> 
+   
+   <!-- Zeichenkodierung -->
     <meta charset="utf-8">
+
+    <!-- Seite responsiv -->
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- Name der Seite im Browser-Tab-->
     <title > CityRate </title>
-    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
+
+    <!-- Bootstrap CSS (Quelle [2]) -->
+    {{ bootstrap.load_css() }}  
 
 
-<!-- Sytle in eigener CSS-Datei definiert-->
+<!--Sytle in eigener CSS-Datei definiert und verlinkt -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 
 <!-- Sytle die nur für diese Seite relevant sind -->
 <!-- Sytle für Bilder festelgen, damit alle im Karousel gleich groß sind -->
@@ -28,32 +38,46 @@
 
 
 <!-- Body -->
-
 <body> 
-<!-- NavBar oben fixiert -->
-  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> <!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+
+<!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+<!-- NavBar die sich der Seitengröße anpasst und oben fixiert ist -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> 
+
+  <!-- Container ohne horizontale Innenabstände (px-0), damit alles bündig ist -->
+  <!-- Beeinhaltet CityRate-Logo, Collapse-Menü und Button zum Aufklappen-->
         <div class="container-fluid px-0">
+
+            <!-- Link mit dem "CityRate" zur Startseite, Links-bündig -->
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
+            
+            <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent">
+                <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
+            <!--Hierauf wird im Menü verwiesen-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <!-- Linke Seite -->
+    <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
+    <!-- render_nav_item ist Hilf-Funktion, die funktionale Bootstrap-Menüpunkte erzeugt und selbst designed -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
-        {{ render_nav_item('search', 'Search for Cities') }} <!-- Verlinkt diese Seiten -->
+        {{ render_nav_item('search', 'Search for Cities') }} 
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
 
     <!-- Rechte Seite -->
+    <!-- 2 Buttons die Seiten login und register verlinken-->
+    <!-- Mit Design für button1 und button2, in der CSS-Datei selbst festgelegt -->
     <div>
     <a href="{{ url_for('login') }}" class="btn custom-button1">Login</a> <!-- Verlinkt diese Seiten -->
     <a href="{{ url_for('register') }}" class="btn custom-button2">Sign Up</a>
     </div>
-
-
 </div>
         </div>
     </nav>
@@ -61,6 +85,7 @@
 
 <!-- Header -->
     <header>
+    <!-- Überschriften -->
         <h1>CityRate</h1>
         <h3>The site to help you find your Erasmus destination</h3>
     </header>
@@ -68,41 +93,59 @@
 
 
 <!-- Bilder-Carousel -->
+<!-- Bootstrap 5 Carousel Komponente (Quelle [3]) https://getbootstrap.com/docs/5.3/components/carousel/ -->
+<!-- data-bs-ride startet Carousel automatisch beim Laden der Seite -->
+<div id="carouselHome" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;"> 
+    <!-- Die id ist worüber Elemente von anderen referenziert werden können-->
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: #EEEAAB;"> <!-- Bootstrap 5 Carousel Komponente (Quelle [3]) https://getbootstrap.com/docs/5.3/components/carousel/ -->
+    <!-- Dieser Block enthält alle einzelnen Slides (Bilder mit Text) -->
     <div class="carousel-inner">
+  
+      <!-- Jedes Bild mit Beschreibung als Carousel-Item -->
+      <!-- Klasse "carousel-item" mit Regeln für Bilder oben definiert-->
+      <!-- Genau ein carousel-item muss auf active gesetzt werden, dieses wird zuerst angezeigt-->
       <div class="carousel-item active"> 
-      <!-- Jedes Carousel-Item ist Bild mit Beschreibung-->
+        <!-- class = Bild wird als Block-Element dargestellt und nimmt 100 % der Breite ein -->
         <img src="/static/images/berlin_pic.jpg" class="d-block w-100" alt="Berlin Image">
-        <h5 style="padding-left: 15px;">Berlin</h5> <!-- Bild Überschirft-->
-        <p style="padding-left: 15px;">Picture taken by User123.</p> <!-- Bild Beschreibung-->
+        <!-- Bild Überschirft-->
+        <h5 style="padding-left: 15px;">Berlin</h5> 
+        <!-- Bild Beschreibung-->
+        <p style="padding-left: 15px;">Picture taken by User123.</p> 
       </div>
-      <div class="carousel-item">
+     
+      <div class="carousel-item"> 
         <img src="/static/images/amsterdam_pic.jpg" class="d-block w-100" alt="Amsterdam Image">
         <h5 style="padding-left: 15px;">Amsterdam</h5>
         <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
+
       <div class="carousel-item">
         <img src="/static/images/budapest_pic.jpg" class="d-block w-100" alt="Budapest Image">
         <h5 style="padding-left: 15px;">Budapest</h5>
         <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
+
       <div class="carousel-item">
         <img src="/static/images/istanbul_pic.jpg" class="d-block w-100" alt="Istanbul Image">
         <h5 style="padding-left: 15px;">Istanbul</h5>
         <p style="padding-left: 15px;">Picture taken by User123.</p>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+
+    <!-- Zurück Button-->
+    <!-- Der Bootstrap-Klasse für "Zurück"-Button prev-->
+    <!-- Target ist das oben definierte Carousel-->
+    <!-- Über data-bs-slide="prev" zru vorherigen Slide-->
+    <!-- Icon ist das Pfeil-Symbol-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    </button> 
+
+    <!-- Weiter Button-->
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
     </button>
   </div>
-
 
 
 
@@ -111,12 +154,15 @@
      <h1> Discover your perfect Erasmus-City</h1>
       <p class="text" style="font-weight: bold; margin-bottom: 15px">
       <br>
-      Welcome to our platform, where students can share insights about Erasmus cities. 
+      Welcome to our platform, where students can share and discover insights about Erasmus cities. 
       <br> Join our community to find and recommend the best places to study, live and explore!
       </p>
       
-      <!-- Container mit zwei Buttons die zu Unterseiten verlinken-->
+    <!-- Container mit zwei Buttons die zu Unterseiten verlinken-->
+    <!-- Flex Aktiviert Flexbox-Layout für den Container, damit Buttons nebeneinander angeordnet werden-->
     <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
+    <!-- Buttons haben  Bootstrap btn Klasse, die den Link als Button stylt
+    und zusätzlich eigenen Button Style aus CSS-Datei-->
     <a href="/search" class="btn custom-button1">Explore Cities</a>
     <a href="/register" class="btn custom-button2">Join</a>
     </div>
@@ -127,11 +173,10 @@
 
 
 
- <!-- JS Scripts for Bootstrap-->    
-    {{ bootstrap.load_js() }} <!-- Bootstrap JS (Quelle [2]) -->
+    <!-- Lädt die Bootstrap JS-Dateien (z. B. für das Carousel) -->    
+    <!-- Bootstrap JS (Quelle [2]) -->
+    {{ bootstrap.load_js() }} 
   
 
 </body>
-
-
 </html>

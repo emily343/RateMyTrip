@@ -3,6 +3,7 @@ import os
 import sqlite3  # SQLite DB [3]
 from flask import current_app, g
 
+#Aus Class-Notebook
 
 #Stellt Verbindung zur Datenbank her
 def get_db_con(pragma_foreign_keys = True):

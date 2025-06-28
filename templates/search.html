@@ -1,45 +1,71 @@
-{% from 'bootstrap5/nav.html' import render_nav_item %}
+<!-- Benutzt, um Navigationsleiste zu rendern -->
+{% from 'bootstrap5/nav.html' import render_nav_item %} 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
+  <!-- Google Fonts "Jost" importieren (Source [4]) https://fonts.google.com/specimen/Jost -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> 
+   
+   <!-- Zeichenkodierung -->
     <meta charset="utf-8">
+
+    <!-- Seite responsiv -->
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <title > Search </title>
-    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
 
+    <!-- Name der Seite im Browser-Tab-->
+    <title > CityRate </title>
 
-<!-- Sytle in eigener CSS-Datei definiert-->
+    <!-- Bootstrap CSS (Quelle [2]) -->
+    {{ bootstrap.load_css() }}  
+
+<!--Sytle in eigener CSS-Datei definiert und verlinkt -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
 
+<!-- Body -->
 <body> 
-<!-- NavBar oben fixiert -->
-  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top">  <!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+
+<!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+<!-- NavBar die sich der Seitengröße anpasst und oben fixiert ist -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> 
+
+  <!-- Container ohne horizontale Innenabstände (px-0), damit alles bündig ist -->
+  <!-- Beeinhaltet CityRate-Logo, Collapse-Menü und Button zum Aufklappen-->
         <div class="container-fluid px-0">
+
+            <!-- Link mit dem "CityRate" zur Startseite, Links-bündig -->
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
+            
+            <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent">
+                <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
+            <!--Hierauf wird im Menü verwiesen-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <!-- Linke Seite -->
+    <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
+    <!-- render_nav_item ist Hilf-Funktion, die funktionale Bootstrap-Menüpunkte erzeugt und selbst designed -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
-        {{ render_nav_item('search', 'Search for Cities') }}
+        {{ render_nav_item('search', 'Search for Cities') }} 
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
 
     <!-- Rechte Seite -->
+    <!-- 2 Buttons die Seiten login und register verlinken-->
+    <!-- Mit Design für button1 und button2, in der CSS-Datei selbst festgelegt -->
     <div>
-    <a href="{{ url_for('login') }}" class="btn custom-button1">Login</a>
+    <a href="{{ url_for('login') }}" class="btn custom-button1">Login</a> <!-- Verlinkt diese Seiten -->
     <a href="{{ url_for('register') }}" class="btn custom-button2">Sign Up</a>
     </div>
-
 </div>
         </div>
     </nav>
@@ -56,24 +82,32 @@
     <main> 
     <!-- Einbindung des Formulars (ChatGPT Quelle [1]) -->
     
+    <!-- form wurde in app.py erstellt und über render_template an die HTML-Seite übergeben. 
+    Es ist eine Instanz der in forms.py definierten SearchCityForm -->
+
+    <!--  Start des Formulars, das via POST übermittelt wird -->
+    <!--Das Formular wird mit POST an /search geschickt -->
+    <!-- Somit wird in app.py wird search()-Funktion aufgerufen 
+    (diese leitet an City-Unterseite weiter) -->
     <form method="POST" action="{{ url_for('search') }}" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 100px; margin-right: 100px">
-   <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
-    {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
+   
+    <!-- CSRF-Token, um Formular richtig zu validieren-->
+    {{ form.hidden_tag() }} 
+
     <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
     <!--"form-control" ist eine von bootstrap vor definierte Klasse mit Regeln -->
-    {{ form.cityField(class="form-control", placeholder="Search...") }} <!-- Eingabefeld (in Forms definiert)-->
-    {{ form.submit(class="btn btn-primary custom-button1") }} <!-- Bestätigungsbutton, auch in Forms definiert -->
+    <!-- Eingabefeld für Stadt, in Forms definiert-->
+    {{ form.cityField(class="form-control", placeholder="Search...") }} 
+    <!-- Bestätigungsbutton, auch in Forms definiert -->
+    <!-- Hat Bootstrap btn btn-primary Class und eigenes costum Design button1 -->
+    {{ form.submit(class="btn btn-primary custom-button1") }} 
     </form>
     </main>
 
 
-
- <!-- JS Scripts -->    
-    {{ bootstrap.load_js() }}   <!-- Bootstrap JS (Quelle [2]) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
-        crossorigin="anonymous"></script>
-
-
+    <!-- Lädt die Bootstrap JS-Dateien (z. B. für das Carousel) -->    
+    <!-- Bootstrap JS (Quelle [2]) -->
+    {{ bootstrap.load_js() }} 
+    
 </body>
 </html>

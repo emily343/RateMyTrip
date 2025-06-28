@@ -6,17 +6,29 @@ from wtforms.validators import InputRequired, Length, NumberRange, EqualTo
 #Datei um Formen zu definieren
 
 
-#in Search
-class SearchCityForm(FlaskForm):  #FlaskForms ist Basis-Klasse in Flask
-    cityField = StringField(validators=[InputRequired()])  #cityField ist Eingabefeld für String-Variable, es muss Text eingeben werden
-    submit = SubmitField('Search') #Button für Bestätigung
+#In Search
+#Definiert neues Formular namens SearchCityForm, das von FlaskForm erbt 
+#FlaskForms ist Basis-Klasse in Flask
+class SearchCityForm(FlaskForm):  
+    #cityField ist Eingabefeld für String-Variable
+    #Pflichtfeld
+    cityField = StringField(validators=[InputRequired()])  
+    
+    #Button, mit dem das Formular abgeschickt wird
+    submit = SubmitField('Search') 
 
 
-#in City/Cityname
-class ReviewForm(FlaskForm): #Basis-Klasse 
-    #Eingabefeld für Interger-Variable, zwischen 1-5 Stars, jede Bewertung braucht dieses Rating
+#In City/Cityname
+#Definiert neues Formular namens ReviewForm, das von FlaskForm erbt 
+#FlaskForms ist Basis-Klasse in Flask
+class ReviewForm(FlaskForm): 
+    #Overall-Rating
+    #Pflichtfeld für Interger-Variable, zwischen 1-5 Punkten
+    #Pflichtfeld
     overall_rating = IntegerField('Rating (1–5)', validators=[InputRequired(), NumberRange(min=1, max=5)]) 
-    #optionale, Detail-Ratings
+    
+    #Detail-Ratings
+    #IntegerFields mit erlaubren Werten von 1-5
     uni_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)]) 
     freetime_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
     nightime_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
@@ -29,19 +41,21 @@ class ReviewForm(FlaskForm): #Basis-Klasse
     food_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
     comunication_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
 
-    #Eingabefeld für Review-Text, ist nicht zwingend notwendig, max. 700 Zeichen
+    #Eingabefeld für Review-Text mit max. 700 Zeichen
     comment = TextAreaField('Comment', validators=[Length(max=700)]) 
-    submit = SubmitField('Submit Review') #Button für Abschicken der Reviw
+
+    #Button für Abschicken der Reviw
+    submit = SubmitField('Submit Review') 
 
 
-#in Register
+#In Register
 class RegisterForm(FlaskForm): #Basisklasse
     username = StringField(validators=[InputRequired(), Length(min=3, max=20)])  
     password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
     passwordRepeat = PasswordField(validators=[InputRequired(), EqualTo('password')])  
     register = SubmitField('register') #Button für Bestätigung
 
-#in Login
+#In Login
 class LoginForm(FlaskForm): #Basisklasse
     loginUsername = StringField(validators=[InputRequired(), Length(min=3, max=20)])  
     loginPassword = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  

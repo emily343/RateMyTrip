@@ -6,7 +6,7 @@
         }
   
         body {  
-            padding-top: 100px;
+            padding-top: 100px; /*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
             background-color: #EEEAAB;
             font-family: 'Jost', sans-serif;
         }
@@ -15,14 +15,9 @@
             background-color: #EEEAAB;
             font-family: 'Jost', sans-serif;
             text-align: center;   
-            padding-top: 100px; /*Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding*/
+            padding-top: 100px; 
         }
-        
-/* Bilder im Karussell gleich groß anzeigen */
-        .carousel-item img {
-            height: 600px;
-            object-fit: cover;
-        }
+    
 
         nav.navbar {
             background-color: #EEEAAB;
@@ -30,7 +25,7 @@
         }
 
 
-        /* Button Design */
+        /* Button Designs */
         .custom-button1 {
             background-color: #336699;  /* z.B. dunkles Violett */
             color: white;

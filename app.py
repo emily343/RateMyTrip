@@ -8,74 +8,116 @@ from db import get_db_con
 from flask_login import LoginManager, UserMixin, login_required, login_user
 
 
+#Initialisiert eine neue Flask-App
+app = Flask(__name__) 
 
-app = Flask(__name__) #Erstellt die Flask-App
-
+#Konfiguriert die App
 app.config.from_mapping( 
-    SECRET_KEY = 'secret_key_just_for_dev_environment', #Sessions und CSRF-Schutz.Sessions und CSRF-Schutz
-    DATABASE = os.path.join(app.instance_path, 'ratemytrip.sqlite'), #Pfad zur SQLite-Datenbank
-    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse' #Bestimmt das Styling-Theme von Bootstrap
+    #Sessions und CSRF-Schutz.Sessions und CSRF-Schutz
+    SECRET_KEY = 'secret_key_just_for_dev_environment', 
+    #Pfad zur SQLite-Datenbank
+    DATABASE = os.path.join(app.instance_path, 'ratemytrip.sqlite'), 
+    #Bestimmt das Styling-Theme von Bootstrap
+    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse' 
 )
-app.cli.add_command(db.init_db) #Ermöglicht über das Terminal flask init-db auszuführen
-app.teardown_appcontext(db.close_db_con) #Schließt DB-Verbindung am Ende des Requests 
 
-bootstrap = Bootstrap5(app) #bindet Bootstrap in die Flask-App ein
+#Ermöglicht über das Terminal flask init-db auszuführen
+app.cli.add_command(db.init_db)
+#Schließt DB-Verbindung am Ende des Requests 
+app.teardown_appcontext(db.close_db_con) 
+
+#bindet Bootstrap in die Flask-App ein
+bootstrap = Bootstrap5(app) 
     
 #Flask Login initialisieren
-login_manager = LoginManager() #lässt app und Flask-Login zusammen arbeiten
+ #lässt app und Flask-Login zusammen arbeiten
+login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+#Die Startseite (/) zeigt die home.html-Datei an
 @app.route('/')
 def home():
     return render_template('home.html')
 
+#Diese Seite ist geschützt, nur für eingeloggte User
+#Zeigt profile.html an
 @app.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html')
 
+
+
 #Suchformular
-@app.route('/search', methods=['GET', 'POST']) #Route zeigt Suchformular über Get an und sendet es mit Post
-def search(): #Funktion namen "search" wird definiert, die die Request verarbeitet
-    form = SearchCityForm()  # Erstellt Instanz des Formulars (aus forms)
-    if form.validate_on_submit(): #Prüft valide Absendung (ob Regeln in Forms definiert sind eingehalten wurden)
-        city = form.cityField.data.strip()  #holt Eingabe und speichert sie als city
-        return redirect(url_for('city_view', city_name=city)) #Weiterleistung zu City-Unterseite mit der gegebenen city als Parameter über Funktion city_view (in city-route definiert)
-    return render_template('search.html', form=form) #wenn Request nicht erfolgreich wird Search-Seite wieder angezeigt
-    #Übergabe des Form-Objekts, damit HTML-Seite auf  das WTForm-Objekt zugreifen kann
+#Route zeigt Suchformular über Get an oder sendet es mit Post
+@app.route('/search', methods=['GET', 'POST']) 
 
+#Funktion namen "search" wird definiert, die die Request verarbeitet
+def search(): 
+    #Erstellt Instanz des Formulars SearchCityForm (aus forms.py) mit dem Namen form
+    #Diese wird in der html-Seite referenziert
+    form = SearchCityForm()  
 
+    #Prüft valide Absendung (ob die in Forms definierten Regeln eingehalten wurden)
+    if form.validate_on_submit(): 
+        #holt Eingabe aus cityField und speichert sie als city
+        city = form.cityField.data.strip()  
 
-@app.route('/city/<city_name>', methods=['GET', 'POST']) #URL mit dynamischem Parameter city_name
+        #Man wird zur URL weitergeleitet
+        #Dabei wird die Funktion 'city_view' aufgerufen wird mit dem Stadtnamen als Paramter
+        #Diese Funktion ist in @app.route('/city/<city_name>' definiert
+        #Durch diese 'city_view'-Funktion wird die Stadtseite geladen
+        return redirect(url_for('city_view', city_name=city)) 
+    
+    #Wenn Request nicht valude und man somit nicht zur 'city_view'-Funktion weitergeleitet wurde
+    #Search-HTNL-Seite wieder angezeigt
+    #Übergabe des Form-Objekts, damit HTML-Seite auf das WTForm-Formular zugreifen kann
+    return render_template('search.html', form=form) 
+    
+
+#City-Unterseite
+#URL mit dynamischem Parameter city_name (/city/Berlin, /city/Madrid usw.)
 #Methode Get (Seite anzeigen) und Post (Bewertung abschicken)
+@app.route('/city/<city_name>', methods=['GET', 'POST']) 
+
 
 #City-Unterseite anzeigen
-#Funktion namen "city_view" wird definiert, die die Request verarbeitet, Parameter der City in Search gegeben
+#Funktion namen "city_view" wird definiert 
 def city_view(city_name):
+
+    #Falls keine Stadt angegeben wurde: Fehler 400 (Bad Request)
     if not city_name: #Falls kein city_name übergeben wurde 
         return "No city chosen", 400
 
-    db_con = get_db_con() #baut Verbindung zur DB auf
-    city = db_con.execute( #das folgende SQL-Statement wird ausgeführt
-         #Städte aus DB, wo Name aus DB = Name des weiteregebenen Parameters
-        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', #über Lower nicht mehr case-sensitive
-        (city_name.lower(),)  #def des Platzhalters "?"
-    ).fetchone() #über fetchone wird Datensatz der Stadt zurückgegeben
+    
+    #Stellt DB-Verbindung her
+    db_con = get_db_con()
 
-    if city is None: #wenn Stadt angegeben wurde, sie aber nicht in DB existiert
-        #-> in city=db_con.execute() (darüber) nicht gefunden
-        print("City not found in DB.") #printet Info in Terminal -> zur Fehlerbehebung
-        return "City not found", 404 #gibt Fehlermeldung aus
+    #Holt Stadt mit SQL-Query aus der Tabelle city (Case-Insensitive durch LOWER())
+    #Stadt wo der Name aus DB = Name des weiteregebenen Parameters
+    city = db_con.execute( 
+        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', 
+        #Def des Platzhalters "?"
+        (city_name.lower(),)  
+        #Über fetchone nur einen Datensatz einer Stadt zurückgegeben
+    ).fetchone() 
+
+    #Wenn Stadt angegeben wurde, sie aber nicht in DB existiert
+    if city is None: 
+        return "City not found", 404 
 
 
-    #Reviews senden und sehen
-    #leeres WTForm-Objekt wird erstellt für das Bewertungsformular, das auf der Seite angezeigt wird
+
+    #Reviews senden
+    #Erstellt Instanz des Formulars ReviewForm (aus forms.py) mit dem Namen form
+    #Diese wird in der html-Seite referenziert
     form = ReviewForm()
 
-    #prüft ob das Formular valide abgeschickt worden ist
-    if form.validate_on_submit(): #wenn ja wird
-         #wenn ja werden diese SQL-Statements durchgeführt
+    #Prüft ob das Formular valide abgeschickt worden ist, d.h. ob alle Regeln in forms.py eingehalten worden sind
+    #Wenn ja werden diese SQL-Statements durchgeführt
+    if form.validate_on_submit(): 
+        #Alle Werte, die Nutzer in Formular eingegeben hat werden in die Tabelle "review" eingefüht
         db_con.execute("""
             INSERT INTO review (
                 city_name,
@@ -94,8 +136,8 @@ def city_view(city_name):
                 comment
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) #Platzhalter
         """, (
-            city['name'], #übernimmt Name der Stadt aus der DB
-            form.overall_rating.data, #liest den Inhalt aus dem jeweiligen Feld und ersetzt damit Platzhalter
+            city['name'], #Übernimmt Name der Stadt aus der DB
+            form.overall_rating.data, #Liest den Inhalt aus dem jeweiligen Feld und ersetzt damit Platzhalter
             form.uni_rating.data,
             form.freetime_rating.data,
             form.nightime_rating.data,
@@ -109,18 +151,26 @@ def city_view(city_name):
             form.comunication_rating.data,
             form.comment.data
         ))
-        db_con.commit() #Statements in DB commited
-        return redirect(url_for('city_view', city_name=city_name)) #nach  Absenden des Formulars wird City-Unterseite neu geladen
+        #Statements in DB commited
+        db_con.commit() 
+        #Nach dem Speichern wird die City-Unterseite neu geladen
+        #Somit wird die Seite jetzt sofort mit der neuen Review angezeigt
+        return redirect(url_for('city_view', city_name=city_name)) 
 
-    # Bewertungen anzeigen
-    #keine If-Bedingung, wird immer gemacht bei Öffnung der Seite
-    reviews = db_con.execute( #SQL-Statement durchgeführt
-        #alle Reviews der Stadt angezeigt und nach Datum sortiert (absteigend)
+    #Bewertungen anzeigen
+    #Keine If-Bedingung, wird immer gemacht bei Öffnung der Seite
+    #SQL-Statement durchgeführt
+    #Speichert Liste der zurückgegebenen Bewertungen als reviews
+    reviews = db_con.execute( 
+        #Alle Reviews der Stadt angezeigt und nach Datum sortiert (absteigend)
         'SELECT * FROM review WHERE city_name = ? ORDER BY created_at DESC',
-        (city['name'],) #Wert für ?-Platzhalter
-    ).fetchall() #holt alle Ergebnisse der SQL-Abfrage auf einmal
+        (city['name'],) #Def für ?-Platzhalter
+        #Holt alle Ergebnisse der SQL-Abfrage auf einmal, d.h. alle Bewertungen
+    ).fetchall() 
 
-    #Rendert das HTML-Template mit city->gegebene Stadt, die Review-Form und die reviews aus der DB
+    #Rendert das HTML-Template city.html mit city (gegebene Stadt, Überschrift bei City-Unterseite) 
+    #Und dem Review-Forular form
+    #Und alle reviews aus der DB
     return render_template('city.html', city=city, form=form, reviews=reviews)
 
 
@@ -132,7 +182,6 @@ def review():
 @app.route('/user')
 def user():
     return render_template('user.html')
-
 
 
 
@@ -217,7 +266,8 @@ def login():
   
 
 
-#benutzt um Daten manuell in DB einzufügen
+#Benutzt um Daten manuell in DB einzufügen
+#Wenn diese Route aufgerufen wird, insert_sample()-Funktion aus db.py ausgeführt
 @app.route('/insert/sample')
 def run_insert_sample():
     db.insert_sample()

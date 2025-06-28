@@ -1,20 +1,32 @@
-{% from 'bootstrap5/nav.html' import render_nav_item %}
+<!-- Benutzt, um Navigationsleiste zu rendern -->
+{% from 'bootstrap5/nav.html' import render_nav_item %} 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
+  <!-- Google Fonts "Jost" importieren (Source [4]) https://fonts.google.com/specimen/Jost -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> 
+   
+   <!-- Zeichenkodierung -->
     <meta charset="utf-8">
+
+    <!-- Seite responsiv -->
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <title > City </title>
-    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
 
+    <!-- Name der Seite im Browser-Tab-->
+    <title > CityRate </title>
 
-<!-- Sytle in eigener CSS-Datei definiert-->
+    <!-- Bootstrap CSS (Quelle [2]) -->
+    {{ bootstrap.load_css() }}  
+
+<!--Sytle in eigener CSS-Datei definiert und verlinkt -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-<!-- Sytle nur für diese Seite relevant-->
+
+<!-- Sytle die nur für diese Seite relevant sind -->
 <style> 
+
+/*Bild der Stadt oben*/
 .city-image {
   width: 450px;
   height: 450px;
@@ -23,68 +35,94 @@
   margin: 0 auto;
 }
 
-
-    .list-bg {
-        background-color: #BCD4DE;
-        color: #336699;
+/*Liste von anderen Reviews*/
+.list-bg {
+    background-color: #BCD4DE;
+    color: #336699;
     }
 
 
 </style>
-
 </head>
 
-
+<!-- Body -->
 <body> 
-<!-- NavBar oben fixiert -->
-  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top">   <!-- Navigationbar von Bootstrap 5 (Quelle [1]) https://getbootstrap.com/docs/5.3/components/navbar/ -->
+
+<!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+<!-- NavBar die sich der Seitengröße anpasst und oben fixiert ist -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> 
+
+  <!-- Container ohne horizontale Innenabstände (px-0), damit alles bündig ist -->
+  <!-- Beeinhaltet CityRate-Logo, Collapse-Menü und Button zum Aufklappen-->
         <div class="container-fluid px-0">
+
+            <!-- Link mit dem "CityRate" zur Startseite, Links-bündig -->
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
+            
+            <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent">
+                <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
+            <!--Hierauf wird im Menü verwiesen-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <!-- Linke Seite -->
+    <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
+    <!-- render_nav_item ist Hilf-Funktion, die funktionale Bootstrap-Menüpunkte erzeugt und selbst designed -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
-        {{ render_nav_item('search', 'Search for Cities') }}
+        {{ render_nav_item('search', 'Search for Cities') }} 
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
 
     <!-- Rechte Seite -->
+    <!-- 2 Buttons die Seiten login und register verlinken-->
+    <!-- Mit Design für button1 und button2, in der CSS-Datei selbst festgelegt -->
     <div>
-    <a href="{{ url_for('profile') }}" class="btn custom-button1">Login</a>
-    <a href="{{ url_for('profile') }}" class="btn custom-button2">Sign Up</a>
+    <a href="{{ url_for('login') }}" class="btn custom-button1">Login</a> <!-- Verlinkt diese Seiten -->
+    <a href="{{ url_for('register') }}" class="btn custom-button2">Sign Up</a>
     </div>
-
 </div>
         </div>
     </nav>
 
 
+
 <!-- Header -->
     <header>
-        <h1>{{ city['name'] }}</h1> <!-- city Platzhalter wird von DB übernommen -->
-        <p class="fw-bold mb-3 text-center">{{ city['description'] }}</p>  <!-- description Platzhalter wird von DB übernommen -->
-       <img src="{{ url_for('static', filename='images/' ~ city['image_path']) }}" alt="{{ city['name'] }}" class="city-image"> <!-- gibt Pfad zum Bild, wobei platzhalter des Namens weider von DB kommt-->
-
+        <!-- Überschrift des Stadtnamen, dabei wird die Variable city von render_template(...) in app.py übergeben -->
+        <!-- Mit dieser City-Varibale können die Informationen aus der DB zu dieser Stadt ausgelesen werden-->
+        <h1>{{ city['name'] }}</h1> 
+        <p class="fw-bold mb-3 text-center">{{ city['description'] }}</p> 
+        <!-- Gibt dynamischen Pfad zum Bild, wobei platzhalter des Namens weider von DB kommt-->
+       <img src="{{ url_for('static', filename='images/' ~ city['image_path']) }}" alt="{{ city['name'] }}" class="city-image"> 
     </header>
 
 
- <!-- Main Inhalt -->
-    <main> 
+ <!-- Main Inhalt in einem Container -->
     <main class="container mt-5">
 
+
+<!-- Submit Review muss noch in eigene Seite angelegt werden-->
     <h2 class="text-center">Submit Your Review</h2>
+
+    <!--  Start des Formulars, das via POST übermittelt wird -->
     <form method="POST" class="mb-4">
-        {{ form.hidden_tag() }} <!-- CSRF-Schutz-Token, damit Eingabe richtig übermittelt wird, kommt sonst zu Fehlermeldungen -->
-       <!-- CSRF-Schutz via Flask-WTF (Quelle [4]) https://flask-wtf.readthedocs.io/en/stable/ -->
+        <!-- CSRF-Schutz-Token, damit Eingabe richtig übermittelt wird, kommt sonst zu Fehlermeldungen -->
+        <!-- CSRF-Schutz via Flask-WTF (Quelle [4]) https://flask-wtf.readthedocs.io/en/stable/ -->
+        {{ form.hidden_tag() }} 
+       
+<!-- form wurde in app.py erstellt und über render_template an die HTML-Seite übergeben. 
+Es ist eine Instanz der in forms.py definierten ReviewForm -->
 
         <div class="mb-3">
         <!-- Formular mit Bootstrap 5 Form Controls (Quelle [2]) https://getbootstrap.com/docs/5.3/forms/overview/ -->
-        <!--- Formularfelder vom Typ WTForms, mit class="form-control" bekommen sie das Bootstrap-Design, alle Eingaben müssen zwischen 1-5 sein  -->
+        <!--- Formularfelder vom Typ WTForms-->
+        <!-- Mit class="form-control" bekommen sie das Bootstrap-Design, alle Eingaben müssen zwischen 1-5 sein -->
             {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }} 
             {{ form.uni_rating(class="form-control", placeholder="Uni", min=1, max=5) }}
             {{ form.freetime_rating(class="form-control", placeholder="Freetime", min=1, max=5) }}
@@ -99,24 +137,43 @@
             {{ form.comunication_rating(class="form-control", placeholder="Communication with others", min=1, max=5) }}
         </div>
 
+        <!-- Block mit Abstand unten-->
         <div class="mb-3">
-            {{ form.comment.label(class="form-label") }} <!-- Label für Kommentarfeld -->
-            {{ form.comment(class="form-control", rows=3) }} <!-- Kommentarfeld -->
+             <!-- Label für Kommentarfeld -->
+             <!-- Mit Bootstrap-Klass form-label -->
+             <!-- Label-Text in forms.py definiert-->
+            {{ form.comment.label(class="form-label") }} 
+            <!-- Kommentarfeld mit 3 Zeilen Höhe -->
+            <!-- Mit Bootstrap-Klass form-control -->
+            {{ form.comment(class="form-control", rows=3) }} 
         </div>
+
         <!-- Submit-Button -->
-        <button type="submit" class="btn custom-button1">{{ form.submit.label.text }}</button> 
         <!-- Submit-Button via Flask-WTF (Quelle [4]) -->
+        <!-- type="submit" heißt beim kicken wird das Formular abgeschickt (method="POST")-->
+        <!-- Hat Style der btn Bootstrap Klasse und eigenem Style button1 -->
+        <!-- Label-Text in forms.py definiert-->
+        <button type="submit" class="btn custom-button1">{{ form.submit.label.text }}
+        </button> 
     </form>
 
+
     <!-- Vorherige Reviews anzeigen -->
-        <!-- Displaying saved reviews from DB  (ChatGPT Quelle [2]) -->
-        <!-- Bootstrap List group (Quelle [6]) https://getbootstrap.com/docs/4.0/components/list-group/ -->
     <h2 class="text-center">Previous Reviews</h2>
-    {% if reviews %} <!-- falls es Reviws gibt, Iteriert über vorhandene reviews -->
+
+    <!-- Displaying saved reviews from DB  (ChatGPT Quelle [2]) -->
+    <!-- Bootstrap List group (Quelle [6]) https://getbootstrap.com/docs/4.0/components/list-group/ -->
+    <!-- Dalls es Reviws gibt, wird über die Vorhandenen Iteriert -->
+    {% if reviews %} 
         {% for review in reviews %}
-            <div class="card mb-3"> <!-- Für jede Bewertung wird  eine Bootstrap-Karte erstellt -->
-                <div class="card-body"> <!-- Container für Inhalt der Karte -->
-    <!-- Was in der jeweligen Karte für jede Iteration angezeigt wird -->            
+            <!-- Für jede Bewertung wird eine Bootstrap-Karte erstellt -->
+            <div class="card mb-3"> 
+                <!-- Container für Inhalt der Karte -->
+                <div class="card-body"> 
+    <!-- Was in der jeweligen Karte für jede Iteration angezeigt wird --> 
+
+    <!-- Platzhalter {{ review.x }} werden durch Daten in DB erstezt -->  
+    <!-- Gesamtbewertung -->     
     <h5 class="card-title">Overall-Rating: {{ review.overall_rating }}/5</h5>
     <!-- Liste in der alle Detail-Ratings dagestellt werden-->
     <ul class="list-group list-group-flush">
@@ -133,31 +190,35 @@
     <li class="list-group-item list-bg">Communication Rating: {{ review.comunication_rating }}/5</li>
 </ul>
 
-    {% if review.comment %} <!-- Falls es einen Review-Text gibt (dieser ist a optional), wird der angezeigt-->
+    <!--  Falls ein Kommentar vorhanden ist, wird dieser angezeigt -->
+    {% if review.comment %}
+    <!-- Über Bootstrap-Klasse "card-text mt-3" als Text in der Karte (mt = margin-top, also Abstand oben) -->
         <p class="card-text mt-3">{{ review.comment }}</p>
+    <!-- Schließt die if-Bedingung oben ab-->
     {% endif %}
-    <p class="card-subtitle text-muted"><small>{{ review.created_at }}</small></p> <!-- Zusätzlich wird Zeitstempler angegeben für Text-->
+
+    <!-- Wird immer angezeigt -->
+    <!--  Bootstrap-Klasse card-subtitle für Karten-Untertitel, text-muted macht den Text grau -->
+    <!-- Gibt Zeitstempler der Review an-->
+    <p class="card-subtitle text-muted"><small>{{ review.created_at }}</small></p>
 </div>
 
             </div>
+        <!-- Ende der Abfrage, ob es Reviews gibt-->
         {% endfor %}
-    {% else %} <!-- Und wenn es gar keine Rewievs gibt, wird das angezeigt-->
+
+        <!-- Und wenn es gar keine Rewievs gibt, wird das angezeigt-->
+    {% else %} 
         <p class="text-center">No reviews yet. Be the first to leave one!</p>
     {% endif %}
 
 </main>
 
-    </main>
 
 
-
- <!-- JS für Bootstrap -->    
-    {{ bootstrap.load_js() }}  <!-- Bootstrap JS (Quelle [2]) --> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+gkLk5vY5nCkH0K0Xr2bRk5u5nltx"
-        crossorigin="anonymous"></script>
-
+    <!-- Lädt die Bootstrap JS-Dateien (z. B. für das Carousel) -->    
+    <!-- Bootstrap JS (Quelle [2]) -->
+    {{ bootstrap.load_js() }} 
+    
 </body>
-
-
 </html>
