@@ -48,6 +48,11 @@ def profile():
     return render_template('profile.html')
 
 
+#Seite für das Bulletinboard
+@app.route('/bulletin')
+@login_required
+def bulletin():
+    return render_template('bulletin.html')
 
 #Suchformular
 #Route zeigt Suchformular über Get an oder sendet es mit Post
@@ -174,15 +179,16 @@ def city_view(city_name):
     return render_template('city.html', city=city, form=form, reviews=reviews)
 
 
-
+#Route zum Schreiben einer Review 
 @app.route('/review')
+@login_required
 def review():
     return render_template('review.html')
+
 
 @app.route('/user')
 def user():
     return render_template('user.html')
-
 
 
 #Route zum Registrieren eines neuen Nutzers 
@@ -222,7 +228,6 @@ def register():
 
 
 #LOGIN
-
 #user class(für flask_login)
 class User(UserMixin): # von UserMixin werden Methoden vererbt
     def __init__(self, id, username, password):
