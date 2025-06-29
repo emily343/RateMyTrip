@@ -5,7 +5,7 @@ import db
 import os
 from forms import LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
 from db import get_db_con
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user 
 
 
 #Initialisiert eine neue Flask-App
@@ -223,7 +223,6 @@ def register():
 
 #LOGIN
 
-
 #user class(für flask_login)
 class User(UserMixin): # von UserMixin werden Methoden vererbt
     def __init__(self, id, username, password):
@@ -282,7 +281,19 @@ def login():
 
     return render_template('login.html', form=form)
 
-  
+
+#loggt den user wieder aus   
+@app.route('/logout')
+@login_required
+def logout():
+
+    logout_user() #aus FLask_Login
+    print('logout hat funtioniert')
+
+    return redirect(url_for('login'))
+
+
+
 
 
 #Benutzt um Daten manuell in DB einzufügen
@@ -290,4 +301,5 @@ def login():
 @app.route('/insert/sample')
 def run_insert_sample():
     db.insert_sample()
+
     return 'Data added to Database.'
