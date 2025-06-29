@@ -38,4 +38,15 @@ CREATE TABLE IF NOT EXISTS review (
     FOREIGN KEY(city_name) REFERENCES city(name),
     FOREIGN KEY(username) REFERENCES user(username)
 );
+
+--Tabelle für das Bulletin Board
+CREATE TABLE IF NOT EXISTS bulletin(
+    bulletin_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    city_name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    message TEXT NOT NULL,
+    bulletin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(city_name) REFERENCES city(name),
+    FOREIGN KEY(username) REFERENCES user(username)
+);
 COMMIT;

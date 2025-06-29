@@ -44,7 +44,7 @@ class ReviewForm(FlaskForm):
     #Eingabefeld für Review-Text mit max. 700 Zeichen
     comment = TextAreaField('Comment', validators=[Length(max=700)]) 
 
-    #Button für Abschicken der Reviw
+    #Button für Abschicken der Review
     submit = SubmitField('Submit Review') 
 
 
@@ -60,3 +60,9 @@ class LoginForm(FlaskForm): #Basisklasse
     loginUsername = StringField(validators=[InputRequired(), Length(min=3, max=20)])  
     loginPassword = PasswordField(validators=[InputRequired(), Length(min=5, max=20)])  
     login = SubmitField('Login') #Button für Bestätigung
+
+#In Bulletin Board
+class BulletinForm(FlaskForm):
+    message = TextAreaField(validators=[InputRequired(), Length(min=10, max=700)])
+    submitMessage = SubmitField('submit') #Button für Bestätigung
+

@@ -3,9 +3,9 @@ import flask
 from flask_bootstrap import Bootstrap5 # Flask-Bootstrap5 [2]
 import db
 import os
-from forms import LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
+from forms import BulletinForm, LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
 from db import get_db_con
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user 
+from flask_login import LoginManager, UserMixin, current_user, login_required, login_user, logout_user 
 
 
 #Initialisiert eine neue Flask-App
@@ -49,10 +49,52 @@ def profile():
 
 
 #Seite für das Bulletinboard
-@app.route('/bulletin')
+@app.route('/bulletin/<city_name>', methods=['GET', 'POST'])
 @login_required
-def bulletin():
-    return render_template('bulletin.html')
+def bulletin(city_name):
+
+    #Stellt DB-Verbindung her
+    db_con = get_db_con()
+    form = BulletinForm() 
+
+    #Holt Stadt mit SQL-Query aus der Tabelle city (Case-Insensitive durch LOWER())
+    #Stadt wo der Name aus DB = Name des weiteregebenen Parameters
+    city = db_con.execute( 
+        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', 
+        #Def des Platzhalters "?"
+        (city_name.lower(),)  
+        #Über fetchone nur einen Datensatz einer Stadt zurückgegeben
+    ).fetchone() 
+
+    #Wenn Stadt angegeben wurde, sie aber nicht in DB existiert
+    if city is None: 
+        return "City not found", 404 
+    
+    """
+    if form.validate_on_submit():
+
+        message = 
+
+    
+
+        db_con.execute(
+            INSERT INTO bulletin (city_name,username,message) VALUES (?,?,?) #Platzhalter
+        , (
+            city['name'], #Übernimmt Name der Stadt aus der DB
+            user['username']
+            form.message.data, #Liest den Inhalt aus dem jeweiligen Feld und ersetzt damit Platzhalter
+          
+        ))
+        #Statements in DB commited
+        db_con.commit()
+    """
+
+    return render_template('bulletin.html', city=city, form=form)
+
+
+
+
+
 
 #Suchformular
 #Route zeigt Suchformular über Get an oder sendet es mit Post
@@ -80,6 +122,8 @@ def search():
     #Übergabe des Form-Objekts, damit HTML-Seite auf das WTForm-Formular zugreifen kann
     return render_template('search.html', form=form) 
     
+
+
 
 #City-Unterseite
 #URL mit dynamischem Parameter city_name (/city/Berlin, /city/Madrid usw.)
@@ -198,6 +242,11 @@ def register():
     db_con = get_db_con() #baut Verbindung zur DB auf
     form = RegisterForm()
 
+    #wenn user schon eingeloggt wird auf Userprofil verwiesen, damit sich der User nicht zweimal einloggen kann 
+    if current_user.is_authenticated:
+        return redirect(url_for('profile'))
+
+
     if request.method == 'POST' and form.validate_on_submit():
         username = form.username.data
         password = form.password.data
@@ -259,9 +308,13 @@ def load_user(user_id):
 #Route für den Login-Bereich 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    
+
     db_con = get_db_con() #baut Verbindung zur DB auf
     form = LoginForm()
+
+    #wenn user schon eingeloggt, wird auf Userprofil verwiesen
+    if current_user.is_authenticated:
+        return redirect(url_for('profile'))
 
     if request.method == 'POST' and form.validate_on_submit():
 

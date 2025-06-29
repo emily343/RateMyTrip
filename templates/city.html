@@ -216,8 +216,9 @@ Es ist eine Instanz der in forms.py definierten ReviewForm -->
 
  <div>
 
-    <h5 class="text-center">Do you have some Questions about the city or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5>
-    <a href="/bulletin" class="btn custom-button1">Write a message</a>
+    <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5>
+    <a href="{{ url_for('bulletin', city_name=city.name) }}" class="btn custom-button1">Write a message</a>
+
     </div>
 
 </main>
