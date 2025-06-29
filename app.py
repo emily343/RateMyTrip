@@ -208,12 +208,14 @@ def register():
         
         if checkuser:
             flash('username already taken :( Please choose a diferrent one')
+            print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
         
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
-        flash("registration successfull :) You can now log in!")
+        flash('registration successfull :) You can now log in!')
+        print('registration successfull :) You can now log in!') #erstmal zum testen, später entfernen 
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
@@ -225,9 +227,23 @@ def register():
 #user class(für flask_login)
 class User(UserMixin): # von UserMixin werden Methoden vererbt
     def __init__(self, id, username, password):
-        self.id = id
+        self.id = str(id)
         self.username = username
         self.password = password
+
+
+    #getter-Methode um user aus Datenbank zu holen 
+    @staticmethod
+    def get(user_id):
+        db_con = get_db_con()
+        #sucht nach id in Datenbank 
+        getuser = db_con.execute( 
+            'SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
+
+        if getuser:
+            return User(id=getuser['id'],username= getuser['username'], password=getuser['password'] )
+    
+        return None
 
 
 #user_loader: reload user-Objekt
@@ -251,15 +267,18 @@ def login():
         #sucht nach username in der Datenbank
         existuser = db_con.execute( 
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
+
        
         if existuser and existuser['password'] == password:
             
             user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
             login_user(user) #user wird eingeloggt
             flask.flash('Logged in successfully.')
+            print('Login hat funktioniert') #erstmal zum testen 
             return redirect(url_for('profile'))
         else: 
             flask.flash('wrong username or password')
+            print('Login fehlgeschlagen')
 
     return render_template('login.html', form=form)
 
