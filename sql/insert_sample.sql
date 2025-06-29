@@ -37,10 +37,11 @@ VALUES
 
 
 INSERT INTO review (
-    city_name, user_id, overall_rating, uni_rating, freetime_rating, nightime_rating,
+    city_name, username, overall_rating, uni_rating, freetime_rating, nightime_rating,
     campus_life_rating, transportation_rating, cost_rating, living_rating,
     workopportunities_rating, safety_rating, food_rating, comunication_rating, comment
 ) VALUES 
-    ('Berlin', 'sarah', 8, 9, 7, 6, 8, 9, 6, 7, 5, 7, 8, 7, 'Berlin is great for students!'),
-    ('Amsterdam', 'emmy', 7, 6, 8, 7, 7, 8, 7, 6, 6, 7, 7, 8, 'Beautiful city with good infrastructure.');
+    ('Berlin', 'sarah', 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 'Berlin is great for students!'),
+    ('Amsterdam', 'emmy', 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 'Beautiful city with good infrastructure.');
 COMMIT;
+

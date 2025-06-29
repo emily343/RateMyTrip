@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS city (
     description TEXT NOT NULL,
     image_path TEXT
 ); 
-COMMIT;
+
 
 
 --User-Tabelle
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS user (
 --Review-Tabelle
 CREATE TABLE IF NOT EXISTS review (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    city_name INTEGER NOT NULL,
-    user_id INTEGER, -- wenn du später Users integrierst
+    city_name TEXT NOT NULL,
+    username TEXT, -- wenn du später Users integrierst
     overall_rating INTEGER NOT NULL,
     uni_rating INTEGER,
     freetime_rating INTEGER,
@@ -35,5 +35,7 @@ CREATE TABLE IF NOT EXISTS review (
     comunication_rating INTEGER,
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(city_name) REFERENCES city(name)
+    FOREIGN KEY(city_name) REFERENCES city(name),
+    FOREIGN KEY(username) REFERENCES user(username)
 );
+COMMIT;
