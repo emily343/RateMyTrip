@@ -209,16 +209,16 @@ Es ist eine Instanz der in forms.py definierten ReviewForm -->
 
         <!-- Und wenn es gar keine Rewievs gibt, wird das angezeigt-->
     {% else %} 
-        <p class="text-center">No reviews yet. Be the first to leave one!</p>
+        <p class="text-center">No reviews yet. Be the first to leave one!</p> <br>
     {% endif %}
 
 
 
  <div>
 
-    <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5>
+    <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5> <br>
     <a href="{{ url_for('bulletin', city_name=city.name) }}" class="btn custom-button1">Write a message</a>
-
+    <p class="text" style="font-weight: bold; margin-bottom: 40px"></p>
     </div>
 
 </main>

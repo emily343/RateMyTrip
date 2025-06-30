@@ -78,9 +78,19 @@
     {{ form.submitMessage(class="btn btn-primary custom-button1") }} <!-- Bestätigungsbutton, auch in Forms definiert --> 
     </form>
     
+    <!-- messages anzeigen lassen -->
+    <hr>
+    <h2> Messages </h2>
+    {% for msg in messages %}
+        <div class="card-text mt-3">
+            <b>{{ msg['username']}} posted on {{ msg['bulletin_time']}}: </b> 
+            <p>{{ msg['message']}}</p>
+        </div>
 
-     
+    {% else %} 
+        <p>No messages yet. Be the first to post!</p>
 
+    {% endfor %} 
     </div>
 
     </main>
