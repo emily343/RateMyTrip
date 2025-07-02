@@ -21,6 +21,10 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - Usage: CSRF protection, form handling in Flask  
 - URL: https://flask-wtf.readthedocs.io/en/stable/
 
+### [5] Flask-Login – User Authentication 
+- Usage: Login, Logout, user sessions, login_required decorators
+- URL: https://flask-login.readthedocs.io/en/latest/
+
 ---
 
 # Frameworks & Libraries  
@@ -49,6 +53,11 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **URL:**  https://getbootstrap.com/docs/4.0/components/list-group/
 ---
 
+### [7] Bootstrap-Flask -  render_messages()
+- **Usage:** display flash messages using flask.flash()
+- **URL:** https://flask-wtf.readthedocs.io/en/stable/
+
+
 # AI Usage
 
 ### [1]  
@@ -63,3 +72,8 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **Public Chat Link:** https://chatgpt.com/share/685fb910-8d4c-8006-baa6-5d625475ef65
 - **Purpose of Use:** Assistance with displaying reviews that are already in the database in the city-HTML-template.
 
+### [3]  
+- **LLM Model:** ChatGPT (GPT-4)  
+- **Exported Chat History (PDF):** docs/LLM-Prompts Chats/3.
+- **Public Chat Link:** https://chatgpt.com/share/68659f0c-4bd8-8000-9022-66536fcb6cce
+- **Purpose of Use:** Assistance with finding a solution for merging problem 
