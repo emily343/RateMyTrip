@@ -29,6 +29,8 @@ app.teardown_appcontext(db.close_db_con)
 #bindet Bootstrap in die Flask-App ein
 bootstrap = Bootstrap5(app) 
     
+
+
 #Flask Login initialisieren
  #lässt app und Flask-Login zusammen arbeiten
 login_manager = LoginManager()
@@ -112,7 +114,7 @@ def search():
         city = form.cityField.data.strip()  
 
         #Man wird zur URL weitergeleitet
-        #Dabei wird die Funktion 'city_view' aufgerufen wird mit dem Stadtnamen als Paramter
+        #Dabei wird die Funktion 'city_view' aufgerufen mit dem Stadtnamen als Paramter
         #Diese Funktion ist in @app.route('/city/<city_name>' definiert
         #Durch diese 'city_view'-Funktion wird die Stadtseite geladen
         return redirect(url_for('city_view', city_name=city)) 

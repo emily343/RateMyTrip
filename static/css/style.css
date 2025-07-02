@@ -27,13 +27,13 @@
 
         /* Button Designs */
         .custom-button1 {
-            background-color: #336699;  /* z.B. dunkles Violett */
+            background-color: #336699;  /* z.B. dunkles Blau */
             color: white;
             border: none;
         }
 
         .custom-button2 {
-            background-color: #BCD4DE;  /* z.B. dunkles Violett */
+            background-color: #BCD4DE;  /* z.B. helles Blau */
             color: #336699;
             border: #336699;
             margin-right: 15px;

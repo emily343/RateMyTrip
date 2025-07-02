@@ -24,11 +24,10 @@ class SearchCityForm(FlaskForm):
 class ReviewForm(FlaskForm): 
     #Overall-Rating
     #Pflichtfeld für Interger-Variable, zwischen 1-5 Punkten
-    #Pflichtfeld
     overall_rating = IntegerField('Rating (1–5)', validators=[InputRequired(), NumberRange(min=1, max=5)]) 
     
     #Detail-Ratings
-    #IntegerFields mit erlaubren Werten von 1-5
+    #IntegerFields mit erlaubten Werten von 1-5
     uni_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)]) 
     freetime_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
     nightime_rating = IntegerField('Rating (1–5)', validators=[NumberRange(min=1, max=5)])
