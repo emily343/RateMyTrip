@@ -60,16 +60,16 @@
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             
             <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
-            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="menu")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
+                    data-bs-target=#menu">
                 <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
             <!--Hierauf wird im Menü verwiesen-->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="menu">
 
     <!-- Linke Seite -->
     <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
@@ -112,7 +112,7 @@
 
     <!-- Displaying saved reviews from DB  (ChatGPT Quelle [2]) -->
     <!-- Bootstrap List group (Quelle [6]) https://getbootstrap.com/docs/4.0/components/list-group/ -->
-    <!-- Dalls es Reviws gibt, wird über die Vorhandenen Iteriert -->
+    <!-- Falls es Reviws gibt, wird über die Vorhandenen Iteriert -->
     {% if reviews %} 
         {% for review in reviews %}
             <!-- Für jede Bewertung wird eine Bootstrap-Karte erstellt -->
@@ -143,7 +143,7 @@
     {% if review.comment %}
     <!-- Über Bootstrap-Klasse "card-text mt-3" als Text in der Karte (mt = margin-top, also Abstand oben) -->
         <p class="card-text mt-3">{{ review.comment }}</p>
-    <!-- Schließt die if-Bedingung oben ab-->
+    <!-- Schließt die if-Bedingung des Kommentars ab-->
     {% endif %}
 
     <!-- Wird immer angezeigt -->

@@ -52,16 +52,16 @@
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             
             <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
-            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="menu")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
+                    data-bs-target=#menu">
                 <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
             <!--Hierauf wird im Menü verwiesen-->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="menu">
 
     <!-- Linke Seite -->
     <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
@@ -81,7 +81,6 @@
 </div>
         </div>
     </nav>
-
 
 <!-- Header -->
     <header>
@@ -158,10 +157,10 @@
       <br> Join our community to find and recommend the best places to study, live and explore!
       </p>
       
-    <!-- Container mit zwei Buttons die zu Unterseiten verlinken-->
+    <!-- Container mit Button der zur Search-Unterseite verlinkt-->
     <!-- Flex Aktiviert Flexbox-Layout für den Container, damit Buttons nebeneinander angeordnet werden-->
     <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
-    <!-- Buttons haben  Bootstrap btn Klasse, die den Link als Button stylt
+    <!-- Button hat  Bootstrap btn Klasse, die den Link als Button stylt
     und zusätzlich eigenen Button Style aus CSS-Datei-->
     <a href="/search" class="btn custom-button1">Explore Cities</a>
     

@@ -40,16 +40,16 @@
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             
             <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
-            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="menu")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
+                    data-bs-target=#menu">
                 <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
             <!--Hierauf wird im Menü verwiesen-->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="menu">
 
     <!-- Linke Seite -->
     <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
@@ -70,7 +70,6 @@
         </div>
     </nav>
 
-
 <!-- Header -->
     <header>
         <h1>Explore</h1>
@@ -87,7 +86,7 @@
 
     <!--  Start des Formulars, das via POST übermittelt wird -->
     <!--Das Formular wird mit POST an /search geschickt -->
-    <!-- Somit wird in app.py wird search()-Funktion aufgerufen 
+    <!-- Somit wird in app.py die search()-Funktion aufgerufen 
     (diese leitet an City-Unterseite weiter) -->
     <form method="POST" action="{{ url_for('search') }}" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 100px; margin-right: 100px">
    

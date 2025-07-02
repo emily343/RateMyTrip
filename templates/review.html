@@ -45,9 +45,7 @@
 </style>
 </head>
 
-<!-- Body -->
-<body> 
-
+<body style ="padding-top: 100px; background-color: #fff9c4; font-family: 'Urbanist', sans-serif;"> <!-- Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding -->
 <!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
 <!-- NavBar die sich der Seitengröße anpasst und oben fixiert ist -->
   <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> 
@@ -60,16 +58,16 @@
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
             
             <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
-            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="menu")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
+                    data-bs-target=#menu">
                 <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
             <!--Hierauf wird im Menü verwiesen-->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="menu">
 
     <!-- Linke Seite -->
     <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
