@@ -72,26 +72,27 @@ def bulletin(city_name):
     if city is None: 
         return "City not found", 404 
     
-    """
+    
     if form.validate_on_submit():
 
-        message = 
+        message = form.message.data
 
     
 
         db_con.execute(
-            INSERT INTO bulletin (city_name,username,message) VALUES (?,?,?) #Platzhalter
-        , (
-            city['name'], #Übernimmt Name der Stadt aus der DB
-            user['username']
-            form.message.data, #Liest den Inhalt aus dem jeweiligen Feld und ersetzt damit Platzhalter
-          
-        ))
+            'INSERT INTO bulletin (city_name, username, message) VALUES (?, ?, ?)', #Platzhalter
+         (
+            city['name'], current_user.username, message)
+        )
         #Statements in DB commited
         db_con.commit()
-    """
+        return redirect(url_for('bulletin',city_name=city_name))
 
-    return render_template('bulletin.html', city=city, form=form)
+    #messages aus Db laden
+    messages = db_con.execute('SELECT * FROM bulletin WHERE city_name = ?',(city['name'],)).fetchall()
+
+
+    return render_template('bulletin.html', city=city, form=form, messages=messages)
 
 
 
@@ -256,7 +257,7 @@ def register():
 
         #password und passwordRepeat müssen gleich sein
         if password != passwordRepeat:
-            flash('Passwords do not match')
+            flash('Passwords do not match', 'error')
             return redirect(url_for('register'))
         
         #prüft ob username bereits vergeben ist 
@@ -264,14 +265,14 @@ def register():
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
         
         if checkuser:
-            flash('username already taken :( Please choose a diferrent one')
+            #flash('username already taken :( Please choose a diferrent one', 'error')
             print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
         
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
-        flash('registration successfull :) You can now log in!')
+        #flash('registration successfull :) You can now log in!', 'info')
         print('registration successfull :) You can now log in!') #erstmal zum testen, später entfernen 
         return redirect(url_for('login'))
 
@@ -332,11 +333,11 @@ def login():
             
             user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
             login_user(user) #user wird eingeloggt
-            flask.flash('Logged in successfully.')
+            #flask.flash('Logged in successfully.', 'info')
             print('Login hat funktioniert') #erstmal zum testen 
             return redirect(url_for('profile'))
         else: 
-            flask.flash('wrong username or password')
+            #flask.flash('wrong username or password', 'error')
             print('Login fehlgeschlagen')
 
     return render_template('login.html', form=form)
