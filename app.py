@@ -5,7 +5,7 @@ import db
 import os
 from forms import BulletinForm, LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
 from db import get_db_con
-from flask_login import LoginManager, UserMixin, current_user, login_required, login_user, logout_user 
+from flask_login import LoginManager, UserMixin, current_user, login_required, login_user, logout_user #Flask-Login [5]
 
 
 #Initialisiert eine neue Flask-App
@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 #Konfiguriert die App
 app.config.from_mapping( 
-    #Sessions und CSRF-Schutz.Sessions und CSRF-Schutz
+    #Sessions und CSRF-Schutz 
     SECRET_KEY = 'secret_key_just_for_dev_environment', 
     #Pfad zur SQLite-Datenbank
     DATABASE = os.path.join(app.instance_path, 'ratemytrip.sqlite'), 
@@ -25,13 +25,12 @@ app.config.from_mapping(
 app.cli.add_command(db.init_db)
 #Schließt DB-Verbindung am Ende des Requests 
 app.teardown_appcontext(db.close_db_con) 
-
 #bindet Bootstrap in die Flask-App ein
 bootstrap = Bootstrap5(app) 
     
 
 
-#Flask Login initialisieren
+#Flask Login initialisieren [5]
  #lässt app und Flask-Login zusammen arbeiten
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -51,8 +50,9 @@ def profile():
 
 
 #Seite für das Bulletinboard
+#GET: Seiten anzeigen, POST: Daten senden 
 @app.route('/bulletin/<city_name>', methods=['GET', 'POST'])
-@login_required
+@login_required #nur für eingeloggte user
 def bulletin(city_name):
 
     #Stellt DB-Verbindung her
@@ -72,25 +72,24 @@ def bulletin(city_name):
     if city is None: 
         return "City not found", 404 
     
-    
+    #prüft ob Formular korrekt abgesandt wurde 
     if form.validate_on_submit():
 
-        message = form.message.data
+        message = form.message.data #holt Text aus Formularfeld 
+        #message wird in Datenbank gespeichert
         db_con.execute(
             'INSERT INTO bulletin (city_name, username, message) VALUES (?, ?, ?)', #Platzhalter
          (city['name'], current_user.username, message))
         
         #Statements in DB commited
         db_con.commit()
-        return redirect(url_for('bulletin',city_name=city_name))
+        return redirect(url_for('bulletin',city_name=city_name)) #Seite neu laden, neue message direkt angezeigt
 
-    #messages aus Db laden
+    #schon vorhandene messages aus DB laden
     messages = db_con.execute('SELECT * FROM bulletin WHERE city_name = ?',(city['name'],)).fetchall()
 
 
-    return render_template('bulletin.html', city=city, form=form, messages=messages)
-
-
+    return render_template('bulletin.html', city=city, form=form, messages=messages) #city, form und messages an template übergeben 
 
 
 
@@ -203,7 +202,6 @@ def review(city_name): #cityname wird übergeben
     ).fetchone()
 
    
-    
 
     #Prüft ob das Formular valide abgeschickt worden ist, d.h. ob alle Regeln in forms.py eingehalten worden sind
     #Wenn ja werden diese SQL-Statements durchgeführt
@@ -247,11 +245,11 @@ def review(city_name): #cityname wird übergeben
         #Statements in DB commited
         db_con.commit() 
         #Nach dem Speichern wird die City-Unterseite neu geladen
-        #Somit wird die Seite jetzt sofort mit der neuen Review angezeigt
+        #Somit wird die City-Seite jetzt sofort mit der neuen Review angezeigt
         return redirect(url_for('city_view', city_name=city_name)) 
 
 
-    return render_template('review.html', city=city, form=form )
+    return render_template('review.html', city=city, form=form)
 
 
 @app.route('/user')
@@ -264,23 +262,18 @@ def user():
 def register():
 
     db_con = get_db_con() #baut Verbindung zur DB auf
-    form = RegisterForm()
+    form = RegisterForm() 
 
     #wenn user schon eingeloggt wird auf Userprofil verwiesen, damit sich der User nicht zweimal einloggen kann 
     if current_user.is_authenticated:
         return redirect(url_for('profile'))
 
 
-    if request.method == 'POST' and form.validate_on_submit():
+    if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         passwordRepeat = form.passwordRepeat.data
-
-        #password und passwordRepeat müssen gleich sein
-        if password != passwordRepeat:
-            flash('Passwords do not match', 'error')
-            return redirect(url_for('register'))
-        
+  
         #prüft ob username bereits vergeben ist 
         checkuser = db_con.execute( 
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
@@ -290,7 +283,7 @@ def register():
             print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
-        
+        #neuer user wird in Datenbank gespeichert
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
         #flash('registration successfull :) You can now log in!', 'info')
@@ -301,10 +294,10 @@ def register():
 
 
 #LOGIN
-#user class(für flask_login)
-class User(UserMixin): # von UserMixin werden Methoden vererbt
+#user class(für flask_login [5]) 
+class User(UserMixin): # von UserMixin werden Methoden vererbt (z.B. get_id())
     def __init__(self, id, username, password):
-        self.id = str(id)
+        self.id = str(id) #userID muss als String gespeichert werden 
         self.username = username
         self.password = password
 
@@ -317,16 +310,17 @@ class User(UserMixin): # von UserMixin werden Methoden vererbt
         getuser = db_con.execute( 
             'SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
 
+        #wenn User gefunden wurde, wir ein User-Objekt erzeugt 
         if getuser:
             return User(id=getuser['id'],username= getuser['username'], password=getuser['password'] )
     
         return None
 
 
-#user_loader: reload user-Objekt
-@login_manager.user_loader
+#Betsandteil von Flask_Login[5], wenn user schon eingeloggt ist muss er sich nicht nochmal anmelden 
+@login_manager.user_loader #Flask-Login decorator, um eingeloggten Benutzer zu laden 
 def load_user(user_id):
-    return User.get(user_id) 
+    return User.get(user_id) #User mit ID wird aus Datenbank geholt 
 
 
 #Route für den Login-Bereich 
@@ -340,7 +334,8 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('profile'))
 
-    if request.method == 'POST' and form.validate_on_submit():
+   
+    if form.validate_on_submit():
 
         username = form.loginUsername.data
         password = form.loginPassword.data
@@ -349,11 +344,11 @@ def login():
         existuser = db_con.execute( 
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
 
-       
+       #wenn user existiert und Passwort korrekt
         if existuser and existuser['password'] == password:
             
             user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
-            login_user(user) #user wird eingeloggt
+            login_user(user) #user wird eingeloggt (durch Flask_Login[5])
             #flask.flash('Logged in successfully.', 'info')
             print('Login hat funktioniert') #erstmal zum testen 
             return redirect(url_for('profile'))
@@ -370,7 +365,7 @@ def login():
 def logout():
 
     logout_user() #aus FLask_Login
-    print('logout hat funtioniert')
+    print('logout hat funtioniert') #zum testen 
 
     return redirect(url_for('login'))
 

@@ -51,7 +51,7 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 ### [6]  Bootstrap 5 - List group 
 - **Usage:** Displaying lists of reviews using .list-group and .list-group-item
 - **URL:**  https://getbootstrap.com/docs/4.0/components/list-group/
----
+
 
 ### [7] Bootstrap-Flask -  render_messages()
 - **Usage:** display flash messages using flask.flash()
