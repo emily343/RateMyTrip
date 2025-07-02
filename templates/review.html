@@ -1,44 +1,170 @@
-{% from 'bootstrap5/nav.html' import render_nav_item %}
+<!-- Benutzt, um Navigationsleiste zu rendern -->
+{% from 'bootstrap5/nav.html' import render_nav_item %} 
 <!DOCTYPE html>
 <html>
 
-<!-- Aktuell findet das Review-absenden über die City-Seite statt. 
-Dies amcht diese Seite überflüssig. Ggf. anpassen wenn Review über extra Seite abgeschickt werden soll-->
-
 <head>
+  <!-- Google Fonts "Jost" importieren (Source [4]) https://fonts.google.com/specimen/Jost -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet"> 
+   
+   <!-- Zeichenkodierung -->
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet"> <!-- Schriftart importieren -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- (1.) -->
-    <title > Review </title>
-    {{ bootstrap.load_css() }}  <!-- Bootstrap CSS (Quelle [2]) -->
+
+    <!-- Seite responsiv -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- Name der Seite im Browser-Tab-->
+    <title > CityRate </title>
+
+    <!-- Bootstrap CSS (Quelle [2]) -->
+    {{ bootstrap.load_css() }}  
+
+<!--Sytle in eigener CSS-Datei definiert und verlinkt -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+<!-- Sytle die nur für diese Seite relevant sind -->
+<style> 
+
+/*Bild der Stadt oben*/
+.city-image {
+  width: 450px;
+  height: 450px;
+  object-fit: cover; /* Zuschneiden, nicht zusammenquetschen */
+  display: block;
+  margin: 0 auto;
+}
+
+/*Liste von anderen Reviews*/
+.list-bg {
+    background-color: #BCD4DE;
+    color: #336699;
+    }
+
+
+</style>
 </head>
 
-<body style ="padding-top: 100px; background-color: #fff9c4; font-family: 'Urbanist', sans-serif;"> <!-- Damit Navigationsbar nicht Body-Inhalt verdeckt bekommt Body oben Padding -->
-<nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top" 
-     style="background-color: rgb(101, 180, 233); opacity: 1;"> <!-- Navigationsleiste oben fixiert -->
+<!-- Body -->
+<body> 
+
+<!-- Navigationbar von Bootstrap 5 (Quelle [1]) -->
+<!-- NavBar die sich der Seitengröße anpasst und oben fixiert ist -->
+  <nav class="navbar navbar-expand-xl border-bottom mb-3 fixed-top"> 
+
+  <!-- Container ohne horizontale Innenabstände (px-0), damit alles bündig ist -->
+  <!-- Beeinhaltet CityRate-Logo, Collapse-Menü und Button zum Aufklappen-->
         <div class="container-fluid px-0">
+
+            <!-- Link mit dem "CityRate" zur Startseite, Links-bündig -->
             <a class="navbar-brand" href="{{ url_for('home') }}"  style ="padding-left: 15px;" >CityRate</a>
+            
+            <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
+            <!--Verweist auf das Ziel-Element (das <div> mit id="navbarSupportedContent")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent">
+                <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Eingeklapptes Menü, das durch den Button oben ein- und ausgeblendet wird -->
+            <!--Hierauf wird im Menü verwiesen-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style ="padding-left: 15px;">
-                    {{ render_nav_item('city', 'Search for city') }}
-                    {{ render_nav_item('profile', 'Your Profile') }}
-                    {{ render_nav_item('home', 'Go back to Home') }}
-                </ul>
-            </div>
+
+    <!-- Linke Seite -->
+    <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
+    <!-- render_nav_item ist Hilf-Funktion, die funktionale Bootstrap-Menüpunkte erzeugt und selbst designed -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
+        {{ render_nav_item('search', 'Search for Cities') }} 
+        {{ render_nav_item('profile', 'Your Account') }}
+    </ul>
+
+    
+</div>
         </div>
     </nav>
-    <h1> hier review schreiben </h1>
-    <ul>
-        <li><a href="/user">zur userseite</a></li>
-        
-    </ul>
-    {{ bootstrap.load_js() }}  <!-- Bootstrap JS (Quelle [2]) -->
-</body>
 
+
+
+<!-- Header -->
+    <header>
+        <!-- Überschrift des Stadtnamen, dabei wird die Variable city von render_template(...) in app.py übergeben -->
+        <!-- Mit dieser City-Varibale können die Informationen aus der DB zu dieser Stadt ausgelesen werden-->
+        <h1>{{ city['name'] }}</h1> 
+        <p class="fw-bold mb-3 text-center">{{ city['description'] }}</p> 
+        <!-- Gibt dynamischen Pfad zum Bild, wobei platzhalter des Namens weider von DB kommt-->
+       <img src="{{ url_for('static', filename='images/' ~ city['image_path']) }}" alt="{{ city['name'] }}" class="city-image"> 
+    </header>
+
+
+ <!-- Main Inhalt in einem Container -->
+    <main class="container mt-5">
+
+
+<!-- Submit Review muss noch in eigene Seite angelegt werden-->
+    <h2 class="text-center">Submit Your Review</h2>
+
+    <!--  Start des Formulars, das via POST übermittelt wird -->
+    <form method="POST" class="mb-4">
+        <!-- CSRF-Schutz-Token, damit Eingabe richtig übermittelt wird, kommt sonst zu Fehlermeldungen -->
+        <!-- CSRF-Schutz via Flask-WTF (Quelle [4]) https://flask-wtf.readthedocs.io/en/stable/ -->
+        {{ form.hidden_tag() }} 
+       
+<!-- form wurde in app.py erstellt und über render_template an die HTML-Seite übergeben. 
+Es ist eine Instanz der in forms.py definierten ReviewForm -->
+
+        <div class="mb-3">
+        <!-- Formular mit Bootstrap 5 Form Controls (Quelle [2]) https://getbootstrap.com/docs/5.3/forms/overview/ -->
+        <!--- Formularfelder vom Typ WTForms-->
+        <!-- Mit class="form-control" bekommen sie das Bootstrap-Design, alle Eingaben müssen zwischen 1-5 sein -->
+            {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }} 
+            {{ form.uni_rating(class="form-control", placeholder="Uni", min=1, max=5) }}
+            {{ form.freetime_rating(class="form-control", placeholder="Freetime", min=1, max=5) }}
+            {{ form.nightime_rating(class="form-control", placeholder="Nightlife", min=1, max=5) }}
+            {{ form.campus_life_rating(class="form-control", placeholder="Campus Life", min=1, max=5) }}
+            {{ form.transportation_rating(class="form-control", placeholder="Transportation", min=1, max=5) }}
+            {{ form.cost_rating(class="form-control", placeholder="Cost of living", min=1, max=5) }}
+            {{ form.living_rating(class="form-control", placeholder="Living", min=1, max=5) }}
+            {{ form.workopportunities_rating(class="form-control", placeholder="Work Opportunities",  min=1, max=5) }}
+            {{ form.safety_rating(class="form-control", placeholder="Safety", min=1, max=5) }}
+            {{ form.food_rating(class="form-control", placeholder="Food", min=1, max=5) }}
+            {{ form.comunication_rating(class="form-control", placeholder="Communication with others", min=1, max=5) }}
+        </div>
+
+        <!-- Block mit Abstand unten-->
+        <div class="mb-3">
+             <!-- Label für Kommentarfeld -->
+             <!-- Mit Bootstrap-Klass form-label -->
+             <!-- Label-Text in forms.py definiert-->
+            {{ form.comment.label(class="form-label") }} 
+            <!-- Kommentarfeld mit 3 Zeilen Höhe -->
+            <!-- Mit Bootstrap-Klass form-control -->
+            {{ form.comment(class="form-control", rows=3) }} 
+        </div>
+
+        <!-- Submit-Button -->
+        <!-- Submit-Button via Flask-WTF (Quelle [4]) -->
+        <!-- type="submit" heißt beim kicken wird das Formular abgeschickt (method="POST")-->
+        <!-- Hat Style der btn Bootstrap Klasse und eigenem Style button1 -->
+        <!-- Label-Text in forms.py definiert-->
+        <button type="submit" class="btn custom-button1">{{ form.submit.label.text }}
+        </button> 
+    </form>
+
+
+    
+</div>
+
+         
+    
+
+</main>
+
+
+
+    <!-- Lädt die Bootstrap JS-Dateien  -->    
+    <!-- Bootstrap JS (Quelle [2]) -->
+    {{ bootstrap.load_js() }} 
+    
+</body>
 </html>

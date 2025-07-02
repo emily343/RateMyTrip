@@ -40,10 +40,10 @@ login_manager.init_app(app)
 def home():
     return render_template('home.html')
 
-#Diese Seite ist geschützt, nur für eingeloggte User
+
 #Zeigt profile.html an
 @app.route('/profile')
-@login_required
+@login_required  #Seite ist geschützt, nur für eingeloggte User
 def profile():
     return render_template('profile.html')
 
@@ -55,7 +55,7 @@ def bulletin(city_name):
 
     #Stellt DB-Verbindung her
     db_con = get_db_con()
-    form = BulletinForm() 
+    form = BulletinForm() #Instanz von BulletinForm
 
     #Holt Stadt mit SQL-Query aus der Tabelle city (Case-Insensitive durch LOWER())
     #Stadt wo der Name aus DB = Name des weiteregebenen Parameters
@@ -74,14 +74,10 @@ def bulletin(city_name):
     if form.validate_on_submit():
 
         message = form.message.data
-
-    
-
         db_con.execute(
             'INSERT INTO bulletin (city_name, username, message) VALUES (?, ?, ?)', #Platzhalter
-         (
-            city['name'], current_user.username, message)
-        )
+         (city['name'], current_user.username, message))
+        
         #Statements in DB commited
         db_con.commit()
         return redirect(url_for('bulletin',city_name=city_name))
@@ -126,6 +122,7 @@ def search():
 
 
 
+
 #City-Unterseite
 #URL mit dynamischem Parameter city_name (/city/Berlin, /city/Madrid usw.)
 #Methode Get (Seite anzeigen) und Post (Bewertung abschicken)
@@ -143,6 +140,7 @@ def city_view(city_name):
     
     #Stellt DB-Verbindung her
     db_con = get_db_con()
+    form = ReviewForm()
 
     #Holt Stadt mit SQL-Query aus der Tabelle city (Case-Insensitive durch LOWER())
     #Stadt wo der Name aus DB = Name des weiteregebenen Parameters
@@ -159,16 +157,58 @@ def city_view(city_name):
 
 
 
-    #Reviews senden
-    #Erstellt Instanz des Formulars ReviewForm (aus forms.py) mit dem Namen form
-    #Diese wird in der html-Seite referenziert
+    #Bewertungen anzeigen
+    #Keine If-Bedingung, wird immer gemacht bei Öffnung der Seite
+    #SQL-Statement durchgeführt
+    #Speichert Liste der zurückgegebenen Bewertungen als reviews
+    reviews = db_con.execute( 
+        #Alle Reviews der Stadt angezeigt und nach Datum sortiert (absteigend)
+        'SELECT * FROM review WHERE city_name = ? ORDER BY created_at DESC',
+        (city['name'],) #Def für ?-Platzhalter
+        #Holt alle Ergebnisse der SQL-Abfrage auf einmal, d.h. alle Bewertungen
+    ).fetchall() 
+
+    #Rendert das HTML-Template city.html mit city (gegebene Stadt, Überschrift bei City-Unterseite) 
+    #Und dem Review-Forular form
+    #Und alle reviews aus der DB
+    return render_template('city.html', city=city, form=form, reviews=reviews)
+
+
+
+
+
+#Route zum Schreiben einer Review 
+@app.route('/review/<city_name>', methods=['GET', 'POST'])
+@login_required
+def review(city_name): #cityname wird übergeben 
+
+    #Falls keine Stadt angegeben wurde: Fehler 400 (Bad Request)
+    if not city_name: 
+        return "No city chosen", 400
+
+    
+    #Stellt DB-Verbindung her
+    db_con = get_db_con()
     form = ReviewForm()
+
+    #Holt Stadt mit SQL-Query aus der Tabelle city (Case-Insensitive durch LOWER())
+    #Stadt wo der Name aus DB = Name des weiteregebenen Parameters
+    city = db_con.execute( 
+        'SELECT * FROM city WHERE LOWER(name) = LOWER(?)', 
+        #Def des Platzhalters "?"
+        (city_name.lower(),)  
+        #Über fetchone nur einen Datensatz einer Stadt zurückgegeben
+    ).fetchone()
+
+   
+    
 
     #Prüft ob das Formular valide abgeschickt worden ist, d.h. ob alle Regeln in forms.py eingehalten worden sind
     #Wenn ja werden diese SQL-Statements durchgeführt
     if form.validate_on_submit(): 
         #Alle Werte, die Nutzer in Formular eingegeben hat werden in die Tabelle "review" eingefüht
-        db_con.execute("""
+        db_con.execute(
+            '''
             INSERT INTO review (
                 city_name,
                 overall_rating,
@@ -184,8 +224,9 @@ def city_view(city_name):
                 food_rating,
                 comunication_rating,
                 comment
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) #Platzhalter
-        """, (
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+            ''', 
+            (
             city['name'], #Übernimmt Name der Stadt aus der DB
             form.overall_rating.data, #Liest den Inhalt aus dem jeweiligen Feld und ersetzt damit Platzhalter
             form.uni_rating.data,
@@ -207,28 +248,8 @@ def city_view(city_name):
         #Somit wird die Seite jetzt sofort mit der neuen Review angezeigt
         return redirect(url_for('city_view', city_name=city_name)) 
 
-    #Bewertungen anzeigen
-    #Keine If-Bedingung, wird immer gemacht bei Öffnung der Seite
-    #SQL-Statement durchgeführt
-    #Speichert Liste der zurückgegebenen Bewertungen als reviews
-    reviews = db_con.execute( 
-        #Alle Reviews der Stadt angezeigt und nach Datum sortiert (absteigend)
-        'SELECT * FROM review WHERE city_name = ? ORDER BY created_at DESC',
-        (city['name'],) #Def für ?-Platzhalter
-        #Holt alle Ergebnisse der SQL-Abfrage auf einmal, d.h. alle Bewertungen
-    ).fetchall() 
 
-    #Rendert das HTML-Template city.html mit city (gegebene Stadt, Überschrift bei City-Unterseite) 
-    #Und dem Review-Forular form
-    #Und alle reviews aus der DB
-    return render_template('city.html', city=city, form=form, reviews=reviews)
-
-
-#Route zum Schreiben einer Review 
-@app.route('/review')
-@login_required
-def review():
-    return render_template('review.html')
+    return render_template('review.html', city=city, form=form )
 
 
 @app.route('/user')

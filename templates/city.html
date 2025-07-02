@@ -107,59 +107,8 @@
     <main class="container mt-5">
 
 
-<!-- Submit Review muss noch in eigene Seite angelegt werden-->
-    <h2 class="text-center">Submit Your Review</h2>
-
-    <!--  Start des Formulars, das via POST übermittelt wird -->
-    <form method="POST" class="mb-4">
-        <!-- CSRF-Schutz-Token, damit Eingabe richtig übermittelt wird, kommt sonst zu Fehlermeldungen -->
-        <!-- CSRF-Schutz via Flask-WTF (Quelle [4]) https://flask-wtf.readthedocs.io/en/stable/ -->
-        {{ form.hidden_tag() }} 
-       
-<!-- form wurde in app.py erstellt und über render_template an die HTML-Seite übergeben. 
-Es ist eine Instanz der in forms.py definierten ReviewForm -->
-
-        <div class="mb-3">
-        <!-- Formular mit Bootstrap 5 Form Controls (Quelle [2]) https://getbootstrap.com/docs/5.3/forms/overview/ -->
-        <!--- Formularfelder vom Typ WTForms-->
-        <!-- Mit class="form-control" bekommen sie das Bootstrap-Design, alle Eingaben müssen zwischen 1-5 sein -->
-            {{ form.overall_rating(class="form-control", placeholder="Overall", min=1, max=5) }} 
-            {{ form.uni_rating(class="form-control", placeholder="Uni", min=1, max=5) }}
-            {{ form.freetime_rating(class="form-control", placeholder="Freetime", min=1, max=5) }}
-            {{ form.nightime_rating(class="form-control", placeholder="Nightlife", min=1, max=5) }}
-            {{ form.campus_life_rating(class="form-control", placeholder="Campus Life", min=1, max=5) }}
-            {{ form.transportation_rating(class="form-control", placeholder="Transportation", min=1, max=5) }}
-            {{ form.cost_rating(class="form-control", placeholder="Cost of living", min=1, max=5) }}
-            {{ form.living_rating(class="form-control", placeholder="Living", min=1, max=5) }}
-            {{ form.workopportunities_rating(class="form-control", placeholder="Work Opportunities",  min=1, max=5) }}
-            {{ form.safety_rating(class="form-control", placeholder="Safety", min=1, max=5) }}
-            {{ form.food_rating(class="form-control", placeholder="Food", min=1, max=5) }}
-            {{ form.comunication_rating(class="form-control", placeholder="Communication with others", min=1, max=5) }}
-        </div>
-
-        <!-- Block mit Abstand unten-->
-        <div class="mb-3">
-             <!-- Label für Kommentarfeld -->
-             <!-- Mit Bootstrap-Klass form-label -->
-             <!-- Label-Text in forms.py definiert-->
-            {{ form.comment.label(class="form-label") }} 
-            <!-- Kommentarfeld mit 3 Zeilen Höhe -->
-            <!-- Mit Bootstrap-Klass form-control -->
-            {{ form.comment(class="form-control", rows=3) }} 
-        </div>
-
-        <!-- Submit-Button -->
-        <!-- Submit-Button via Flask-WTF (Quelle [4]) -->
-        <!-- type="submit" heißt beim kicken wird das Formular abgeschickt (method="POST")-->
-        <!-- Hat Style der btn Bootstrap Klasse und eigenem Style button1 -->
-        <!-- Label-Text in forms.py definiert-->
-        <button type="submit" class="btn custom-button1">{{ form.submit.label.text }}
-        </button> 
-    </form>
-
-
     <!-- Vorherige Reviews anzeigen -->
-    <h2 class="text-center">Previous Reviews</h2>
+    <h2 class="text-center">Reviews about {{ city['name'] }}</h2>
 
     <!-- Displaying saved reviews from DB  (ChatGPT Quelle [2]) -->
     <!-- Bootstrap List group (Quelle [6]) https://getbootstrap.com/docs/4.0/components/list-group/ -->
@@ -212,10 +161,10 @@ Es ist eine Instanz der in forms.py definierten ReviewForm -->
         <p class="text-center">No reviews yet. Be the first to leave one!</p> <br>
     {% endif %}
 
-
+    <a href="{{ url_for('review', city_name=city.name)  }}" class="btn custom-button2">Write your own Review!</a> 
 
  <div>
-
+    <br>
     <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5> <br>
     <a href="{{ url_for('bulletin', city_name=city.name) }}" class="btn custom-button1">Write a message</a>
     <p class="text" style="font-weight: bold; margin-bottom: 40px"></p>
