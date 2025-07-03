@@ -54,7 +54,7 @@
     <!-- Linke Seite -->
     <!-- 2 Links, links in der Navigationsbar zur Seiten search und profile-->
     <!-- render_nav_item ist Hilf-Funktion, die funktionale Bootstrap-Menüpunkte erzeugt und selbst designed -->
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 15px;"> <!--mb-lg-0: ab Bildschirmgröße large Abstand auf 0 -->
         {{ render_nav_item('search', 'Search for Cities') }} 
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
@@ -70,7 +70,9 @@
         </div>
     </nav>
 
+<!-- zeigt flash-Aufrufe an (noch in Bearbeitung) -->
  {{ render_messages() }}
+
 <!-- Header -->
     <header>
         <h1>CityRate</h1>
@@ -89,7 +91,7 @@
     <!-- Einbindung des Formulars (ChatGPT Quelle [1]) -->
     
     <form method="POST" action="{{ url_for('login') }}" style="display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 200px; margin-right: 200px">
-   <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
+   <!-- Formular wird per Post gesendet und wird an die Flask-Route login geschickt -->
     {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
     <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
     {{ form.loginUsername(class="form-control", placeholder="username") }}  <!-- Eingabefeld (in Forms definiert) -->
