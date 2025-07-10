@@ -31,8 +31,9 @@ This page documents all available routes and internal functions used in our web 
 ![`home()` sample](assets/images/homepage.png)
 
 
+---
 
-## `profile()`
+### `profile()`
 
 **Route:** `/profile`  
 **Methods:** `GET`  
@@ -48,7 +49,7 @@ This page documents all available routes and internal functions used in our web 
 
 ---
 
-## `search()`
+### `search()`
 
 **Route:** `/search`  
 **Methods:** `GET`, `POST`  
@@ -59,8 +60,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `city_view(city_name)`
+### `city_view(city_name)`
 
 **Route:** `/city/<city_name>`  
 **Methods:** `GET`  
@@ -71,8 +73,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `review(city_name)`
+### `review(city_name)`
 
 **Route:** `/review/<city_name>`  
 **Methods:** `GET`, `POST`  
@@ -84,8 +87,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `bulletin(city_name)`
+### `bulletin(city_name)`
 
 **Route:** `/bulletin/<city_name>`  
 **Methods:** `GET`, `POST`  
@@ -98,8 +102,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `register()`
+### `register()`
 
 **Route:** `/register`  
 **Methods:** `GET`, `POST`  
@@ -110,8 +115,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `login()`
+### `login()`
 
 **Route:** `/login`  
 **Methods:** `GET`, `POST`  
@@ -122,8 +128,9 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
+---
 
-## `logout()`
+### `logout()`
 
 **Route:** `/logout`  
 **Methods:** `GET`  
@@ -133,8 +140,9 @@ This page documents all available routes and internal functions used in our web 
 None (redirects)
 
 
+---
 
-## `run_insert_sample()`
+### `run_insert_sample()`
 
 **Route:** `/insert/sample`  
 **Methods:** `GET`  

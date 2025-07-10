@@ -26,14 +26,14 @@ With each page listed below, the contributions also include the corresponding wo
 
 ## [Emily Apitzsch]
 
-Contributions - Code
+### Contributions to Code
 : Register function and page
 : Login function and page
 : Profile page
 : Bulletin page
 
 
-Contributions - Documentation
+### Contributions to Documentation
 : Git Repository Setup
 : Home
 : Value Proposition
@@ -45,15 +45,14 @@ Contributions - Documentation
 
 ## [Sarah Abdulsayed]
 
-Contributions - Code
-: Homepage
+### Contributions to Code
 : Search page 
 : City page 
 : Review page
 : CSS and design
 : Database initialization
 
-Contributions - Documentation
+### Contributions to Documentation
 : Technical Docs - Data Model
 : Technical Docs - Refrence
 : Design Desicions 1-4
