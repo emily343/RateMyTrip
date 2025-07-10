@@ -24,7 +24,7 @@ With each page listed below, the contributions also include the corresponding wo
 
 ---
 
-## [Emily Apitzsch]
+## Emily Apitzsch
 
 ### Contributions to Code
 : Register function and page
@@ -43,7 +43,7 @@ With each page listed below, the contributions also include the corresponding wo
 
 ---
 
-## [Sarah Abdulsayed]
+## Sarah Abdulsayed
 
 ### Contributions to Code
 : Search page 
