@@ -31,7 +31,6 @@ This page documents all available routes and internal functions used in our web 
 ![`home()` sample](assets/images/homepage.png)
 
 
----
 
 ## `profile()`
 
@@ -60,7 +59,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `city_view(city_name)`
 
@@ -73,7 +71,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `review(city_name)`
 
@@ -87,7 +84,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `bulletin(city_name)`
 
@@ -102,7 +98,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `register()`
 
@@ -115,7 +110,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `login()`
 
@@ -128,7 +122,6 @@ This page documents all available routes and internal functions used in our web 
 **!!!!!Fehlt noch**  
 
 
----
 
 ## `logout()`
 
@@ -140,7 +133,6 @@ This page documents all available routes and internal functions used in our web 
 None (redirects)
 
 
----
 
 ## `run_insert_sample()`
 
@@ -167,7 +159,6 @@ Text return: `Data added to Database.`
 `User.get(user_id)`
 
 
----
 
 ### `User.get(user_id)`
 

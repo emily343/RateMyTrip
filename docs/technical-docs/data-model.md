@@ -69,24 +69,24 @@ Stores user credentials for authentication.
 Stores user-submitted and by us inserted ratings for a city, across multiple categories.
 
 | Column                      | Type      | Constraints                     | Description |
-|-----------------------------|-----------|----------------------------------|-------------|
-| `id`                        | INTEGER   | `PRIMARY KEY AUTOINCREMENT`      | Unique review ID |
+|-----------------------------|-----------|---------------------------------|-------------|
+| `id`                        | INTEGER   | `PRIMARY KEY AUTOINCREMENT`     | Unique review ID |
 | `city_name`                 | TEXT      | `NOT NULL`, `FOREIGN KEY`       | References `city.name` |
 | `username`                  | TEXT      | *(optional)* `FOREIGN KEY`      | References `user.username` |
-| `overall_rating`            | INTEGER   | `NOT NULL`                       | General overall score |
-| `uni_rating`                | INTEGER   | *(optional)*                     | Rating for university life |
-| `freetime_rating`           | INTEGER   | *(optional)*                     | Rating for Leisure activities |
-| `nightime_rating`           | INTEGER   | *(optional)*                     |Rating for  Nightlife experience |
-| `campus_life_rating`        | INTEGER   | *(optional)*                     | Rating for Campus atmosphere and experience|
-| `transportation_rating`     | INTEGER   | *(optional)*                     | Rating for Public transport |
-| `cost_rating`               | INTEGER   | *(optional)*                     | Rating for Living costs |
-| `living_rating`             | INTEGER   | *(optional)*                     |Rating for Housing quality and availability |
-| `workopportunities_rating`  | INTEGER   | *(optional)*                     | Rating for availability of  Job/internship opportunities |
-| `safety_rating`             | INTEGER   | *(optional)*                     | Rating for  Safety in the city |
-| `food_rating`               | INTEGER   | *(optional)*                     | Rating for  Local food and options |
-| `comunication_rating`       | INTEGER   | *(optional)*                     | Rating for  Communication with others  |
-| `comment`                   | TEXT      | *(optional)*                     | Free-form feedback |
-| `created_at`                | TIMESTAMP | `DEFAULT CURRENT_TIMESTAMP`      | Auto-set timestamp on submission |
+| `overall_rating`            | INTEGER   | `NOT NULL`                      | General overall score |
+| `uni_rating`                | INTEGER   | *(optional)*                    | Rating for university life |
+| `freetime_rating`           | INTEGER   | *(optional)*                    | Rating for Leisure activities |
+| `nightime_rating`           | INTEGER   | *(optional)*                    |Rating for  Nightlife experience |
+| `campus_life_rating`        | INTEGER   | *(optional)*                    | Rating for Campus atmosphere and experience|
+| `transportation_rating`     | INTEGER   | *(optional)*                    | Rating for Public transport |
+| `cost_rating`               | INTEGER   | *(optional)*                    | Rating for Living costs |
+| `living_rating`             | INTEGER   | *(optional)*                    |Rating for Housing quality and availability |
+| `workopportunities_rating`  | INTEGER   | *(optional)*                    | Rating for availability of  Job/internship opportunities |
+| `safety_rating`             | INTEGER   | *(optional)*                    | Rating for  Safety in the city |
+| `food_rating`               | INTEGER   | *(optional)*                    | Rating for  Local food and options |
+| `comunication_rating`       | INTEGER   | *(optional)*                    | Rating for  Communication with others  |
+| `comment`                   | TEXT      | *(optional)*                    | Free-form feedback |
+| `created_at`                | TIMESTAMP | `DEFAULT CURRENT_TIMESTAMP`     | Auto-set timestamp on submission |
 
 **Usage in the App:**
 - Reviews from this table are displayed on each city page under **"Reviews about `<city_name>`"**.
