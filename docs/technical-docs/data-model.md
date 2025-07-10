@@ -67,6 +67,7 @@ Stores user credentials for authentication.
 
 ### `review`
 Stores user-submitted and by us inserted ratings for a city, across multiple categories.
+
 | Column                      | Type      | Constraints                     | Description |
 |-----------------------------|-----------|----------------------------------|-------------|
 | `id`                        | INTEGER   | `PRIMARY KEY AUTOINCREMENT`      | Unique review ID |

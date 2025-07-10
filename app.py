@@ -127,7 +127,7 @@ def search():
 #City-Unterseite
 #URL mit dynamischem Parameter city_name (/city/Berlin, /city/Madrid usw.)
 #Methode Get (Seite anzeigen) und Post (Bewertung abschicken)
-@app.route('/city/<city_name>', methods=['GET', 'POST']) 
+@app.route('/city/<city_name>', methods=['GET']) 
 
 
 #City-Unterseite anzeigen
@@ -251,10 +251,6 @@ def review(city_name): #cityname wird übergeben
 
     return render_template('review.html', city=city, form=form)
 
-
-@app.route('/user')
-def user():
-    return render_template('user.html')
 
 
 #Route zum Registrieren eines neuen Nutzers 
