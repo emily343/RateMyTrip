@@ -42,7 +42,7 @@
             <!--Schaltfläche, die auf kleinen Bildschirmen das Menü ein- und ausklapp -->
             <!--Verweist auf das Ziel-Element (das <div> mit id="menu")-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target=#menu">
+                    data-bs-target="#menu">
                 <!-- "Bürger"-Icon, um das Menp aufzuklappen -->
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -100,7 +100,22 @@
     <!-- Bestätigungsbutton, auch in Forms definiert -->
     <!-- Hat Bootstrap btn btn-primary Class und eigenes costum Design button1 -->
     {{ form.submit(class="btn btn-primary custom-button1") }} 
-    </form>
+   </form>
+   
+   <!-- Liste aller vorhandenen Städte -->
+    <div style="margin-top: 150px; text-align: center;">
+    <h2>All Cities</h2>
+    
+    <!-- AUflistung -->
+    <ul style="list-style: none; padding: 0; margin-top: 25px; font-size: 1.25rem;">
+      <!-- -Für jedes Objekt in der cities-Liste wird ein Hyperlink für die jeweilige city-unterseite erstellt-->
+      {% for city in cities %}
+        <li style="margin-bottom: 10px;">
+          <a href="{{ url_for('city_view', city_name=city.name) }}">{{ city.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
     </main>
 
 

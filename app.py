@@ -103,6 +103,7 @@ def search():
     #Erstellt Instanz des Formulars SearchCityForm (aus forms.py) mit dem Namen form
     #Diese wird in der html-Seite referenziert
     form = SearchCityForm()  
+    db_con = get_db_con()
 
     #Prüft valide Absendung (ob die in Forms definierten Regeln eingehalten wurden)
     if form.validate_on_submit(): 
@@ -115,10 +116,13 @@ def search():
         #Durch diese 'city_view'-Funktion wird die Stadtseite geladen
         return redirect(url_for('city_view', city_name=city)) 
     
+    # Lade alle Städte aus der Datenbank, alphabetisch sortiert
+    cities = db_con.execute('SELECT name FROM city ORDER BY name ASC').fetchall()
+
     #Wenn Request nicht valude und man somit nicht zur 'city_view'-Funktion weitergeleitet wurde
     #Search-HTNL-Seite wieder angezeigt
     #Übergabe des Form-Objekts, damit HTML-Seite auf das WTForm-Formular zugreifen kann
-    return render_template('search.html', form=form) 
+    return render_template('search.html', form=form, cities=cities)
     
 
 
