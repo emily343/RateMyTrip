@@ -27,21 +27,42 @@ Each user can contribute by sharing their own insights and experiences, helping 
 
 ## Target user
 
-The app can be helpful to any students or travelers who enjoy sharing their thoughts and connecting with a like-minded community, but the ratings are based on topics specifically tailored to young adults and students who value authentic, experience-based insights.
+The app is specifically made for university students who are planning to spend a semester abroad in Europe. It can also be helpful to any students or travelers who enjoy sharing their thoughts and connecting with a like-minded community. The ratings are based on topics specifically tailored to young adults and students who value authentic, experience-based insights.
 
 ## Customer journey
 
 1.	Homepage:
 
-The user starts at the homepage, where they have to log in or create an account.  After a successful login, the user can search for cities they are interested in.
+Once a user opens the website, they start at the homepage. There they are met with a slogan and a picture carousel to show them interesting cities they could visit. On the top of the page they find a navigation bar that allows them to easily access different parts of the website, which include the search page, their profile, and the login- and registerpage. 
 
-2.	City Overview
+2.  Login and Register
 
-After searching for a city, the user sees an introduction of the chosen city. A summary of the ratings in different categories (e.g., student life, activities, nightlife, etc.) is displayed. Below that, the user can scroll through experiences and ratings shared by other travelers. With a search function users can find reviews that provide information on subjects they are interested in.
+Users can create a profile and login to their account. Once a user is logged in, they have the ability to write reviews, update their profile and interact with other students on the bulletin board.  
 
-3.	Leave a Review 
+3.  Search for a City
 
-Students can share their own experience by adding a personal review. They can add a text about the city and rate the city in different categories. After submitting a review, they receive a confirmation message.
+On this page users can enter a city name into the search bar or browse through a list of Erasmus cities to help them find their perfect stay for a semester abroad. 
+
+3.	City Overview
+
+After searching for a city, the user sees an introduction of the chosen city. A summary of the ratings in different categories (e.g., student life, activities, nightlife, etc.) is displayed. Below that, the user can scroll through experiences and ratings shared by other travelers. On the bottom of the page, they will find the option to share their own review or write a message on the bulletin board, which will redirect them to these pages. 
+
+4.	Leave a Review 
+
+If a user is logged in, they can share their own experience about the specific city by adding a personal review. They can add a text about the city and rate the city in different categories. After submitting the review, it will immediatly be displayed on the City Overview page. 
+
+5.  Use the Bulletin Board
+
+The bulletin board gives students and other travelers the chance to interact with one another. They can write a message to exchange tips, ask questions and post any travel advice, which will help to build a community among them. Users can only write a message if they are logged in. 
+
+6.  User Profiles
+
+Each logged-in user has access to a profile page, where they can access personal information. It allows them to edit information they want to share about themselves, such as age, home-country or interests. On this page they also have the opportunity to log-out, which will redirect them back to the login-page. 
+
+
+
+
+
 
 
 
