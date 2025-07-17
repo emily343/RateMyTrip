@@ -355,6 +355,7 @@ def login():
         else: 
             #flask.flash('wrong username or password', 'error')
             print('Login fehlgeschlagen')
+            return redirect(url_for('login'))
 
     return render_template('login.html', form=form)
 
