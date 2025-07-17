@@ -169,14 +169,40 @@ def city_view(city_name):
     reviews = db_con.execute( 
         #Alle Reviews der Stadt angezeigt und nach Datum sortiert (absteigend)
         'SELECT * FROM review WHERE city_name = ? ORDER BY created_at DESC',
-        (city['name'],) #Def für ?-Platzhalter
+        (city_name,) #Def für ?-Platzhalter
         #Holt alle Ergebnisse der SQL-Abfrage auf einmal, d.h. alle Bewertungen
     ).fetchall() 
+
+
+    #Durchschnittswerte der einzelnen Kategorien berechnen
+    categories = ['overall_rating',
+                'uni_rating',
+                'freetime_rating',
+                'nightime_rating',
+                'campus_life_rating',
+                'transportation_rating',
+                'cost_rating',
+                'living_rating',
+                'workopportunities_rating',
+                'safety_rating',
+                'food_rating',
+                'comunication_rating']
+
+    average_cat = {}
+    #for Schleife um für jede Kategorie Durschnitt zu berechnen
+    for cat in categories:
+        avg = db_con.execute(
+            f'SELECT AVG({cat}) FROM review WHERE city_name = ?', (city['name'],)
+        ).fetchone()[0]
+        if avg is not None:
+            average_cat[cat] = round(avg, 2)
+        else:
+            average_cat[cat] = "/"
 
     #Rendert das HTML-Template city.html mit city (gegebene Stadt, Überschrift bei City-Unterseite) 
     #Und dem Review-Forular form
     #Und alle reviews aus der DB
-    return render_template('city.html', city=city, form=form, reviews=reviews)
+    return render_template('city.html', city=city, form=form, reviews=reviews, average_cat=average_cat)
 
 
 

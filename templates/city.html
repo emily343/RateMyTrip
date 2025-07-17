@@ -41,6 +41,11 @@
     color: #336699;
     }
 
+.list-bg-avg {
+    background-color: #336699; 
+    color: white;
+    }
+
 
 </style>
 </head>
@@ -106,6 +111,38 @@
  <!-- Main Inhalt in einem Container -->
     <main class="container mt-5">
 
+    <!-- Durchschnitt aller Reviews anzeigen -->
+    {% if reviews %} 
+    <h2 class="text-center">Average Rating for {{ city['name'] }}</h2>
+    <div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Overall-Rating: {{ average_cat.overall_rating }}/5</h5>
+        <!-- Liste in der alle Detail-Ratings dagestellt werden (für den Durchschnitt)-->
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item list-bg-avg">Uni Rating: {{ average_cat.uni_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Freetime Rating: {{ average_cat.freetime_rating }}/5</li>
+             <li class="list-group-item list-bg-avg">Nightime Rating: {{ average_cat.nightime_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Campus Life Rating: {{ average_cat.campus_life_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Transportation Rating: {{ average_cat.transportation_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Cost Rating: {{ average_cat.cost_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Living Rating: {{ average_cat.living_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Work Opportunities Rating: {{ average_cat.workopportunities_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Safety Rating: {{ average_cat.safety_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Food Rating: {{ average_cat.food_rating }}/5</li>
+            <li class="list-group-item list-bg-avg">Communication Rating: {{ average_cat.comunication_rating }}/5</li>
+        </ul>
+    </div>
+    </div>
+    {% endif %}
+
+    <div>
+    <br>
+    <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5> <br>
+    <a href="{{ url_for('bulletin', city_name=city.name) }}" class="btn custom-button1">Write a message</a>
+    <p class="text" style="font-weight: bold; margin-bottom: 40px"></p>
+    </div>
+
+
 
     <!-- Vorherige Reviews anzeigen -->
     <h2 class="text-center">Reviews about {{ city['name'] }}</h2>
@@ -136,7 +173,7 @@
     <li class="list-group-item list-bg">Work Opportunities Rating: {{ review.workopportunities_rating }}/5</li>
     <li class="list-group-item list-bg">Safety Rating: {{ review.safety_rating }}/5</li>
     <li class="list-group-item list-bg">Food Rating: {{ review.food_rating }}/5</li>
-    <li class="list-group-item list-bg">Communication Rating: {{ review.comunication_rating }}/5</li>
+    <li class="list-group-item list-bg">Communication Rating: {{ review.comunication_rating }}/5</li> <br>
 </ul>
 
     <!--  Falls ein Kommentar vorhanden ist, wird dieser angezeigt -->
@@ -163,12 +200,6 @@
 
     <a href="{{ url_for('review', city_name=city.name)  }}" class="btn custom-button2">Write your own Review!</a> 
 
- <div>
-    <br>
-    <h5 class="text-center">Do you have any Questions about the city? Or would you like to connect to other students or travellers? Leave a message on our Bulletin Board!</h5> <br>
-    <a href="{{ url_for('bulletin', city_name=city.name) }}" class="btn custom-button1">Write a message</a>
-    <p class="text" style="font-weight: bold; margin-bottom: 40px"></p>
-    </div>
 
 </main>
 
