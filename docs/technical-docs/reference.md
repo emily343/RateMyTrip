@@ -5,17 +5,12 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+[Sarah Abdulsayed]
 
 {: .no_toc }
 # Reference documentation
 
-{: .attention }
-> This page collects internal functions, routes with their functions, and APIs (if any).
-> 
-> See [Uber](https://developer.uber.com/docs/drivers/references/api) or [PayPal](https://developer.paypal.com/api/rest/) for exemplary high-quality API reference documentation.
->
-> You may delete this `attention` box.
+This page documents all available routes and internal functions used in our web application.
 
 <details open markdown="block">
 {: .text-delta }
@@ -24,62 +19,160 @@ nav_order: 3
 {: toc }
 </details>
 
-## [Section / module]
+## Routes
 
-### `function_definition()`
+### `home()`
 
-**Route:** `/route/`
+**Route:** `/`  
+**Methods:** `GET`  
+**Purpose:** Displays the homepage.
 
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
+**Sample output:**  
+![`home()` sample](assets/images/homepage.png)
 
-**Purpose:** [Short explanation of what the function does and why]
-
-**Sample output:**
-
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
 
 ---
 
-## [Example, delete this section] Show to-do lists
+### `profile()`
 
-### `get_lists()`
+**Route:** `/profile`  
+**Methods:** `GET`  
+**Purpose:** Displays the profile page of the currently logged-in user.  
+**Authentication required**
 
-**Route:** `/lists/`
+**Requires login**
 
-**Methods:** `GET`
+**Sample output:**  
+![`/profile` sample](assets/images/profilepage.png)
+**!!!!!Fehlt noch**  
 
-**Purpose:** Show all to-do lists.
-
-**Sample output:**
-
-![get_lists() sample](../assets/images/fswd-intro_00.png)
-
----
-
-### `get_list_todos(list_id)`
-
-**Route:** `/lists/<int:list_id>`
-
-**Methods:** `GET`
-
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
-
-**Sample output:**
-
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
 
 ---
 
-## [Example, delete this section] Insert sample data
+### `search()`
+
+**Route:** `/search`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Displays a search form to look for cities by name. If a valid city is entered, redirects to `/city/<city_name>`.
+
+**Sample output:**  
+![Search Page](assets/images/search_form.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `city_view(city_name)`
+
+**Route:** `/city/<city_name>`  
+**Methods:** `GET`  
+**Purpose:** Displays details about a city and its reviews.
+
+**Sample output:**  
+![City Page](assets/images/citypage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `review(city_name)`
+
+**Route:** `/review/<city_name>`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Displays a form to submit a new review for a specific city.  
+**Requires login**
+
+**Sample output:**  
+![Review Page](assets/images/reviewpage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `bulletin(city_name)`
+
+**Route:** `/bulletin/<city_name>`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Allows logged-in users to view and post public messages on the bulletin board for a city.
+
+**Requires login**
+
+**Sample output:**  
+![Bulletin Page](assets/images/bulletinpage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `register()`
+
+**Route:** `/register`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Allows new users to create an account with a username and password.
+
+**Sample output:**  
+![Register Page](assets/images/registerpage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `login()`
+
+**Route:** `/login`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Authenticates existing users and starts a session.
+
+**Sample output:**  
+![Login Page](assets/images/loginpage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `logout()`
+
+**Route:** `/logout`  
+**Methods:** `GET`  
+**Purpose:** Logs out the current user and redirects to login page.
+
+**Sample output:**  
+None (redirects)
+
+
+---
 
 ### `run_insert_sample()`
 
-**Route:** `/insert/sample`
+**Route:** `/insert/sample`  
+**Methods:** `GET`  
+**Purpose:** Fills database with sample data using `insert_sample()` from `db.py`.
+_For development/testing purposes only._
 
-**Methods:** `GET`
+**Sample output:**  
+Text return: `Data added to Database.`
 
-**Purpose:** Flush the database and insert sample data set
 
-**Sample output:**
+---
 
-Browser shows: `Database flushed and populated with some sample data.`
+
+## Internal Functions
+
+
+### `load_user(user_id)`
+
+**Purpose:** Callback function used by Flask-Login to load current user.
+
+**Returns:**  
+`User.get(user_id)`
+
+
+
+### `User.get(user_id)`
+
+**Purpose:** Retrieves a user object from the database using the user ID. Used for Flask-Login session handling.
+
+**Returns:**  
+A `User` object if found.
+
+---
