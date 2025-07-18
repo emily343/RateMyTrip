@@ -58,37 +58,67 @@
         {{ render_nav_item('profile', 'Your Account') }}
     </ul>
 
-    <!-- Rechte Seite -->
-    <!-- 2 Buttons die Seiten login und register verlinken-->
-    <!-- Mit Design für button1 und button2, in der CSS-Datei selbst festgelegt -->
-    <div>
-    <a href="{{ url_for('login') }}" class="btn custom-button1">Login</a> <!-- Verlinkt diese Seiten -->
-    <a href="{{ url_for('register') }}" class="btn custom-button2">Sign Up</a>
     </div>
-</div>
         </div>
     </nav>
 
 
 <!-- Header -->
     <header>
-        <h1>CityRate</h1>
-        <h3>The site to help you find your Erasmus destination</h3>
+        <h1>Your Profile</h1>
+        
     </header>
 
 
  <!-- Main Inhalt -->
     <main>
-     <h1> Your Profile </h1>
-      <p class="text" style="font-weight: bold; margin-bottom: 15px">
-      
-      </p>
-      
-      <!-- Container mit zwei Buttons die zu Unterseiten verlinken-->
-    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
     
+    <!-- User Daten anzeigen lassen -->
+    
+        <div class="card-body">
+            <p><strong>Username:</strong> {{ user['username'] }}</p>
+            <p><strong>Name:</strong> {{ user['name'] }}</p>
+            <p><strong>Age:</strong> {{ user['age'] }}</p>
+            <p><strong>Interests:</strong> {{ user['interests'] }}</p>
+            <p><strong>About you:</strong><br> {{ user['about'] }}</p>
+        </div>
+    
+
+    <!-- User Daten bearbeiten -->
+
+    <h3> Edit your profile! </h3>
+
+    <!-- Einbindung des Formulars (ChatGPT Quelle [1]) -->
+    
+    <form method="POST" action="{{ url_for('profile') }}" style="display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 200px; margin-right: 200px">
+   <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
+    {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
+    <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
+    
+    <div class="mb-3">
+            {{ form.name(class="form-control", placeholder="choose a nickname") }}
+            {{ form.age(class="form-control", placeholder="enter your age") }}
+            {{ form.interests(class="form-control", placeholder="your interests", multiple=True) }}
+            {{ form.about(class="form-control", placeholder="Share more information about yourself!") }}
+        </div>
+
+    {{ form.submitProfile(class="btn btn-primary custom-button1") }} <br> <!-- Bestätigungsbutton, auch in Forms definiert --> 
+    </form>
+
+
+    <div>
+    
+
+    </div>
+       
+
+
+
+    <!-- Container für Logout Button-->
+    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;"> 
     <a href="/logout" class="btn custom-button2">Logout</a>
     </div>
+
 
     </div>
 

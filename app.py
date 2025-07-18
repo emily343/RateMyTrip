@@ -1,9 +1,9 @@
-from flask import Flask, flash, render_template, redirect, request, url_for # Flask [1]
+from flask import Flask, flash, render_template, redirect, request, session, url_for # Flask [1]
 import flask
 from flask_bootstrap import Bootstrap5 # Flask-Bootstrap5 [2]
 import db
 import os
-from forms import BulletinForm, LoginForm, SearchCityForm, ReviewForm, RegisterForm #Formulare werden von forms importiert
+from forms import BulletinForm, LoginForm, SearchCityForm, ReviewForm, RegisterForm, ProfileForm #Formulare werden von forms importiert
 from db import get_db_con
 from flask_login import LoginManager, UserMixin, current_user, login_required, login_user, logout_user #Flask-Login [5]
 
@@ -43,10 +43,38 @@ def home():
 
 
 #Zeigt profile.html an
-@app.route('/profile')
+@app.route('/profile',methods=['GET', 'POST'])
 @login_required  #Seite ist geschützt, nur für eingeloggte User
 def profile():
-    return render_template('profile.html')
+
+    #Stellt DB-Verbindung her
+    db_con = get_db_con()
+    form = ProfileForm() #Instanz von ProfileForm
+
+
+    #holt mit SQL query aktuelle User-Daten aus der user Tabelle
+    user_info = db_con.execute('SELECT username, name, age, interests, about FROM user WHERE id = ?', 
+                               (current_user.id,)).fetchone()
+    
+
+    #Formular wird geprüft 
+    if form.validate_on_submit():
+
+        #holt Eingaben aus den Feldern
+        name = form.name.data
+        age = form.age.data
+        interests = ','.join(form.interests.data) #interests als string speichern
+        about = form.about.data
+
+        #user wird geupdatet
+        db_con.execute('UPDATE user SET name = ?, age = ?, interests = ?, about = ? WHERE id = ?',
+                       (name, age, interests, about, current_user.id))
+        db_con.commit()
+        
+        print('profile updated')
+        return redirect(url_for('profile'))
+
+    return render_template('profile.html', form=form, user=user_info)
 
 
 #Seite für das Bulletinboard

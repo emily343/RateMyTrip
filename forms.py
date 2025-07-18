@@ -1,7 +1,8 @@
+
 from wtforms.validators import InputRequired, Length
 from flask_wtf import FlaskForm # Flask-WTF [4]
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField, PasswordField
-from wtforms.validators import InputRequired, Length, NumberRange, EqualTo
+from wtforms import SelectMultipleField, StringField, SubmitField, TextAreaField, IntegerField, PasswordField
+from wtforms.validators import InputRequired, Length, NumberRange, EqualTo, Optional
 
 #Datei um Formen zu definieren
 
@@ -65,3 +66,24 @@ class BulletinForm(FlaskForm):
     message = TextAreaField(validators=[InputRequired(), Length(min=10, max=700)])
     submitMessage = SubmitField('submit') #Button für Bestätigung
 
+
+#in Profile
+class ProfileForm(FlaskForm):
+    name = StringField(validators=[Optional(),Length(min=2, max=30)])
+    age = IntegerField(validators=[Optional(),NumberRange(min=1, max=120)])
+    interests = SelectMultipleField(validators=[Optional()], choices=[
+            ('travel', 'Travel'),
+            ('cooking', 'Cooking'),
+            ('culture', 'Culture'),
+            ('music', 'Music'),
+            ('nature', 'Nature'),
+            ('photography', 'Photography'),
+            ('languages', 'Languages'),
+            ('gym', 'Gym'),
+            ('drawing', 'Drawing'),
+            ('outdoorsy', 'Outdoorsy'),
+            ('clubbing', 'Clubbing')
+        ])
+    about = TextAreaField(validators=[Optional(),Length(min=2, max=700)])
+    submitProfile = SubmitField('Save Changes')
+  

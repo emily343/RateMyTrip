@@ -41,3 +41,8 @@ UPDATE city SET description = 'Valencia offers Erasmus students beautiful beache
 UPDATE city SET description = 'Vienna is a cultural capital with top-ranked universities and a high quality of life. Its mix of tradition and modernity offers Erasmus students a balanced and enriching stay.' WHERE name = 'Vienna';
 
 UPDATE city SET description = 'Warsaw is a growing Erasmus destination with a dynamic student scene and affordable living. Its mix of history, innovation, and nightlife creates a well-rounded exchange experience.' WHERE name = 'Warsaw';
+
+ALTER TABLE user ADD COLUMN name TEXT;
+ALTER TABLE user ADD COLUMN age INTEGER;
+ALTER TABLE user ADD COLUMN interests TEXT;
+ALTER TABLE user ADD COLUMN about TEXT;
