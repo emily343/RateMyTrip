@@ -63,7 +63,7 @@ def profile():
         #holt Eingaben aus den Feldern
         name = form.name.data
         age = form.age.data
-        interests = ','.join(form.interests.data) #interests als string speichern
+        interests = form.interests.data
         about = form.about.data
 
         #user wird geupdatet

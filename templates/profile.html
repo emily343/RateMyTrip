@@ -74,15 +74,16 @@
     <main>
     
     <!-- User Daten anzeigen lassen -->
-    
-        <div class="card-body">
+
+        <div class="card-body", style="text-align: left; margin-left: 200px;">
+            <h3 , style="text-align: left;"> Your information: </h3> <br>
             <p><strong>Username:</strong> {{ user['username'] }}</p>
             <p><strong>Name:</strong> {{ user['name'] }}</p>
             <p><strong>Age:</strong> {{ user['age'] }}</p>
             <p><strong>Interests:</strong> {{ user['interests'] }}</p>
             <p><strong>About you:</strong><br> {{ user['about'] }}</p>
         </div>
-    
+   
 
     <!-- User Daten bearbeiten -->
 
@@ -96,11 +97,11 @@
     <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
     
     <div class="mb-3">
-            {{ form.name(class="form-control", placeholder="choose a nickname") }}
-            {{ form.age(class="form-control", placeholder="enter your age") }}
-            {{ form.interests(class="form-control", placeholder="your interests", multiple=True) }}
+            {{ form.name(class="form-control", placeholder="What is your name?") }}
+            {{ form.age(class="form-control", placeholder="Enter your age") }}
+            {{ form.interests(class="form-control", placeholder="Tell us about your interests") }}
             {{ form.about(class="form-control", placeholder="Share more information about yourself!") }}
-        </div>
+        </div>      
 
     {{ form.submitProfile(class="btn btn-primary custom-button1") }} <br> <!-- Bestätigungsbutton, auch in Forms definiert --> 
     </form>

@@ -71,19 +71,7 @@ class BulletinForm(FlaskForm):
 class ProfileForm(FlaskForm):
     name = StringField(validators=[Optional(),Length(min=2, max=30)])
     age = IntegerField(validators=[Optional(),NumberRange(min=1, max=120)])
-    interests = SelectMultipleField(validators=[Optional()], choices=[
-            ('travel', 'Travel'),
-            ('cooking', 'Cooking'),
-            ('culture', 'Culture'),
-            ('music', 'Music'),
-            ('nature', 'Nature'),
-            ('photography', 'Photography'),
-            ('languages', 'Languages'),
-            ('gym', 'Gym'),
-            ('drawing', 'Drawing'),
-            ('outdoorsy', 'Outdoorsy'),
-            ('clubbing', 'Clubbing')
-        ])
+    interests = StringField(validators=[Optional(),Length(min=2, max=60)])
     about = TextAreaField(validators=[Optional(),Length(min=2, max=700)])
     submitProfile = SubmitField('Save Changes')
   
