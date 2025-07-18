@@ -144,3 +144,173 @@ The form instance is then passed to the template via the route function in app.p
 | **Validation** | ❌ Must be implemented manually  | ✔️ Built-in |
 | **Maintainability** | ❌ Code spread across HTML and Python  | ✔️ Seperated |
 | **Security** | ❌  No CSRF protection by default | ✔️ Built-in CSRF token |
+
+---
+## 05: Using Flask-Login for User Authentication
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 18-Jun-2025
+
+### Problem statement
+
+Our web application requires user authentication to allow users to write reviews or messages, manage their profile and give access to certain pages only to logged in users. We needed a simple way to manage user login sessions and to protect the pages from unauthorized access. 
+
+
+### Decision 
+
+We decided to use Flask-Login, a Flask extension that provides user session management. Flask-Loging helps us to manage user sessions and remembering which user is logged in. It protects the routes using @login-required and helps us access the current user easily through 'current_user'. 
+Overall, using Flask-Login offered us an easier and more secure way to implement the Login and Logout functionality. 
+
+
+
+### Regarded options
+
++ Manual Session Handling
++ Flask-Login
+
+| Criterion | Manual Session Handling | Flask-Login |
+| --- | --- | --- |
+| **Logic for Authentication** | ❌ Must be implemented manually  | ✔️ Built-in |
+| **Protecting Routes** | ❌ manual checks each time  | ✔️ use of @login_required |
+| **Current User Access** | ❌  implement manually | ✔️ current_user built-in |
+
+---
+
+## 06: Not using base.html
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 18-Jun-2025
+
+### Problem statement
+
+Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
+In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+
+### Decision 
+
+We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
+We have recognized that this approach was not the best way and we would do it differently in future projects. 
+
+
+### Regarded options
+
++ no base.html
++ use base.html
+
+| Criterion | no base.html| use base.html |
+| --- | --- | --- |
+| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
+| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
+| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
+
+---
+
+## 06: Not using base.html
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 18-Jun-2025
+
+### Problem statement
+
+Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
+In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+
+### Decision 
+
+We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
+We have recognized that this approach was not the best way and we would do it differently in future projects. 
+
+
+### Regarded options
+
++ no base.html
++ use base.html
+
+| Criterion | no base.html| use base.html |
+| --- | --- | --- |
+| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
+| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
+| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
+
+---
+
+## 06: Not using base.html
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 18-Jun-2025
+
+### Problem statement
+
+Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
+In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+
+### Decision 
+
+We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
+We have recognized that this approach was not the best way and we would do it differently in future projects. 
+
+
+### Regarded options
+
++ no base.html
++ use base.html
+
+| Criterion | no base.html| use base.html |
+| --- | --- | --- |
+| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
+| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
+| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
+
+---
+
+## 06: Not using base.html
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 18-Jun-2025
+
+### Problem statement
+
+Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
+In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+
+### Decision 
+
+We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
+We have recognized that this approach was not the best way and we would do it differently in future projects. 
+
+
+### Regarded options
+
++ no base.html
++ use base.html
+
+| Criterion | no base.html| use base.html |
+| --- | --- | --- |
+| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
+| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
+| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
