@@ -4,7 +4,7 @@ nav_order: 4
 ---
 
 {: .label }
-[Jane Dane]
+Emily Apitzsch
 
 {: .no_toc }
 # User evaluation
@@ -16,30 +16,37 @@ nav_order: 4
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Testing the User-Experience of City Search and Review
 
 ### Meta
 
 Status
-: **Work in progress** - Done - Obsolete
+: **Done** 
 
 Updated
-: DD-MMM-YYYY
+: 18-07-2025
 
 ### Goal
 
-[Describe the goal of this evaluation, for example as a research question like: "How long does it take to register a new account and what is the drop-out rate?"]
+Our goal is to evaluate how intuitive it is for new users to search for a city and submit a review. We want to find out whether users can find the city they are looking for quickly and whether writing a review is simple for them. This will help us improve our overall design and user experience. 
 
 ### Method
 
-[Describe how you proceed to achieve your evaluation goal. Be as specific as possible: others should be able to replicate your evaluation by following the description on this section.]
+To evaluate the usability of our website, we would ask a group of university students who have not used the site before to complete the following tasks: 
 
-### Results
+1. Search for a city of your choice
+2. Submit a Review
+3. View other Reviews on the city page
 
-[Present the main results of your evaluation, for example: "On average, users need 3 min to register. The drop-out rate was 70%. Users that didn't complete provided the following reasons: ..."]
+We would then evaluate how intuitive the process was for them and if they encountered any issues during the process, such as not knowing how to submit the review etc.. 
+
+### Expected Results
+
+We expect that most user will find the search process very intuitive. Because we implemented a list of all the cities, students will know which cities they can look up. 
+The review form might be slightly long, or it might not be clear how many points to give at first.
 
 ### Implications
 
-[What did you learn from this evaluation and what will you change to improve? Example: "We aim to decrease the drop-out rate by not asking for a birth date. We will re-run this evaluation to measure the impact."]
+Based on the feedback, we plan to make the review form even more intuitive by writing a short paragraph on how it works. We could also add even more cities, so students will most certainly find the city they are looking for. 
 
 ---
