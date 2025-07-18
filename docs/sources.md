@@ -77,3 +77,9 @@ Each entry is referenced with comments in the corresponding parts of the codebas
 - **Exported Chat History (PDF):** docs/LLM-Prompts Chats/3.
 - **Public Chat Link:** https://chatgpt.com/share/68659f0c-4bd8-8000-9022-66536fcb6cce
 - **Purpose of Use:** Assistance with finding a solution for merging problem 
+
+### [4]  
+- **LLM Model:** ChatGPT (GPT-4)  
+- **Exported Chat History (PDF):** docs/LLM-Prompts Chats/4.
+- **Public Chat Link:** https://chatgpt.com/share/687a085f-c060-8013-a707-5de18d645d62
+- **Purpose of Use:** Assistance with creating the description texts for the cities
