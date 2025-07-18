@@ -74,8 +74,7 @@
 <!-- Main Inhalt -->
     <main>
      <h1> The Bulletin-Board for {{ city['name'] }}</h1>
-      <p class="text" style="font-weight: bold; margin-bottom: 15px">
-         
+      <p class="text" style="font-weight: bold; margin-bottom: 15px"> 
       </p>
 
      
@@ -89,12 +88,14 @@
     {{ form.submitMessage(class="btn btn-primary custom-button1") }} <!-- Bestätigungsbutton, auch in Forms definiert --> 
     </form>
     
-    <!-- messages anzeigen lassen -->
+    <!-- messages anzeigen lassen-->
     <hr>
     <h2> Messages </h2>
     {% for msg in messages %}
         <div class="card-text mt-3">
-            <b>{{ msg['username']}} posted on {{ msg['bulletin_time']}}: </b> 
+            <b> <a href="{{url_for('user', username=msg['username']) }}"> <!-- user der review verlinkt -->
+            {{ msg['username']}} </a>
+            posted on {{ msg['bulletin_time']}}: </b> 
             <p>{{ msg['message']}}</p>
         </div>
 

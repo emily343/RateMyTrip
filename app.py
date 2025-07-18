@@ -77,6 +77,24 @@ def profile():
     return render_template('profile.html', form=form, user=user_info)
 
 
+
+#zeigt Informationen über user der review an 
+@app.route('/user/<username>',methods=['GET', 'POST'])
+@login_required
+def user(username):
+
+    db_con = get_db_con()
+    form = ProfileForm()
+
+    #holt user der die Review geschrieben hat aus der Datenbank
+    user = db_con.execute('SELECT * FROM user WHERE username = ?',
+                          (username,)).fetchone()
+    
+    if user is None:
+        return "User not found", 404
+
+    return render_template('user.html', user=user, form=form)
+
 #Seite für das Bulletinboard
 #GET: Seiten anzeigen, POST: Daten senden 
 @app.route('/bulletin/<city_name>', methods=['GET', 'POST'])

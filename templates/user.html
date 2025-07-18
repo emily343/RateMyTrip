@@ -65,10 +65,8 @@
 
 <!-- Header -->
     <header , style="margin-left: 180px; margin-right: 180px;">
-       <h1> Your Profile </h1> <br>
-        <h4>This is your profile. Other students can view it when you leave messages on the bulletin board. 
-            Feel free to share a bit about yourself to connect with like-minded people! </h4> 
-
+        <h1>Profile of {{ user['username'] }}</h1> <br>
+        <h4>Here you can get to know {{ user['username'] }}! Learn more about their interests and their Erasmus experience!</h4>
     </header>
 
 
@@ -76,53 +74,19 @@
     <main>
     
     <!-- User Daten anzeigen lassen -->
+        
         <div class="card-body", style="text-align: left; margin-left: 200px;">
-            <h3 , style="text-align: left;"> Your information: </h3> <br>
+            <h3 , style="text-align: left;"> {{ user['username'] }}'s information: </h3> <br>
             <p><strong>Username:</strong> {{ user['username'] }}</p>
             <p><strong>Name:</strong> {{ user['name'] }}</p>
             <p><strong>Age:</strong> {{ user['age'] }}</p>
             <p><strong>Interests:</strong> {{ user['interests'] }}</p>
             <p><strong>About you:</strong><br> {{ user['about'] }}</p>
         </div>
-   
 
-    <!-- User Daten bearbeiten -->
-    <h3> Edit your profile! </h3>
-
-    <!-- Einbindung des Formulars (ChatGPT Quelle [1]) -->
-    
-    <form method="POST" action="{{ url_for('profile') }}" style="display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-top: 30px; margin-left: 200px; margin-right: 200px">
-   <!-- Formular wird per Post gesendet und wird an die Flask-Route search geschickt -->
-    {{ form.hidden_tag() }} <!-- CSRF-Token benötigt, um Formular richtig zu validieren, automatisch von Flask-WTForms eingesetzt-->
-    <!-- Form Controls mit Bootstrap 5 (Quelle [2]) -->
-    
-    <div class="mb-3">
-            {{ form.name(class="form-control", placeholder="What is your name?") }}
-            {{ form.age(class="form-control", placeholder="Enter your age") }}
-            {{ form.interests(class="form-control", placeholder="Tell us about your interests") }}
-            {{ form.about(class="form-control", placeholder="Share more information about yourself!") }}
-        </div>      
-
-    {{ form.submitProfile(class="btn btn-primary custom-button1") }} <br> <!-- Bestätigungsbutton, auch in Forms definiert --> 
-    </form>
-
-
-    <div>
-    
-
-    </div>
-       
-
-
-
-    <!-- Container für Logout Button-->
-    <div class="button-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;"> 
-    <a href="/logout" class="btn custom-button2">Logout</a>
-    </div>
-
-
-    </div>
-
+        <div class="mb-3">
+        <a href="{{ url_for('profile', )  }}" class="btn custom-button2">go to your own account</a> 
+        </div>
     </main>
 
 
