@@ -17,7 +17,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## [Sarah Abdulsayed] - review 1
+## Sarah Abdulsayed - review 1
 
 ### My observation (Wahrnehmung)
 
@@ -29,20 +29,20 @@ Her reliability had a positive impact on the team dynamic.  We both were able to
 
 ### Tip for the future (Wunsch)
 
-I don't really have any but it would be helpful if in the future we both  could aim to finish her tasks a bit earlier, so there’s more time for team discussions and feedback before the next steps. 
+I don't really have any but it would be helpful if in the future we both could aim to finish her tasks a bit earlier, so there’s more time for team discussions and feedback before the next steps. 
 
 
 
-## [team member] - review 1
+## Emily Apitzsch - review 2
 
 ### My observation (Wahrnehmung)
 
-[A specific observation, regarding know-how, effectiveness, team work or from another relevant area]
+Sarah and I work great as a Team. Sarah works in a very structured, efficient and responsible way. She is a very realiable partner. 
 
 ### Effect on me (Wirkung)
 
-[What positive or negative effect did this observation have on the reviewer?]
+Sarah's good work ethic impacted me in a positive way. With her structured way of working, she encouraged me to work on my part of the project more timely as well. 
 
 ### Tip for the future (Wunsch)
 
-[What should be changed or strengthened for the point of view of the reviewer?]
+keep it up :D
