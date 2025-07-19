@@ -28,7 +28,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays the homepage.
 
 **Sample output:**  
-![`home()` sample](assets/images/images_outputs/homepage.png)
+![`home()` sample](static/images/images_outputs/homepage.png)
 
 
 ---
@@ -43,7 +43,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![`/profile` sample](assets/images/images_outputs/profile.png)
+![`/profile` sample](static/images/images_outputs/profile.png)
 
 
 ---
@@ -58,7 +58,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![`/profile` sample](assets/images/images_outputs/profile_bulletin.png)
+![`/profile` sample](static/images/images_outputs/profile_bulletin.png)
 
 
 ---
@@ -70,7 +70,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays a search form to look for cities by name. If a valid city is entered, redirects to `/city/<city_name>`.
 
 **Sample output:**  
-![Search Page](assets/images/images_outputs/search.png)
+![Search Page](static/images/images_outputs/search.png)
 
 
 ---
@@ -82,7 +82,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays details about a city and its reviews.
 
 **Sample output:**  
-![City Page](assets/images/images_outputs/city.png)
+![City Page](static/images/images_outputs/city.png)
 
 
 ---
@@ -95,7 +95,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![Review Page](assets/images/images_outputs/submit_review.png)
+![Review Page](static/images/images_outputs/submit_review.png)
 
 
 ---
@@ -109,7 +109,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![Bulletin Page](assets/images/images_outputs/bulletin.png)
+![Bulletin Page](static/images/images_outputs/bulletin.png)
 
 
 ---
@@ -121,7 +121,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Allows new users to create an account with a username and password.
 
 **Sample output:**  
-![Register Page](assets/images/images_outputs/register.png)
+![Register Page](static/images/images_outputs/register.png)
 
 
 ---
@@ -133,7 +133,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Authenticates existing users and starts a session.
 
 **Sample output:**  
-![Login Page](assets/images/images_outputs/login.png)
+![Login Page](static/images/images_outputs/login.png)
 
 
 ---
