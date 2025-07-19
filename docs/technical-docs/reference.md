@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Sarah Abdulsayed]
+Sarah Abdulsayed
 
 {: .no_toc }
 # Reference documentation
@@ -38,6 +38,22 @@ This page documents all available routes and internal functions used in our web 
 **Route:** `/profile`  
 **Methods:** `GET`  
 **Purpose:** Displays the profile page of the currently logged-in user.  
+**Authentication required**
+
+**Requires login**
+
+**Sample output:**  
+![`/profile` sample](assets/images/profilepage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
+### `user()`
+
+**Route:** `/user/<username>`  
+**Methods:** `GET` , `POST` 
+**Purpose:** Displays the profile page of the user that wrote the message on the bulletin board.  
 **Authentication required**
 
 **Requires login**

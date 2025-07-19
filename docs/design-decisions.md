@@ -4,7 +4,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+Sarah Abdulsayed, Emily Apitzsch
 
 {: .no_toc }
 # Design decisions
@@ -213,9 +213,7 @@ We have recognized that this approach was not the best way and we would do it di
 | **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
 | **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
 
----
-
-## 06: Not using base.html
+## 07: Using Flash Messages
 
 ### Meta
 
@@ -223,33 +221,29 @@ Status
 : Decided
 
 Updated
-: 18-Jun-2025
+: 19-Jun-2025
 
 ### Problem statement
 
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+To give our users feedback on actions when registering or logging in/out of the account, we wanted a way to show them the status of the action (e.g if the login succeeded or failed).
 
 ### Decision 
 
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
+We decided to use Flask's flash-messages. Flash-messages allows us to display temporary messages in an easy and efficient way. It keeps the user informed and improves their usability. 
 
 
 ### Regarded options
 
-+ no base.html
-+ use base.html
++ manually implement a messaging system
++ use Flask flash()
 
-| Criterion | no base.html| use base.html |
+| Criterion | manual system| Flask Flash |
 | --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
+| **Easiness to use** | ❌ more effort to implement   | ✔️ built-in and easy to use |
+| **Integration** | ❌ harder to integrate | ✔️ easier to inegrate |
 
----
 
-## 06: Not using base.html
+## 08: Include Instance Folder in Git 
 
 ### Meta
 
@@ -257,60 +251,24 @@ Status
 : Decided
 
 Updated
-: 18-Jun-2025
+: 19-Jun-2025
 
 ### Problem statement
 
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
+It is recommended to keep the instance-folder  out of version control, because it often contains sensitive data and the database. However, during the development as a team, it might be helpful to share the database in the repository. 
 
 ### Decision 
 
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
+For now, we decided to include the instance-folder in Git. This allows for all team members to access the same database file during the development of our web-application. We know that in a 'real-life' project it is not recommended, where we would then add it to the .gitignore file. 
 
 
 ### Regarded options
 
-+ no base.html
-+ use base.html
++ keep instance-folder in .gitignore
++ include instance-folder in version control
 
-| Criterion | no base.html| use base.html |
+| Criterion | keep instance-folder in .gitignore| include instance-folder |
 | --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
+| **Security** | ✔️  secure, sensitive data not shared |  ❌ sensitive data exposed |
+| **Development Convenience** | ❌ needs manual setup | ✔️ easier to share database |
 
----
-
-## 06: Not using base.html
-
-### Meta
-
-Status
-: Decided
-
-Updated
-: 18-Jun-2025
-
-### Problem statement
-
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
-
-### Decision 
-
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
-
-
-### Regarded options
-
-+ no base.html
-+ use base.html
-
-| Criterion | no base.html| use base.html |
-| --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |

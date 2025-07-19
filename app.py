@@ -42,7 +42,7 @@ def home():
     return render_template('home.html')
 
 
-#Zeigt profile.html an
+#Zeigt profile.html an, für Profil des users
 @app.route('/profile',methods=['GET', 'POST'])
 @login_required  #Seite ist geschützt, nur für eingeloggte User
 def profile():
@@ -95,7 +95,7 @@ def user(username):
 
     return render_template('user.html', user=user, form=form)
 
-#Seite für das Bulletinboard
+#Seite für das Bulletinboard 
 #GET: Seiten anzeigen, POST: Daten senden 
 @app.route('/bulletin/<city_name>', methods=['GET', 'POST'])
 @login_required #nur für eingeloggte user
@@ -135,7 +135,16 @@ def bulletin(city_name):
     messages = db_con.execute('SELECT * FROM bulletin WHERE city_name = ?',(city['name'],)).fetchall()
 
 
+    #für JSON Headless API, wenn ?json in URL
+    if request.args.get('json') is not None:
+        messages_list = []
+        for msg in messages:
+            messages_list = [dict(msg) for msg in messages]
+        return messages_list #returned Datenstruktur, wird von Flask automatisch 'jsonified'
+
     return render_template('bulletin.html', city=city, form=form, messages=messages) #city, form und messages an template übergeben 
+      
+
 
 
 
@@ -328,7 +337,6 @@ def review(city_name): #cityname wird übergeben
     return render_template('review.html', city=city, form=form)
 
 
-
 #Route zum Registrieren eines neuen Nutzers 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -351,14 +359,14 @@ def register():
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
         
         if checkuser:
-            #flash('username already taken :( Please choose a diferrent one', 'error')
+            flash('username already taken :( Please choose a diferrent one', 'danger')
             print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
         #neuer user wird in Datenbank gespeichert
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
-        #flash('registration successfull :) You can now log in!', 'info')
+        flash('registration successfull :) You can now log in!', 'success')
         print('registration successfull :) You can now log in!') #erstmal zum testen, später entfernen 
         return redirect(url_for('login'))
 
@@ -421,12 +429,12 @@ def login():
             
             user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
             login_user(user) #user wird eingeloggt (durch Flask_Login[5])
-            #flask.flash('Logged in successfully.', 'info')
+            flask.flash('Logged in successfully.', 'success')
             print('Login hat funktioniert') #erstmal zum testen 
             return redirect(url_for('profile'))
         else: 
-            #flask.flash('wrong username or password', 'error')
-            print('Login fehlgeschlagen')
+            flask.flash('wrong username or password', 'danger')
+            print('Login fehlgeschlagen') #zum testen 
             return redirect(url_for('login'))
 
     return render_template('login.html', form=form)
@@ -438,6 +446,7 @@ def login():
 def logout():
 
     logout_user() #aus FLask_Login
+    flask.flash('Logged out successfully.', 'success')
     print('logout hat funtioniert') #zum testen 
 
     return redirect(url_for('login'))

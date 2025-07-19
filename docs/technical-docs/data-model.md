@@ -5,7 +5,7 @@ nav_order: 2
 ---
 
 {: .label }
-[Sarah Abdulsayed]
+Sarah Abdulsayed
 
 {: .no_toc }
 # Data model
@@ -55,9 +55,14 @@ Stores user credentials for authentication.
 | `id`       | INTEGER  | `PRIMARY KEY AUTOINCREMENT`          | Unique user ID |
 | `username` | TEXT     | `NOT NULL`, `UNIQUE`                 | Unique username |
 | `password` | TEXT     | `NOT NULL`                           | password  |
+| `name`     | TEXT     |  *(optional)*                        | their real name(not username) |
+| `age`      | INTEGER  |  *(optional)*                        | age of user  |
+| `interests`| TEXT     |  *(optional)*                        | interests  |
+| `about`    | TEXT     |  *(optional)*                        | information they want to share about themselves |
 
 **Usage in the App:**
 - Enables log-in and registration in our app.
+- save information they share in their profile
 
 **Relationships:**
 - Referenced by `review.username` and `bulletin.username`

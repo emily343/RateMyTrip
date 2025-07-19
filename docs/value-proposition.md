@@ -43,19 +43,19 @@ Users can create a profile and login to their account. Once a user is logged in,
 
 On this page users can enter a city name into the search bar or browse through a list of Erasmus cities to help them find their perfect stay for a semester abroad. 
 
-3. City Overview:
+4. City Overview:
 
 After searching for a city, the user sees an introduction of the chosen city. A summary of the ratings in different categories (e.g., student life, activities, nightlife, etc.) is displayed. Below that, the user can scroll through experiences and ratings shared by other travelers. On the bottom of the page, they will find the option to share their own review or write a message on the bulletin board, which will redirect them to these pages. 
 
-4. Leave a Review:
+5. Leave a Review:
 
 If a user is logged in, they can share their own experience about the specific city by adding a personal review. They can add a text about the city and rate the city in different categories. After submitting the review, it will immediatly be displayed on the City Overview page. 
 
-5. Use the Bulletin Board:
+6. Use the Bulletin Board:
 
 The bulletin board gives students and other travelers the chance to interact with one another. They can write a message to exchange tips, ask questions and post any travel advice, which will help to build a community among them. Users can only write a message if they are logged in. 
 
-6. User Profiles:
+7. User Profiles:
 
 Each logged-in user has access to a profile page, where they can access personal information. It allows them to edit information they want to share about themselves, such as age, home-country or interests. On this page they also have the opportunity to log-out, which will redirect them back to the login-page. 
 

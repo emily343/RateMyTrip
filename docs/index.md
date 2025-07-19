@@ -18,16 +18,11 @@ CityRate is a web application that allows young travelers and students to share 
 Matr.-Nr.
 : 77211985412
 
-responsible for
-: homepage, search, city overview and review
 
 ### Emily Apitzsch
 
 Matr.-Nr.
 : 77211980381
-
-responsible for
-: login/registration, user-profile, user of review and bulletin board
  
 
 ## Eidesstattliche Erklärung

@@ -5,6 +5,6 @@ nav_order: 2
 ---
 
 {: .label }
-[Emily Apitzsch, Sarah Abdulsayed]
+Emily Apitzsch, Sarah Abdulsayed
 
 # Technical documentation
