@@ -35,19 +35,19 @@ App.py is the main entry point of the appliation. It initializes the Flask app w
 
 Forms.py contains all WTForms form classes used for user input, such as user registration and login, city search and reviews. Using FLask-WTF helps us manage validation and rendering the forms.
 
-#### `db.py`
+### `db.py`
 
 Db.py handles the conection the the SQLite database. It contains the functions for executing SQL-Queries and to open and close connections to the database.
 
-#### `sql/`
+### `sql/`
 
 This folder contains the SQL scripts that were used during the development to set up and reset the database. In create_tables.sql, we initialized the database by creating the tables. In Insert_sample.sql, we added initial sample data to our database, such as cities and users. The file --SQLite-sql was used to change the data or the tables in our database. 
 
-#### `templates/`
+### `templates/`
 
 The template folder contains all HTML templates that were rendered using Jinja2. Each template was made for a specific page in our web-app, such as the city-page (city.html), the homepage (home.html) or the review-page (review.html). Each route has a corresponding template. 
 
-#### `static/`
+### `static/`
 
 This folder contains the the images for the cities (in images/) and our css-stylesheet. 
 
@@ -56,19 +56,23 @@ This folder contains the the images for the cities (in images/) and our css-styl
 
 **Authentication and User Sessions:**
 
-- We use [Flask-Login](../design-decisions.md#05-using-flask-login-for-user-authentication)) to manage user-sessions and protect the routes that user can only access if they are logged in 
+- We use Flask-Login to manage user-sessions and protect the routes that user can only access if they are logged in 
 - Manage sessions across the entire app (e.g. by restricting access to certain routes, such as access profile and write reviews)
 - Define User class that inherits from UserMixin to work with Flask-Login
 - Current user can be accesssed through 'current_user' 
 - Routes that need authentication use '@login_required' decorator
 
+more about the Design Decision [here](../design-decisions.md#05-using-flask-login-for-user-authentication)
+
 **Form Handling:**
 
-- We implemented forms that require user-input using [Flask-WTF und WTForms](../design-decisions.md#04-using-flask-wtf-for-form-handling)
+- We implemented forms that require user-input using Flask-WTF und WTForms
 - Built-in validation and CSRF protection
 - Form fields and validation are defined in forms.py
 - Routes in app.py processes form input by handling the logic and validation results
 - Templates (e.g. review.html or bulletin.html) display form 
+
+more about the Design Decision [here](../design-decisions.md#04-using-flask-wtf-for-form-handling) 
 
 **Styling with Bootstrap and CSS:**
 
@@ -77,18 +81,21 @@ This folder contains the the images for the cities (in images/) and our css-styl
 - Bootstrap copmonents, such as container, card, btn and navbar, are reused in nearly all templates 
 - Styling logic is centralized, [custom CSS](../design-decisions.md#01-centralizing-css-styling-in-style.css) is used for spacing and colors 
 
+
 **Database access:**
 
-- use [plain SQL queries](../design-decisions.md#02-using-plain-sql-or-orm-to-access-database) to acess SQLite database
+- We use plain SQL queries to acess SQLite database
 - SQL-Queries are used directly in route functions inside app.py to access data in the database (e.g. to load reviews)
-- influences backend and frontend, determines what data is available for templates
+- Influences backend and frontend, determines what data is available for templates
+
+more about the Design Decision [here](../design-decisions.md#02-using-plain-sql-or-orm-to-access-database) 
 
 **Flash Messages:**
 
 - We used Flask flash() function
-- used to give user feedback for actions like login or registration
-- example: "Wrong username or password. Try again"
-- written in app.py routes and displayed using 'render_messages()' in templates
+- Used to give user feedback for actions like login or registration
+- Example: "Wrong username or password. Try again"
+- Written in app.py routes and displayed using 'render_messages()' in templates
 
 
 

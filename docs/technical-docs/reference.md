@@ -49,6 +49,22 @@ This page documents all available routes and internal functions used in our web 
 
 ---
 
+### `user()`
+
+**Route:** `/user/<username>`  
+**Methods:** `GET` , `POST` 
+**Purpose:** Displays the profile page of the user that wrote the message on the bulletin board.  
+**Authentication required**
+
+**Requires login**
+
+**Sample output:**  
+![`/profile` sample](assets/images/profilepage.png)
+**!!!!!Fehlt noch**  
+
+
+---
+
 ### `search()`
 
 **Route:** `/search`  

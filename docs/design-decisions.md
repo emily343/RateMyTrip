@@ -213,5 +213,62 @@ We have recognized that this approach was not the best way and we would do it di
 | **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
 | **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
 
+## 07: Using Flash Messages
 
+### Meta
+
+Status
+: Decided
+
+Updated
+: 19-Jun-2025
+
+### Problem statement
+
+To give our users feedback on actions when registering or logging in/out of the account, we wanted a way to show them the status of the action (e.g if the login succeeded or failed).
+
+### Decision 
+
+We decided to use Flask's flash-messages. Flash-messages allows us to display temporary messages in an easy and efficient way. It keeps the user informed and improves their usability. 
+
+
+### Regarded options
+
++ manually implement a messaging system
++ use Flask flash()
+
+| Criterion | manual system| Flask Flash |
+| --- | --- | --- |
+| **Easiness to use** | ❌ more effort to implement   | ✔️ built-in and easy to use |
+| **Integration** | ❌ harder to integrate | ✔️ easier to inegrate |
+
+
+## 08: Include Instance Folder in Git 
+
+### Meta
+
+Status
+: Decided
+
+Updated
+: 19-Jun-2025
+
+### Problem statement
+
+It is recommended to keep the instance-folder  out of version control, because it often contains sensitive data and the database. However, during the development as a team, it might be helpful to share the database in the repository. 
+
+### Decision 
+
+For now, we decided to include the instance-folder in Git. This allows for all team members to access the same database file during the development of our web-application. We know that in a 'real-life' project it is not recommended, where we would then add it to the .gitignore file. 
+
+
+### Regarded options
+
++ keep instance-folder in .gitignore
++ include instance-folder in version control
+
+| Criterion | keep instance-folder in .gitignore| include instance-folder |
+| --- | --- | --- |
+| **Security** | ✔️  secure, sensitive data not shared |  ❌ sensitive data exposed |
+| **Development Convenience** | ❌ needs manual setup | ✔️ easier to share database |
 
