@@ -69,10 +69,14 @@
 </div>
         </div>
     </nav>
-    <!-- zeigt flash-Aufrufe an (noch in Bearbeitung) -->
-    {{ render_messages() }}
+    
+
 <!-- Header -->
     <header>
+        <div , style="margin-left: 180px; margin-right: 180px;">
+        <!-- zeigt flash messages an -->
+        {{ render_messages(dismissible=True, dismiss_animate=True) }}
+        </div>
         <h1>CityRate</h1>
         <h3>The site to help you find your Erasmus destination</h3>
     </header>
@@ -80,6 +84,7 @@
 
  <!-- Main Inhalt -->
     <main>
+     
      <h1> Register today to share your experiences with the community!</h1>
       <p class="text" style="font-weight: bold; margin-bottom: 15px">
          

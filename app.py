@@ -42,7 +42,7 @@ def home():
     return render_template('home.html')
 
 
-#Zeigt profile.html an
+#Zeigt profile.html an, für Profil des users
 @app.route('/profile',methods=['GET', 'POST'])
 @login_required  #Seite ist geschützt, nur für eingeloggte User
 def profile():
@@ -351,14 +351,14 @@ def register():
         'SELECT * FROM user WHERE username = ?', (username,)).fetchone()
         
         if checkuser:
-            #flash('username already taken :( Please choose a diferrent one', 'error')
+            flash('username already taken :( Please choose a diferrent one', 'danger')
             print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
         #neuer user wird in Datenbank gespeichert
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
-        #flash('registration successfull :) You can now log in!', 'info')
+        flash('registration successfull :) You can now log in!', 'success')
         print('registration successfull :) You can now log in!') #erstmal zum testen, später entfernen 
         return redirect(url_for('login'))
 
@@ -421,12 +421,12 @@ def login():
             
             user = User(id=existuser['id'], username= existuser['username'], password=existuser['password'])
             login_user(user) #user wird eingeloggt (durch Flask_Login[5])
-            #flask.flash('Logged in successfully.', 'info')
+            flask.flash('Logged in successfully.', 'success')
             print('Login hat funktioniert') #erstmal zum testen 
             return redirect(url_for('profile'))
         else: 
-            #flask.flash('wrong username or password', 'error')
-            print('Login fehlgeschlagen')
+            flask.flash('wrong username or password', 'danger')
+            print('Login fehlgeschlagen') #zum testen 
             return redirect(url_for('login'))
 
     return render_template('login.html', form=form)
@@ -438,6 +438,7 @@ def login():
 def logout():
 
     logout_user() #aus FLask_Login
+    flask.flash('Logged out successfully.', 'success')
     print('logout hat funtioniert') #zum testen 
 
     return redirect(url_for('login'))
