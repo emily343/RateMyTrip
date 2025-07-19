@@ -70,7 +70,7 @@ This folder contains the the images for the cities (in images/) and our css-styl
 - Routes in app.py processes form input by handling the logic and validation results
 - Templates (e.g. review.html or bulletin.html) display form 
 
-**Styling with Bootstrap:**
+**Styling with Bootstrap and CSS:**
 
 - We use [Bootstrap](../design-decisions.md#03-using-bootstrap-for-styling-and-layout) for a responsive and consistent Layout 
 - All templates include Bootstrap
@@ -88,7 +88,7 @@ This folder contains the the images for the cities (in images/) and our css-styl
 - We used Flask flash() function
 - used to give user feedback for actions like login or registration
 - example: "Wrong username or password. Try again"
-- written in app.py routes and displayed using 'get_flashed_messages()' in templates
+- written in app.py routes and displayed using 'render_messages()' in templates
 
 
 

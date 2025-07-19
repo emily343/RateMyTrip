@@ -4,7 +4,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+Sarah Abdulsayed, Emily Apitzsch
 
 {: .no_toc }
 # Design decisions
@@ -213,104 +213,5 @@ We have recognized that this approach was not the best way and we would do it di
 | **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
 | **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
 
----
-
-## 06: Not using base.html
-
-### Meta
-
-Status
-: Decided
-
-Updated
-: 18-Jun-2025
-
-### Problem statement
-
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
-
-### Decision 
-
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
 
 
-### Regarded options
-
-+ no base.html
-+ use base.html
-
-| Criterion | no base.html| use base.html |
-| --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
-
----
-
-## 06: Not using base.html
-
-### Meta
-
-Status
-: Decided
-
-Updated
-: 18-Jun-2025
-
-### Problem statement
-
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
-
-### Decision 
-
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
-
-
-### Regarded options
-
-+ no base.html
-+ use base.html
-
-| Criterion | no base.html| use base.html |
-| --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |
-
----
-
-## 06: Not using base.html
-
-### Meta
-
-Status
-: Decided
-
-Updated
-: 18-Jun-2025
-
-### Problem statement
-
-Flask with Jinja allows the use of a base.html template to define shared layout components, so individiual pages can extend the base.html for a common structure.
-In the beginning we thought our project was small enough that we would not need a base template, and that it would be easier to write each page individually. 
-
-### Decision 
-
-We decided not to implement a base.html. Instead, we repeated the shared html-structures, such as the navigation bar, in every page. At first, this helped us make faster progress in the beginning. As the project grew, we noticed that it resulted in repetitive code. Updating shared elements became more time-consuming.  
-We have recognized that this approach was not the best way and we would do it differently in future projects. 
-
-
-### Regarded options
-
-+ no base.html
-+ use base.html
-
-| Criterion | no base.html| use base.html |
-| --- | --- | --- |
-| **Initial Work** | ✔️  simpler at first  |  ❌ slightly more effort to set up |
-| **Maintain Code** | ❌ harder to maintain | ✔️ easier to update |
-| **Readability** | ❌  repetitive code, longer templates | ✔️ 'cleaner' templated |

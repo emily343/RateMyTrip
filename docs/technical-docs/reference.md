@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Sarah Abdulsayed]
+Sarah Abdulsayed
 
 {: .no_toc }
 # Reference documentation
