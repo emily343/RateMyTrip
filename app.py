@@ -95,7 +95,7 @@ def user(username):
 
     return render_template('user.html', user=user, form=form)
 
-#Seite für das Bulletinboard
+#Seite für das Bulletinboard 
 #GET: Seiten anzeigen, POST: Daten senden 
 @app.route('/bulletin/<city_name>', methods=['GET', 'POST'])
 @login_required #nur für eingeloggte user
@@ -135,7 +135,16 @@ def bulletin(city_name):
     messages = db_con.execute('SELECT * FROM bulletin WHERE city_name = ?',(city['name'],)).fetchall()
 
 
+    #für JSON Headless API, wenn ?json in URL
+    if request.args.get('json') is not None:
+        messages_list = []
+        for msg in messages:
+            messages_list = [dict(msg) for msg in messages]
+        return messages_list #returned Datenstruktur, wird von Flask automatisch 'jsonified'
+
     return render_template('bulletin.html', city=city, form=form, messages=messages) #city, form und messages an template übergeben 
+      
+
 
 
 
@@ -326,7 +335,6 @@ def review(city_name): #cityname wird übergeben
 
 
     return render_template('review.html', city=city, form=form)
-
 
 
 #Route zum Registrieren eines neuen Nutzers 
