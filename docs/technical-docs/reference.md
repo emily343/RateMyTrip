@@ -28,8 +28,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays the homepage.
 
 **Sample output:**  
-![`home()` sample](../static/images/images_outputs/homepage.png)
-
+![`home()` sample](/assets/images/homepage.png)
 
 ---
 
@@ -43,23 +42,21 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![`/profile` sample](../static/images/images_outputs/profile.png)
-
+![`/profile` sample](/assets/images/profile.png)
 
 ---
 
 ### `user()`
 
 **Route:** `/user/<username>`  
-**Methods:** `GET` , `POST` 
+**Methods:** `GET`, `POST`  
 **Purpose:** Displays the profile page of the user that wrote the message on the bulletin board.  
 **Authentication required**
 
 **Requires login**
 
 **Sample output:**  
-![`/profile` sample](../static/images/images_outputs/profile_bulletin.png)
-
+![`/profile` sample](/assets/images/profile_bulletin.png)
 
 ---
 
@@ -70,8 +67,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays a search form to look for cities by name. If a valid city is entered, redirects to `/city/<city_name>`.
 
 **Sample output:**  
-![Search Page](../static/images/images_outputs/search.png)
-
+![Search Page](/assets/images/search.png)
 
 ---
 
@@ -82,8 +78,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Displays details about a city and its reviews.
 
 **Sample output:**  
-![City Page](../static/images/images_outputs/city.png)
-
+![City Page](/assets/images/city.png)
 
 ---
 
@@ -95,8 +90,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![Review Page](../static/images/images_outputs/submit_review.png)
-
+![Review Page](/assets/images/submit_review.png)
 
 ---
 
@@ -109,8 +103,7 @@ This page documents all available routes and internal functions used in our web 
 **Requires login**
 
 **Sample output:**  
-![Bulletin Page](../static/images/images_outputs/bulletin.png)
-
+![Bulletin Page](/assets/images/bulletin.png)
 
 ---
 
@@ -121,8 +114,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Allows new users to create an account with a username and password.
 
 **Sample output:**  
-![Register Page](../static/images/images_outputs/register.png)
-
+![Register Page](/assets/images/register.png)
 
 ---
 
@@ -133,8 +125,7 @@ This page documents all available routes and internal functions used in our web 
 **Purpose:** Authenticates existing users and starts a session.
 
 **Sample output:**  
-![Login Page](../static/images/images_outputs/login.png)
-
+![Login Page](/assets/images/login.png)
 
 ---
 
@@ -147,25 +138,21 @@ This page documents all available routes and internal functions used in our web 
 **Sample output:**  
 None (redirects)
 
-
 ---
 
 ### `run_insert_sample()`
 
 **Route:** `/insert/sample`  
 **Methods:** `GET`  
-**Purpose:** Fills database with sample data using `insert_sample()` from `db.py`.
+**Purpose:** Fills database with sample data using `insert_sample()` from `db.py`.  
 _For development/testing purposes only._
 
 **Sample output:**  
 Text return: `Data added to Database.`
 
-
 ---
 
-
 ## Internal Functions
-
 
 ### `load_user(user_id)`
 
@@ -174,7 +161,7 @@ Text return: `Data added to Database.`
 **Returns:**  
 `User.get(user_id)`
 
-
+---
 
 ### `User.get(user_id)`
 
@@ -182,5 +169,3 @@ Text return: `Data added to Database.`
 
 **Returns:**  
 A `User` object if found.
-
----
