@@ -1,6 +1,6 @@
-# RateMyTrip 
+# CityRate
 
-**RateMyTrip** is a web application that creates a travel community where users can share city reviews, rate destinations, and connect via a public bulletin board. Most content is publicly viewable, but users must be logged in to post reviews or messages.
+**CityRate** is a web application that creates a travel community where users can share city reviews, rate destinations, and connect via a public bulletin board. Most content is publicly viewable, but users must be logged in to post reviews or messages.
 
 ## Features
 
@@ -17,7 +17,7 @@
 - **Backend:** Flask (Python)
 - **Frontend:** Jinja2, Bootstrap
 - **Forms:** Flask-WTF, WTForms
-- **Database:** SQLite (via Flask-SQLAlchemy)
+- **Database:** SQLite 
 
 ---
 
