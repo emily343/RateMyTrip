@@ -29,7 +29,7 @@ Our project is structured in separated files and folders, that are each responsi
 
 ### `app.py`
 
-App.py is the main entry point of the appliation. It initializes the Flask app with all the important flask extensions, such as Flask-Login for the user sessions and Flaks-WTF for form handling. It also implements the route logic and connects the templates with the backend logic. 
+App.py is the main entry point of the application. It initializes the Flask app with all the important flask extensions, such as Flask-Login for the user sessions and Flaks-WTF for form handling. It also implements the route logic and connects the templates with the backend logic. 
 
 ### `forms.py`
 
@@ -97,7 +97,7 @@ more about the Design Decision [here](../design-decisions.md#02-using-plain-sql-
 - Example: "Wrong username or password. Try again"
 - Written in app.py routes and displayed using 'render_messages()' in templates
 
-
+more about the Design Decision [here](../design-decisions.md#07-using-flash-messages) 
 
 
 

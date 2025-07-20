@@ -5,7 +5,7 @@ nav_order: 4
 ---
 
 {: .label }
-[Sarah Abdulsayed
+Sarah Abdulsayed
 
 {: .no_toc }
 # Summary of individual contributions
@@ -38,8 +38,9 @@ With each page listed below, the contributions also include the corresponding wo
 - Home
 - Value Proposition
 - Technical Docs - Architecture 
-- Design Desicions 5-x
+- Design Desicions 5-8
 - User Evaluation
+- Team Evaluation
 
 ---
 
@@ -49,6 +50,7 @@ With each page listed below, the contributions also include the corresponding wo
 - Search page 
 - City page 
 - Review page
+- Home page
 - CSS and design
 - Database initialization
 

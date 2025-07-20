@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+Sarah Abdulsayed, Emily Apitzsch
 
 {: .no_toc }
 # Peer review
@@ -37,7 +37,7 @@ I don't really have any but it would be helpful if in the future we both could a
 
 ### My observation (Wahrnehmung)
 
-Sarah and I work great as a Team. Sarah works in a very structured, efficient and responsible way. She is a very realiable partner. 
+Sarah and I work great as a Team. Sarah works in a very structured, efficient and responsible way. She is a very reliable partner. 
 
 ### Effect on me (Wirkung)
 

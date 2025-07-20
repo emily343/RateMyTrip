@@ -109,7 +109,7 @@ Bootstrap provides pre-styled components (e.g., navbar, carousel), which helps u
 | --- | --- | --- |
 | **Development Speed** | ❌ Time consuming  | ✔️ Fast |
 | **Responsiveness** | ❌ Needs to be manually implemented  | ✔️ Built in |
-| **Design** | ❌  Inconsitent | ✔️ Consistent and appealing |
+| **Design** | ❌  Inconsistent | ✔️ Consistent and appealing |
 
 ---
 ## 04: Using Flask-WTF for Form Handling
@@ -154,7 +154,7 @@ Status
 : Decided
 
 Updated
-: 18-Jun-2025
+: 18-Jul-2025
 
 ### Problem statement
 
@@ -189,7 +189,7 @@ Status
 : Decided
 
 Updated
-: 18-Jun-2025
+: 18-Jul-2025
 
 ### Problem statement
 
@@ -221,7 +221,7 @@ Status
 : Decided
 
 Updated
-: 19-Jun-2025
+: 19-Jul-2025
 
 ### Problem statement
 
@@ -240,7 +240,7 @@ We decided to use Flask's flash-messages. Flash-messages allows us to display te
 | Criterion | manual system| Flask Flash |
 | --- | --- | --- |
 | **Easiness to use** | ❌ more effort to implement   | ✔️ built-in and easy to use |
-| **Integration** | ❌ harder to integrate | ✔️ easier to inegrate |
+| **Integration** | ❌ harder to integrate | ✔️ easier to integrate |
 
 
 ## 08: Include Instance Folder in Git 
@@ -251,7 +251,7 @@ Status
 : Decided
 
 Updated
-: 19-Jun-2025
+: 19-Jul-2025
 
 ### Problem statement
 
