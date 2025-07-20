@@ -346,6 +346,7 @@ def register():
 
     #wenn user schon eingeloggt wird auf Userprofil verwiesen, damit sich der User nicht zweimal einloggen kann 
     if current_user.is_authenticated:
+        flash('You are already logged in', 'success')
         return redirect(url_for('profile'))
 
 
@@ -360,14 +361,12 @@ def register():
         
         if checkuser:
             flash('username already taken :( Please choose a diferrent one', 'danger')
-            print('username already taken :( Please choose a diferrent one') #erstmal zum testen, später entfernen 
             return redirect(url_for('register'))
         
         #neuer user wird in Datenbank gespeichert
         db_con.execute('INSERT INTO user(username, password) VALUES (?, ?)',(username, password))
         db_con.commit()
         flash('registration successfull :) You can now log in!', 'success')
-        print('registration successfull :) You can now log in!') #erstmal zum testen, später entfernen 
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
@@ -412,7 +411,9 @@ def login():
 
     #wenn user schon eingeloggt, wird auf Userprofil verwiesen
     if current_user.is_authenticated:
+        flash('You are already logged in', 'success')
         return redirect(url_for('profile'))
+        
 
    
     if form.validate_on_submit():

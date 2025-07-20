@@ -31,6 +31,7 @@ With each page listed below, the contributions also include the corresponding wo
 - Login function and page
 - Profile page
 - Bulletin page
+- average review-rating
 
 
 ### Contributions to Documentation
